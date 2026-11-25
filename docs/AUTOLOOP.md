@@ -3,6 +3,8 @@
 Project name: ENCY4AI. Repository: https://github.com/zz11ss11zz/ENCY4AI (public). Purpose: a living AI encyclopedia and practical guide, not a news-only feed. The owner wants to send interesting links and have their knowledge extracted, classified, connected to existing material and available for later reading.
 
 ## First run
+
+Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/ENCY4AI/issues/1). The renamed gateway and tests passed 8 local tests on 2026-11-25; the server.py and test_gateway.py Git blob hashes were verified against the tested files. Remote CI result was not confirmed; rerun tests and check Actions before advancing.
 1. Clone the repository and inspect the current default branch, open issues and CI. Read AGENTS.md, README.md and all docs/; confirm baseline instead of assuming plans are implemented.
 2. Run python -m unittest discover -s tests -v; record actual results and environment. Inspect the local gateway and OpenAPI. Do not install paid services or use production credentials.
 3. Create/reuse issues aligned to P0–P3; check for duplicates and dependencies. Start with a vertical slice, not separate disconnected prototypes.
@@ -20,7 +22,7 @@ Project name: ENCY4AI. Repository: https://github.com/zz11ss11zz/ENCY4AI (public
 AutoLoop developer: GitHub branch/issue/PR/CI. Knowledge agent: scoped REST/OpenAPI, later MCP. Keep these separate. Default bootstrap loopback port 8787, ENCY4AI_ environment prefix. No direct internet exposure. The bootstrap queues only; extraction and publishing are not yet implemented.
 
 ## Maintenance loop
-Inspect user-reported sources and existing issues; prioritize correctness/privacy and broken paths, then usability. Propose knowledge patches with sources; run link/freshness checks and flag obsolete tutorials. Produce reviewable PRs and private proposals. Never autonomously publish unreviewed facts, use private material in public repo, change repo access, spend money, or expose services. Track per-cycle objective, changes, source evidence, tests, pending review, blockers and next task. Owner chooses code/content licenses, production network and publication authorization.
+Inspect user-reported sources and existing issues; prioritize correctness/privacy and broken paths, then usability. Propose knowledge patches with sources; run link/freshness checks and flag obsolete tutorials. Produce reviewable PRs and private proposals. Never autonomously publish unreviewed facts, use private material in public repo, change repo access, spend money, or expose services. Track per-cycle objective, changes, source evidence, tests, pending review, blockers and next task. Preserve the existing MIT software license; owner chooses separate encyclopedia content licensing, production network and publication authorization.
 
 ## Completion evidence
 - PR URL and commit SHA; tests with commands/results (CI and local distinguished).
