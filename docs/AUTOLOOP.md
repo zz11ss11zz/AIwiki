@@ -1,6 +1,6 @@
 # AutoLoop handoff — START HERE
 
-Project name: ENCY4AI. Repository: https://github.com/zz11ss11zz/ENCY4AI (public). Purpose: a living AI encyclopedia and practical guide, not a news-only feed. The owner wants to send interesting links and have their knowledge extracted, classified, connected to existing material and available for later reading.
+Project name: ENCY4AI. Repository: https://github.com/zz11ss11zz/ENCY4AI (public). Purpose: a living AI encyclopedia and practical guide, not a news-only feed. AI is advancing faster than readers can understand, absorb and try new developments. The owner wants to save useful or interesting pages as well as personal reflections, questions and ideas; ENCY4AI must turn them into reusable digests, meaningful links to existing knowledge, learning/practice next steps and revisitable context. Read [LEARNING.md](LEARNING.md) as a core requirement. English is the default public and developer language; Chinese is supplementary. Preserve source and private-note language.
 
 ## First run
 
@@ -13,8 +13,9 @@ Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/ENCY4AI/is
 
 ## Initial vertical slice
 - Seed a small, source-verified set around Transformer, attention, LLM, AI Agent, RAG, MCP and practical application. Each entity has stable ID, primary source evidence, version qualifiers and typed relationships. Do not claim that one technology is a prerequisite or required component without evidence.
-- Reader opens a wiki page, browses labeled graph neighbors and follows a practical guide.
+- Reader opens an English wiki page, browses labeled graph neighbors with explanations, follows a practical guide and can switch to a supplementary Chinese page with shared IDs/provenance.
 - External Agent submits a URL with an idempotency key. The worker extracts authorized content, returns summary, new/existing entity matches, evidence anchors, candidate edges, conflicting claims and suggested wiki diffs to a private proposal. If source inaccessible, show that state.
+- Submit a standalone Chinese thought/question, preserve original wording and private status, link to relevant concepts with rationale and separate hypothesis from evidence. Submit a second related source, show what is genuinely new, what relates to prior knowledge, and what to learn/try. Reopen a topic to see meaningful changes and incomplete learning or experiment tasks. Implement the acceptance scenarios in LEARNING.md without counting suggestions as executed experiments.
 - Owner can review and approve/reject; audit, rollback and public/private isolation tested. Retrieval must show original source and relationships. Unverified or untested content explicitly labeled.
 - Use fixtures for repeatable tests. Authorized live inputs separately; no third-party text or private payloads in Git.
 
@@ -22,7 +23,7 @@ Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/ENCY4AI/is
 AutoLoop developer: GitHub branch/issue/PR/CI. Knowledge agent: scoped REST/OpenAPI, later MCP. Keep these separate. Default bootstrap loopback port 8787, ENCY4AI_ environment prefix. No direct internet exposure. The bootstrap queues only; extraction and publishing are not yet implemented.
 
 ## Maintenance loop
-Inspect user-reported sources and existing issues; prioritize correctness/privacy and broken paths, then usability. Propose knowledge patches with sources; run link/freshness checks and flag obsolete tutorials. Produce reviewable PRs and private proposals. Never autonomously publish unreviewed facts, use private material in public repo, change repo access, spend money, or expose services. Track per-cycle objective, changes, source evidence, tests, pending review, blockers and next task. Preserve the existing MIT software license; owner chooses separate encyclopedia content licensing, production network and publication authorization.
+Inspect user-reported sources and existing issues; prioritize correctness/privacy and broken paths, then learning value and usability. Avoid measuring success by number of news items, links or graph nodes alone. Propose knowledge patches with sources; run link/freshness checks and flag obsolete tutorials. Produce reviewable PRs and private proposals. Never autonomously publish unreviewed facts, use private material in public repo, change repo access, spend money, or expose services. Track per-cycle objective, changes, source evidence, tests, pending review, blockers and next task. Preserve the existing MIT software license; owner chooses separate encyclopedia content licensing, production network and publication authorization.
 
 ## Completion evidence
 - PR URL and commit SHA; tests with commands/results (CI and local distinguished).
