@@ -42,6 +42,18 @@ function setupNavToggle() {
 
 async function main() {
   const params = new URLSearchParams(window.location.search);
+  const chineseLink = document.querySelector('a[href="./zh/"], a[href="zh/"]');
+  const locationParams = new URLSearchParams();
+  for (const key of ['article', 'field', 'q']) {
+    if (!params.has(key)) continue;
+    locationParams.set(key, params.get(key));
+    break;
+  }
+  if (chineseLink && locationParams.size) {
+    const target = new URL(chineseLink.href);
+    target.search = locationParams.toString();
+    chineseLink.href = target.href;
+  }
   const input = document.getElementById('search-input');
   if (params.has('q')) input.value = params.get('q');
   const nav = document.getElementById('site-nav');
