@@ -39,4 +39,4 @@ python -m unittest discover -s tests -v
 
 HTTP 202 means queued, not analyzed or published. Poll /api/v1/jobs/{job_id} with the same token.
 
-This public repository does not authorize disclosure of private data, automatic publication, paid infrastructure or unrestricted agent access. Code and content licenses await the owner’s decision.
+This public repository does not authorize disclosure of private data, automatic publication, paid infrastructure or unrestricted agent access. The existing [MIT license](LICENSE) is preserved for repository software and its associated documentation. Third-party source material and encyclopedia contributions must respect their own licenses; the owner has not yet selected a separate public encyclopedia content license.
