@@ -1,6 +1,9 @@
 # ENCY4AI — Agent operating contract
 
 ## Mission
+
+ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
+
 Build and maintain a living AI encyclopedia: canonical wiki articles, evidence-backed typed knowledge graph, history, practical instructions, and a knowledge inbox. Preserve docs/PRODUCT.md and docs/KNOWLEDGE.md. This is not a news aggregator or a pile of bookmarks. AI progress outpaces human understanding, so the primary success criterion is whether readers can digest, connect, apply and revisit knowledge. Follow docs/LEARNING.md.
 
 ## Start here
