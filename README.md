@@ -6,6 +6,10 @@
 
 > AI moves faster than we can understand, absorb, and try it. ENCY4AI turns scattered discoveries into connected, practical knowledge.
 
+## Our vision
+
+**ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.**
+
 ENCY4AI is a wiki-first, evidence-backed encyclopedia and knowledge graph connecting AI history, theory, architectures, models, tools, practical workflows, applications, people and organizations. It is designed for people who discover valuable articles, projects, tutorials and ideas faster than they can make sense of them.
 
 ## From discovery to understanding
