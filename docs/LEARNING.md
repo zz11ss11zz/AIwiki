@@ -2,6 +2,8 @@
 
 ## Why ENCY4AI exists
 
+ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
+
 AI advances faster than most people can understand, absorb and try each development. Saving more links is not the solution. ENCY4AI should turn scattered discoveries into a connected, durable understanding of AI: what changed, why it matters, what it builds on, how it relates to previous discoveries, what to learn first, and what to try next. A reader who returns after months should recover the context without catching up on every headline.
 
 The public encyclopedia is a shared, evidence-backed learning resource. The owner's collection of interesting links, questions, reflections and ideas is a private-by-default working knowledge layer. Approved general knowledge can enrich the public encyclopedia without disclosing the original private note. Never silently transform personal opinion into a verified public fact.
