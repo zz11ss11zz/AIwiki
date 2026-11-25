@@ -4,6 +4,8 @@ Project name: ENCY4AI. Repository: https://github.com/zz11ss11zz/ENCY4AI (public
 
 ## Guiding vision
 
+Official brand tagline: **Less Noise. More Understanding. Knowledge That Compounds.** Preserve this wording in the English homepage and use the approved localized equivalent in the Chinese companion. This tagline reflects the product's priority: durable understanding over information volume.
+
 ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
 
 Use this as the decision criterion for product development: prioritize lasting understanding and meaningful connections over the volume or speed of news ingestion.

@@ -1,5 +1,9 @@
 # ENCY4AI：持续演进的人工智能百科全书与实用指南
 
+**减少信息噪声，深化知识理解，让知识持续复利。**
+
+*Less Noise. More Understanding. Knowledge That Compounds.*
+
 [English / 主 README](README.md)
 
 ## 项目愿景

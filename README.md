@@ -2,6 +2,8 @@
 
 **The Living Encyclopedia and Practical Guide to Artificial Intelligence**
 
+**Less Noise. More Understanding. Knowledge That Compounds.**
+
 [简体中文 / Chinese companion](README.zh-CN.md)
 
 > AI moves faster than we can understand, absorb, and try it. ENCY4AI turns scattered discoveries into connected, practical knowledge.
