@@ -2,6 +2,12 @@
 
 Project name: ENCY4AI. Repository: https://github.com/zz11ss11zz/ENCY4AI (public). Purpose: a living AI encyclopedia and practical guide, not a news-only feed. AI is advancing faster than readers can understand, absorb and try new developments. The owner wants to save useful or interesting pages as well as personal reflections, questions and ideas; ENCY4AI must turn them into reusable digests, meaningful links to existing knowledge, learning/practice next steps and revisitable context. Read [LEARNING.md](LEARNING.md) as a core requirement. English is the default public and developer language; Chinese is supplementary. Preserve source and private-note language.
 
+## Guiding vision
+
+ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
+
+Use this as the decision criterion for product development: prioritize lasting understanding and meaningful connections over the volume or speed of news ingestion.
+
 ## First run
 
 Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/ENCY4AI/issues/1). The renamed gateway and tests passed 8 local tests on 2026-11-25; the server.py and test_gateway.py Git blob hashes were verified against the tested files. Remote CI result was not confirmed; rerun tests and check Actions before advancing.
