@@ -1,0 +1,417 @@
+{
+  "schema": "ency4ai.reader.v0",
+  "synthetic": false,
+  "fields": [
+    {
+      "id": "field:history",
+      "title": "AI history"
+    },
+    {
+      "id": "field:fundamentals",
+      "title": "Fundamentals"
+    },
+    {
+      "id": "field:architectures",
+      "title": "Architectures"
+    },
+    {
+      "id": "field:models",
+      "title": "Models"
+    },
+    {
+      "id": "field:tools",
+      "title": "Tools"
+    },
+    {
+      "id": "field:agents",
+      "title": "Agents and automation"
+    },
+    {
+      "id": "field:handbook",
+      "title": "Practical handbook"
+    },
+    {
+      "id": "field:applications",
+      "title": "Industry applications"
+    },
+    {
+      "id": "field:people",
+      "title": "People, organizations and industry"
+    },
+    {
+      "id": "field:future",
+      "title": "AGI and future"
+    }
+  ],
+  "articles": [
+    {
+      "id": "architecture:transformer",
+      "field_id": "field:architectures",
+      "locale": "en",
+      "title": "Transformer",
+      "summary": "In the 2017 Transformer, the encoder represents the input sequence. The decoder uses that representation and earlier outputs to generate the next symbol.",
+      "status": "candidate",
+      "revision_id": "revision:agent-collaboration-003",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "In the 2017 Transformer, the encoder represents the input sequence. The decoder uses that representation and earlier outputs to generate the next symbol.",
+              "claim_ids": [
+                "claim:transformer-encoder-decoder"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Trace one output token in Figure 1. Where does the decoder receive information about the input sequence?",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "concept:attention",
+      "field_id": "field:fundamentals",
+      "locale": "en",
+      "title": "Attention",
+      "summary": "In the paper’s definition of attention, each key is paired with a value. The match between a query and each key determines how much its value contributes to the weighted sum.",
+      "status": "candidate",
+      "revision_id": "revision:agent-collaboration-003",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "In the paper’s definition of attention, each key is paired with a value. The match between a query and each key determines how much its value contributes to the weighted sum.",
+              "claim_ids": [
+                "claim:attention-weighted-values"
+              ]
+            },
+            {
+              "text": "Attention is a component of the 2017 Transformer. In encoder self-attention, each input position can draw on every position in the layer’s input. In encoder–decoder attention, decoder queries draw on keys and values from the encoder output.",
+              "claim_ids": [
+                "claim:attention-in-transformer"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Compare the two inputs to encoder–decoder attention in Figure 1. Which supplies the queries, and which supplies the keys and values?",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:aionui",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "AionUi",
+      "summary": "AionUi Team Mode runs a group of agents around a shared task. A leader breaks down the request, assigns work to teammates, and gathers the results.",
+      "status": "candidate",
+      "revision_id": "revision:agent-collaboration-003",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "AionUi Team Mode runs a group of agents around a shared task. A leader breaks down the request, assigns work to teammates, and gathers the results.",
+              "claim_ids": [
+                "claim:aionui-team-conversation"
+              ]
+            },
+            {
+              "text": "Teammates work in a shared folder, exchange updates through an asynchronous mailbox, and use a common task board. Teammates can be added or removed while the team is running.",
+              "claim_ids": [
+                "claim:aionui-team-state"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "For a project where research, writing, and review keep exchanging updates, sketch which roles should stay on the team and what each should record on the shared task board. Compare that with a single review request sent to a Codeg worker.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:codeg",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Codeg",
+      "summary": "With delegation enabled, a capable Codeg lead can hand a self-contained sub-task to another agent. Codeg starts a fresh worker session and returns its result for the lead to combine with its own work.",
+      "status": "candidate",
+      "revision_id": "revision:agent-collaboration-003",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "With delegation enabled, a capable Codeg lead can hand a self-contained sub-task to another agent. Codeg starts a fresh worker session and returns its result for the lead to combine with its own work.",
+              "claim_ids": [
+                "claim:codeg-delegation-sessions"
+              ]
+            },
+            {
+              "text": "The worker starts with the task description and its working folder. The lead supplies any conversation context needed to complete the handoff.",
+              "claim_ids": [
+                "claim:codeg-worker-context"
+              ]
+            },
+            {
+              "text": "Delegation defaults to one level, from lead to worker. Increasing the configured depth allows a capable worker to delegate in turn.",
+              "claim_ids": [
+                "claim:codeg-delegation-depth"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "For an implementation that needs an independent review, give the worker the goal, files or diff, constraints, and expected findings. Choose this scoped handoff when the lead can package the context and combine the answer. Compare it with keeping several roles coordinated on an AionUi team board.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:t3-code",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "T3 Code",
+      "summary": "T3 Code provides a shared interface for coding agents such as Claude Code and Codex running on a machine where they are configured. Desktop, web, and mobile clients can open the same threads, and a thread can continue with another model.",
+      "status": "candidate",
+      "revision_id": "revision:agent-collaboration-003",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "T3 Code provides a shared interface for coding agents such as Claude Code and Codex running on a machine where they are configured. Desktop, web, and mobile clients can open the same threads, and a thread can continue with another model.",
+              "claim_ids": [
+                "claim:t3-code-agent-interface"
+              ]
+            },
+            {
+              "text": "On desktop and web, the Agents view lets readers monitor delegated work and open a subagent's thread beside its parent. When an agent-created subagent needs approval or an answer, the request appears in the parent thread.",
+              "claim_ids": [
+                "claim:t3-code-subagent-threads"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Pick a coding task with a focused review step. Decide whether to continue the main T3 Code thread with a different provider or delegate the review and inspect it beside the main thread. Compare the delegated option with Codeg's fresh worker session, and consider when AionUi's shared task board would help several roles stay coordinated.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim:transformer-encoder-decoder",
+      "statement": "In the 2017 Transformer, the encoder represents the input sequence. The decoder uses that representation and earlier outputs to generate the next symbol.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:vaswani-nips-2017",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf#page=2",
+          "locator": "Section 3, PDF page 2"
+        }
+      ]
+    },
+    {
+      "id": "claim:attention-weighted-values",
+      "statement": "In the paper’s definition of attention, each key is paired with a value. The match between a query and each key determines how much its value contributes to the weighted sum.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:vaswani-nips-2017",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf#page=3",
+          "locator": "Section 3.2, PDF page 3"
+        }
+      ]
+    },
+    {
+      "id": "claim:attention-in-transformer",
+      "statement": "Attention is a component of the 2017 Transformer. In encoder self-attention, each input position can draw on every position in the layer’s input. In encoder–decoder attention, decoder queries draw on keys and values from the encoder output.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:vaswani-nips-2017",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf#page=5",
+          "locator": "Section 3.2.3, PDF page 5"
+        }
+      ]
+    },
+    {
+      "id": "claim:aionui-team-conversation",
+      "statement": "AionUi Team Mode runs a group of agents around a shared task. A leader breaks down the request, assigns work to teammates, and gathers the results.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:aionui-readme",
+          "url": "https://github.com/iOfficeAI/AionUi#team-mode--coordinated-multi-agent-collaboration",
+          "locator": "Team Mode — Coordinated Multi-Agent Collaboration"
+        }
+      ]
+    },
+    {
+      "id": "claim:aionui-team-state",
+      "statement": "Teammates work in a shared folder, exchange updates through an asynchronous mailbox, and use a common task board. Teammates can be added or removed while the team is running.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:aionui-readme",
+          "url": "https://github.com/iOfficeAI/AionUi#team-mode--coordinated-multi-agent-collaboration",
+          "locator": "Team Mode — Coordinated Multi-Agent Collaboration"
+        }
+      ]
+    },
+    {
+      "id": "claim:codeg-delegation-sessions",
+      "statement": "With delegation enabled, a capable Codeg lead can hand a self-contained sub-task to another agent. Codeg starts a fresh worker session and returns its result for the lead to combine with its own work.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:codeg-multi-agent",
+          "url": "https://docs.codeg.app/guide/multi-agent#how-delegation-works",
+          "locator": "How delegation works"
+        }
+      ]
+    },
+    {
+      "id": "claim:codeg-worker-context",
+      "statement": "The worker starts with the task description and its working folder. The lead supplies any conversation context needed to complete the handoff.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:codeg-multi-agent",
+          "url": "https://docs.codeg.app/guide/multi-agent#how-delegation-works",
+          "locator": "How delegation works"
+        }
+      ]
+    },
+    {
+      "id": "claim:codeg-delegation-depth",
+      "statement": "Delegation defaults to one level, from lead to worker. Increasing the configured depth allows a capable worker to delegate in turn.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:codeg-multi-agent",
+          "url": "https://docs.codeg.app/guide/multi-agent#sub-teams-let-a-worker-build-its-own-team",
+          "locator": "Sub-teams: let a worker build its own team"
+        }
+      ]
+    },
+    {
+      "id": "claim:t3-code-agent-interface",
+      "statement": "T3 Code provides a shared interface for coding agents such as Claude Code and Codex running on a machine where they are configured. Desktop, web, and mobile clients can open the same threads, and a thread can continue with another model.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:t3-code-readme",
+          "url": "https://github.com/pingdotgg/t3code#what-you-get",
+          "locator": "What you get"
+        }
+      ]
+    },
+    {
+      "id": "claim:t3-code-subagent-threads",
+      "statement": "On desktop and web, the Agents view lets readers monitor delegated work and open a subagent's thread beside its parent. When an agent-created subagent needs approval or an answer, the request appears in the parent thread.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:t3-code-thread-sidebar",
+          "url": "https://github.com/pingdotgg/t3code/blob/main/docs/user/thread-sidebar.md#inspect-agent-work",
+          "locator": "Inspect agent work"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source:vaswani-nips-2017",
+      "title": "Attention Is All You Need",
+      "publisher": "Ashish Vaswani et al. · Advances in Neural Information Processing Systems 30 (NIPS 2017), conference paper",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf"
+    },
+    {
+      "id": "source:aionui-readme",
+      "title": "AionUi",
+      "publisher": "iOfficeAI · Project README, consulted 2026-11-25",
+      "url": "https://github.com/iOfficeAI/AionUi"
+    },
+    {
+      "id": "source:codeg-multi-agent",
+      "title": "Multi-Agent Collaboration",
+      "publisher": "Codeg · Official guide, consulted 2026-11-25",
+      "url": "https://docs.codeg.app/guide/multi-agent"
+    },
+    {
+      "id": "source:t3-code-readme",
+      "title": "T3 Code",
+      "publisher": "T3 Tools · Project README, consulted 2026-11-25",
+      "url": "https://github.com/pingdotgg/t3code"
+    },
+    {
+      "id": "source:t3-code-thread-sidebar",
+      "title": "Thread sidebar",
+      "publisher": "T3 Tools · Official guide, consulted 2026-11-25",
+      "url": "https://github.com/pingdotgg/t3code/blob/main/docs/user/thread-sidebar.md"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:attention-part-of-transformer",
+      "predicate": "part_of",
+      "object_id": "architecture:transformer",
+      "subject_id": "concept:attention",
+      "claim_id": "claim:attention-in-transformer",
+      "status": "candidate"
+    }
+  ]
+}

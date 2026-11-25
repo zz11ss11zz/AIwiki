@@ -3,40 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Two anonymized community observations on AI collaboration and writing.">
-<meta name="referrer" content="no-referrer">
-<title>Community discussions / 网友讨论 — ENCY4AI</title>
+<title>ENCY4AI — The Living Encyclopedia and Practical Guide to Artificial Intelligence</title>
+<meta name="description" content="Less Noise. More Understanding. Knowledge That Compounds.">
 <link rel="stylesheet" href="assets/styles.css">
+<script type="module" src="assets/app.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="./">ENCY4AI</a>
+  <nav class="section-nav" aria-label="Sections">
+    <ul>
+      <li><a href="discussions.html">Community discussions</a></li>
+    </ul>
+  </nav>
+  <form class="search" role="search" action="./" method="get">
+    <label for="search-input">Search articles</label>
+    <input id="search-input" name="q" type="search" maxlength="200" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
 </header>
-<div class="layout layout-single">
+<div class="layout">
+  <button class="nav-toggle" type="button" aria-expanded="true" aria-controls="site-nav" hidden>Browse topics</button>
+  <nav id="site-nav" class="site-nav" aria-labelledby="toc-heading"></nav>
   <main id="main" tabindex="-1">
-    <h1 class="page-title">Community discussions <span lang="zh-Hans">网友讨论</span></h1>
-    <p class="notice">Unverified community observations for reference. These paraphrases reflect individual experiences.</p>
-    <p lang="zh-Hans">以下是匿名整理的网友经验，未经核实，仅供参考。</p>
-    <p class="meta">Source: two WeChat comments. The screenshot said “2 days ago.” The estimated comment date is <time datetime="2026-11-23">November 23, 2026</time> (Beijing time). The exact posting times are unknown.</p>
-    <ol class="discussion-list">
-      <li class="discussion-item">
-        <article aria-labelledby="agent-workflows">
-          <h2 id="agent-workflows">Choosing models and tools by task <span lang="zh-Hans">按任务搭配模型和工具</span></h2>
-          <p>One commenter described using different models and tools for coordination, front-end work, back-end work, computer use and batch processing. Their takeaway was to choose a model and agent environment that fit each task.</p>
-          <p lang="zh-Hans">一位网友分享了自己的分工方式：主控、前端、后端、电脑操作和批处理分别选择模型与工具。对这位网友来说，先看任务需要，再搭配模型和 Agent 运行环境。</p>
-        </article>
-      </li>
-      <li class="discussion-item">
-        <article aria-labelledby="writing">
-          <h2 id="writing">Trying AI suggestions on a short essay <span lang="zh-Hans">在一篇短文里试用 AI 的建议</span></h2>
-          <p>Another commenter initially asked AI to adjust the format of a short personal essay. They also tried its writing suggestions and chose to keep one sentence.</p>
-          <p lang="zh-Hans">另一位网友原本只想让 AI 调整小散文的格式，试过它提供的文字建议后，最后保留了其中一句。</p>
-        </article>
-      </li>
-    </ol>
+    <p role="status">Loading…</p>
+    <noscript><p>The reader needs JavaScript to load its dataset.</p></noscript>
   </main>
 </div>
-<footer class="site-footer"><p>ENCY4AI · Community discussions</p></footer>
+<footer class="site-footer">
+  <p>ENCY4AI reader preview. Software is licensed under MIT.</p>
+</footer>
 </body>
 </html>
