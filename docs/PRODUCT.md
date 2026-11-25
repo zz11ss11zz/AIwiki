@@ -1,5 +1,11 @@
 # ENCY4AI product specification (v0.1)
 
+## Brand tagline
+
+**Less Noise. More Understanding. Knowledge That Compounds.**
+
+Use this exact English wording in public brand copy and the future website homepage; the Chinese companion may use its localized equivalent.
+
 ## Vision
 
 ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
