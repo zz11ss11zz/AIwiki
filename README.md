@@ -1,13 +1,32 @@
 # ENCY4AI
 
-**The Living Encyclopedia of Artificial Intelligence** · 持续演进的人工智能百科全书与实用指南
+**The Living Encyclopedia and Practical Guide to Artificial Intelligence**
 
-ENCY4AI is a wiki-first, evidence-backed knowledge graph connecting AI history, theory, architectures, models, tools, practical workflows, applications, people and organizations. Readers can browse a book-like outline, follow semantic relationships, and learn how to use AI. Human or agent-submitted links and notes become private evidence-backed proposals, not automatic public posts.
+[简体中文 / Chinese companion](README.zh-CN.md)
+
+> AI moves faster than we can understand, absorb, and try it. ENCY4AI turns scattered discoveries into connected, practical knowledge.
+
+ENCY4AI is a wiki-first, evidence-backed encyclopedia and knowledge graph connecting AI history, theory, architectures, models, tools, practical workflows, applications, people and organizations. It is designed for people who discover valuable articles, projects, tutorials and ideas faster than they can make sense of them.
+
+## From discovery to understanding
+
+**Capture → Digest → Connect → Try → Revisit**
+
+- Save a useful or interesting link, a question, a personal reflection or an idea, directly or through an external agent.
+- Extract the key ideas, evidence, significance and uncertainties in a reusable digest rather than another isolated bookmark.
+- Connect each discovery to existing concepts, sources, prerequisites, competing approaches and practical applications, with explanations of why the relationships matter.
+- Identify useful next steps: a reading path, a small experiment, a comparison or a practical workflow. Clearly distinguish suggested from tested instructions.
+- Return later to discover what has changed, revisit unfinished questions and experiments, and build understanding over time.
+
+The public encyclopedia is English-first, with Chinese as a supplementary reading locale. Original sources and private notes retain their language. Personal collections, reflections and proposals are private by default; only authorized, reviewed knowledge enters the public wiki. ENCY4AI is not a news feed or an automatic publishing bot.
+
+These are product goals; see the bootstrap status below for what is actually implemented.
 
 ## Start here
 
 - [AGENTS.md](AGENTS.md) — AutoLoop and contributor operating instructions.
 - [Product](docs/PRODUCT.md) — scope, UX and acceptance criteria.
+- [Learning and synthesis](docs/LEARNING.md) — the core capture-to-understanding workflow.
 - [Knowledge model](docs/KNOWLEDGE.md) — canonical IDs, claims, relations and provenance.
 - [Agent API](docs/AGENT_API.md) — versioned interface and security boundaries.
 - [Roadmap](docs/ROADMAP.md) — ordered development and maintenance plan.
