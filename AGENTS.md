@@ -1,7 +1,7 @@
 # ENCY4AI — Agent operating contract
 
 ## Mission
-Build and maintain a living AI encyclopedia: canonical wiki articles, evidence-backed typed knowledge graph, history, practical instructions, and a knowledge inbox. Preserve docs/PRODUCT.md and docs/KNOWLEDGE.md. This is not a news aggregator or a pile of bookmarks.
+Build and maintain a living AI encyclopedia: canonical wiki articles, evidence-backed typed knowledge graph, history, practical instructions, and a knowledge inbox. Preserve docs/PRODUCT.md and docs/KNOWLEDGE.md. This is not a news aggregator or a pile of bookmarks. AI progress outpaces human understanding, so the primary success criterion is whether readers can digest, connect, apply and revisit knowledge. Follow docs/LEARNING.md.
 
 ## Start here
 1. Read README.md, this file and all docs/, especially docs/AUTOLOOP.md and docs/ROADMAP.md.
@@ -9,6 +9,11 @@ Build and maintain a living AI encyclopedia: canonical wiki articles, evidence-b
 3. Work on the first unfinished roadmap item; record scope, assumptions, dependencies and measurable acceptance in an issue before coding.
 4. Use small branches and PRs; include tests, docs, reproducible commands, security review and limitations. Never push directly to main or merge unless the owner explicitly authorizes it. Do not count a plan or mock as a shipped feature.
 5. Update roadmap and handoff with PR/commit links, test evidence, known defects and next action.
+
+## Language and product priorities
+- English is canonical for the repository homepage, primary specifications, default public site and API. Chinese is a supplementary locale via explicit links/switches. Preserve original-language sources and notes; use shared IDs, provenance and revision history.
+- Each source or personal thought must produce a reusable, appropriately qualified digest, meaningful connections and a next learning or practice step when justified. Avoid generic summaries, forced graph links, or ranking by novelty alone.
+- Keep author claims, personal reflections/hypotheses, evidence and AI interpretations separate. Reading status, experiment results and private edges remain private; never infer understanding or completed practice from clicks or generated text.
 
 ## Boundaries
 - Public repository: never commit secrets, .env, private inbox payloads/databases, personal notes, unlicensed source copies or sensitive logs. No personal data in public issues.
