@@ -21,6 +21,13 @@ const magpieChatgpt = 'https://github.com/yetone/magpie/blob/main/internal/provi
 const openaiClients = 'https://developers.openai.com/siwc/token-sharing-open-source';
 
 export const GUIDE_SOURCE_LABELS = new Map([
+  ['https://github.com/makecindy/cindy#keep-your-favorite-agents-get-a-better-way-to-work', ['Cindy session and agents', 'Cindy 会话与智能体']],
+  ['https://cindy.app/', ['Cindy task controls and permissions', 'Cindy 任务控制与权限']],
+  ['https://github.com/PigBun-AI/pigbun-partner-community#how-pigbun-works', ['How PigBun workstreams start', 'PigBun 如何创建工作流']],
+  ['https://github.com/PigBun-AI/pigbun-partner-community#what-you-can-use-it-for-today', ['PigBun workbench and local tools', 'PigBun 工作台与本地工具']],
+  ['https://multica.ai/docs/assigning-issues', ['Multica issue assignment', 'Multica 工单分派']],
+  ['https://multica.ai/docs/tasks', ['Multica execution logs', 'Multica 执行日志']],
+  ['https://multica.ai/docs/team-agent-pool', ['Multica review handoff', 'Multica 团队审查交接']],
   [aionRepo, ['iOfficeAI repository', 'iOfficeAI 项目仓库']],
   [aionRelease, ['AionUi v1.9.10 release', 'AionUi v1.9.10 发布记录']],
   [aionSetup, ['AionUi first-run guide', 'AionUi 初次配置指南']],
@@ -56,8 +63,82 @@ export const GUIDE_SOURCE_LABELS = new Map([
   [`${t3Docs}/source-control.md#review-turn-changes`, ['Reviewing turn changes', '检查本轮 Git 改动']],
 ]);
 
+const setupGuideExample = {
+  en: {
+    title: 'Revise a setup guide',
+    setup: 'Use a project with an existing setup guide and a specific configuration change. The deliverable is a draft with checked steps and any remaining verification gaps.',
+  },
+  zh: {
+    title: '案例｜修订配置指南',
+    setup: '准备一份现有配置指南和一项明确的配置变更。交付一份待审草稿，写明已核对的步骤和仍待验证的事项。',
+  },
+};
+
 // Each guide groups the editorial paraphrase with the primary sources for that section.
 export const TOOL_GUIDES = new Map([
+  ['tool:cindy', {
+    example: {
+      sources: ['https://github.com/makecindy/cindy#keep-your-favorite-agents-get-a-better-way-to-work', 'https://cindy.app/'],
+      en: {
+        ...setupGuideExample.en,
+        steps: [
+          'Open a task conversation in Cindy and choose a supported agent. Give it the guide and the configuration change. Ask it to check the steps and prepare a draft for your review.',
+          'Follow tool calls and results in the same conversation. Open the changed file or inspect the diff where available, then request any revisions in that conversation.',
+          'If Cindy asks for permission, review the requested action and decide whether to allow it. Before sharing the guide, check the draft against the new configuration and resolve any steps the agent could not verify.',
+        ],
+      },
+      zh: {
+        ...setupGuideExample.zh,
+        steps: [
+          '在 Cindy 中打开一个任务会话，选一位受支持的智能体。给它现有指南和配置变更说明，请它核对步骤并准备待审草稿。',
+          '在同一会话看工具调用和结果。打开修改后的文件，或在支持时查看差异，再把修改意见发回这个会话。',
+          'Cindy 发出权限请求时，查看具体操作并决定是否允许。分享指南前，用新配置复核草稿，处理智能体未能验证的步骤。',
+        ],
+      },
+    },
+  }],
+  ['tool:pigbun-partner', {
+    example: {
+      sources: ['https://github.com/PigBun-AI/pigbun-partner-community#how-pigbun-works', 'https://github.com/PigBun-AI/pigbun-partner-community#what-you-can-use-it-for-today'],
+      en: {
+        ...setupGuideExample.en,
+        steps: [
+          'Describe the configuration change and the expected draft in the partner chat. Once the goal is clear, PigBun creates a workstream that carries the task forward separately from the conversation.',
+          'Open the browser workbench for that workstream. Check progress, local tool activity, and blockers while it checks the steps and drafts the revision.',
+          'Respond when the workstream asks for a decision, missing access, or approval. For example, confirm which environment the steps should target if that is unclear. Review the draft before sharing it.',
+        ],
+      },
+      zh: {
+        ...setupGuideExample.zh,
+        steps: [
+          '在伙伴聊天里说明改了什么配置、希望收到什么样的草稿。目标明确后，PigBun 会创建一条工作流，在聊天之外继续推进任务。',
+          '打开浏览器工作台，找到这条工作流。它核对步骤和修订内容时，可以查看进展、本地工具活动和阻塞。',
+          '工作流需要决策、访问权限或批准时再介入。例如目标环境不明确，就告诉它按哪个环境核对。收到草稿后，审阅再分享。',
+        ],
+      },
+    },
+  }],
+  ['tool:multica', {
+    example: {
+      sources: ['https://multica.ai/docs/assigning-issues', 'https://multica.ai/docs/tasks', 'https://multica.ai/docs/team-agent-pool'],
+      en: {
+        ...setupGuideExample.en,
+        steps: [
+          'Create an issue with the configuration change and acceptance criteria. Open Assignee, choose the agent, and confirm the assignment to start the run.',
+          'Stay on the same issue for status, comments, and results. Open Execution log in the right sidebar for the run state and detailed transcript.',
+          'When the issue reaches In Review, have a teammate check the draft and the verified steps. If anything is missing, leave feedback on the issue. Mark the work done once it meets the acceptance criteria.',
+        ],
+      },
+      zh: {
+        ...setupGuideExample.zh,
+        steps: [
+          '创建工单，写明配置变更和验收条件。打开 Assignee，选择智能体并确认分派，发起执行。',
+          '在同一张工单查看状态、评论和交付结果。需要查看运行状态或详细记录时，打开右侧栏的 Execution log。',
+          '工单进入 In Review 后，由同事核对草稿和已验证的步骤。有遗漏就在工单里反馈，达到验收条件后再将工单标记为完成。',
+        ],
+      },
+    },
+  }],
   ['tool:aionui', {
     origin: {
       sources: [aionRepo, aionRelease],

@@ -203,6 +203,7 @@ export function articleExtras(ds, currentId, locale = 'en') {
       ['features', zh ? '功能怎么用' : 'How the features work'],
     ]) {
       const content = guide[id];
+      if (!content) continue;
       const paragraphs = content[locale].map(text => `<p>${esc(text)}</p>`).join('');
       extras.push(section(id, title, paragraphs + guideSources(content.sources, zh)));
     }
