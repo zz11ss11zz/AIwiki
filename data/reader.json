@@ -531,6 +531,51 @@
         }
       ],
       "aliases": []
+    },
+    {
+      "id": "tool:pigbun-partner",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "PigBun Partner",
+      "summary": "PigBun Partner is a locally run AI collaboration tool. Its official documentation describes turning a goal from chat into a workstream that retains context, uses local tools, and asks the user for decisions or approval when needed.",
+      "status": "candidate",
+      "revision_id": "revision:pigbun-partner-008",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "PigBun Partner is a locally run AI collaboration tool. Its official documentation describes turning a goal from chat into a workstream that retains context, uses local tools, and asks the user for decisions or approval when needed.",
+              "claim_ids": [
+                "claim:pigbun-workstreams"
+              ]
+            },
+            {
+              "text": "The developer documents a browser workbench for tracking progress, blockers, and tool activity, with Claude Code and Codex as examples of local execution tools.",
+              "claim_ids": [
+                "claim:pigbun-executors"
+              ]
+            },
+            {
+              "text": "The developer describes PigBun Partner as alpha and says its core runtime is private. The public repository contains documentation, feedback, and release notes.",
+              "claim_ids": [
+                "claim:pigbun-alpha"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Sketch the same multi-day research task as a PigBun workstream and as a Multica issue. Compare where each tool surfaces progress and when the user would need to step in.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -894,6 +939,50 @@
           "locator": "Part I, Additional Conditions"
         }
       ]
+    },
+    {
+      "id": "claim:pigbun-workstreams",
+      "statement": "PigBun Partner is a locally run AI collaboration tool. Its official documentation describes turning a goal from chat into a workstream that retains context, uses local tools, and asks the user for decisions or approval when needed.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:pigbun-partner-readme",
+          "url": "https://github.com/PigBun-AI/pigbun-partner-community#how-pigbun-works",
+          "locator": "How PigBun Works"
+        }
+      ]
+    },
+    {
+      "id": "claim:pigbun-executors",
+      "statement": "The developer documents a browser workbench for tracking progress, blockers, and tool activity, with Claude Code and Codex as examples of local execution tools.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:pigbun-partner-readme",
+          "url": "https://github.com/PigBun-AI/pigbun-partner-community#what-you-can-use-it-for-today",
+          "locator": "What You Can Use It For Today"
+        }
+      ]
+    },
+    {
+      "id": "claim:pigbun-alpha",
+      "statement": "The developer describes PigBun Partner as alpha and says its core runtime is private. The public repository contains documentation, feedback, and release notes.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:pigbun-partner-readme",
+          "url": "https://github.com/PigBun-AI/pigbun-partner-community#not-open-source-yet",
+          "locator": "Not Open Source Yet"
+        },
+        {
+          "source_id": "source:pigbun-partner-readme",
+          "url": "https://github.com/PigBun-AI/pigbun-partner-community#current-status",
+          "locator": "Current Status"
+        }
+      ]
     }
   ],
   "sources": [
@@ -1004,6 +1093,12 @@
       "title": "Multica License",
       "publisher": "Index Labs (Hong Kong) Limited · Repository license, consulted 2026-11-26",
       "url": "https://github.com/multica-ai/multica/blob/main/LICENSE"
+    },
+    {
+      "id": "source:pigbun-partner-readme",
+      "title": "PigBun Partner",
+      "publisher": "PigBun AI · Official community README, consulted 2026-11-26",
+      "url": "https://github.com/PigBun-AI/pigbun-partner-community"
     }
   ],
   "edges": [

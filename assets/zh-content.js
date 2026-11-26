@@ -35,6 +35,7 @@ export const ZH_CONTENT = Object.freeze({
     'tool:t3-code': { en: 'T3 Code', zh: 'T3 Code', aliases: [] },
     'tool:antigravity-swarm': { en: 'Antigravity Swarm', zh: 'Antigravity Swarm', aliases: ['智能体编排', '多智能体协作'] },
     'tool:andrej-karpathy-skills': { en: 'Andrej Karpathy Skills', zh: 'Andrej Karpathy Skills', aliases: ['卡帕西技能', '编码智能体指南'] },
+    'tool:pigbun-partner': { en: 'PigBun Partner', zh: 'PigBun Partner（猪笼包 AI）', aliases: ['pigbunai', 'PigBun AI', '猪笼包'] },
     'tool:multica': { en: 'Multica', zh: 'Multica', aliases: ['人机协作', '任务看板'] },
     'tool:google-antigravity': { en: 'Google Antigravity', zh: 'Google Antigravity', aliases: ['谷歌反重力', '浏览器智能体'] },
     'tool:google-flow': { en: 'Google Flow', zh: 'Google Flow', aliases: ['谷歌 Flow', '视频生成', 'Veo'] },
@@ -88,6 +89,16 @@ export const ZH_CONTENT = Object.freeze({
       '在桌面端和网页端，Agents 视图让读者可以监控已委派的工作，并在父线程旁打开子智能体的线程。当由智能体创建的子智能体需要批准或答复时，该请求会出现在父线程中。'],
     ["Pick a coding task with a focused review step. Decide whether to continue the main T3 Code thread with a different provider or delegate the review and inspect it beside the main thread. Compare the delegated option with Codeg's fresh worker session, and consider when AionUi's shared task board would help several roles stay coordinated.",
       '选一个包含聚焦审阅步骤的编码任务。决定是换用另一家提供方继续 T3 Code 主线程，还是将审阅委派出去并在主线程旁查看。将委派方案与 Codeg 的全新工作者会话进行比较，并思考在什么情况下 AionUi 的共享任务看板有助于多个角色保持协调。'],
+
+    // tool:pigbun-partner
+    ["PigBun Partner is a locally run AI collaboration tool. Its official documentation describes turning a goal from chat into a workstream that retains context, uses local tools, and asks the user for decisions or approval when needed.",
+      "PigBun Partner（猪笼包 AI）是一款在本机运行的 AI 协作工具。根据官方文档，它可把聊天中明确的目标变成一条持续推进的工作流，保留上下文、调用本地工具，并在需要用户决策或批准时请用户介入。"],
+    ["The developer documents a browser workbench for tracking progress, blockers, and tool activity, with Claude Code and Codex as examples of local execution tools.",
+      "官方文档介绍了一个浏览器工作台，可用来查看进展、阻塞和工具活动，并列举 Claude Code 和 Codex 作为本地执行工具。"],
+    ["The developer describes PigBun Partner as alpha and says its core runtime is private. The public repository contains documentation, feedback, and release notes.",
+      "开发方把 PigBun Partner 标为 Alpha 阶段，核心运行时仍为私有。公开仓库提供文档、反馈渠道和发布说明。"],
+    ["Sketch the same multi-day research task as a PigBun workstream and as a Multica issue. Compare where each tool surfaces progress and when the user would need to step in.",
+      "把同一个持续几天的调研任务分别画成 PigBun 工作流和 Multica 工单。比较在哪里查看各自的进展，以及在哪些节点需要人介入。"],
 
     // tool:antigravity-swarm
     ["Antigravity Swarm is Google Antigravity's preview feature for coordinating a team of agents. With /swarm, the current conversation assigns work to named workers that run in parallel and coordinate on a shared board.",
