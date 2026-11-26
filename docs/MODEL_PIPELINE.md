@@ -42,4 +42,17 @@ The application registers adapters server-side and passes task data to a configu
 - Synthesis uses known entity and claim IDs. Factual relation suggestions require a supported predicate, two distinct context entities, a rationale and at least one extracted claim. All produced relations are candidates. Suggested practice is marked `suggested`.
 - Inaccessible sources and unusable outputs return explicit statuses without a proposal. A source with no extracted evidence skips synthesis. Adapter failures exposed as `ModelUnavailable` return a status without runtime error details.
 - The caller supplies only authorized public paragraphs and public context. Source URLs and private notes are omitted from external task payloads. Public-source synthesis can complete while deferring the note. Only adapters explicitly registered by the operator to process private input may receive a note or standalone thought. A deferred thought makes zero model calls. Processed thoughts retain their original wording and have no extracted source claims.
-- The offline runner returns proposals in memory. HTTP submission and status are still queue-only. Fetch safety, real provider credentials and budgets, durable retries, result access, and reviewer authorization must be verified as those integrations are added. This module has no tool execution or publication operation.
+- The standalone demo returns proposals in memory. The inbox worker persists terminal outcomes in the local database. Live fetch safety, provider credentials and budgets, multi-user result access, and reviewer authorization remain separate work.
+
+## Run from the inbox
+
+Use a fresh demo database so the fixture worker does not consume unrelated jobs. Set `ENCY4AI_DB` to the same path in both terminals, for example `.local/offline-worker-demo.sqlite3`. Set a local random `ENCY4AI_AGENT_TOKEN` in the gateway and HTTP client environments.
+
+1. Start the gateway with `python -m api.server`.
+2. Send `POST /api/v1/inbox` with the Bearer token, JSON content type and body `{"url":"https://example.org/indexing-v2"}`. Save the returned `job_id`. The initial response is HTTP 202 with status `queued`.
+3. In the second terminal, run `python -m api.worker --fixture tests/fixtures/model_pipeline.json --once`. Omit `--once` to keep polling in the background. The worker uses the locally configured model routes and recorded fixture responses.
+4. Send `GET /api/v1/jobs/{job_id}/result` with the same Bearer token. Expect HTTP 200 with status `proposed` and a private proposal in `needs_review`. Unknown source URLs return `source_unavailable` in the result. Private standalone text is deferred by the fixture runtime.
+
+Run just the end-to-end test with `python -m unittest discover -s tests -p test_gateway.py -k offline_worker -v`. It submits through a loopback gateway, starts the worker CLI as a separate process, and checks authenticated retrieval and idempotency.
+
+Worker claims use a 30-second SQLite lease. A later worker can recover an expired lease. The old lease cannot write a result after its deadline or after reclaim. Temporary model errors are retried after one second, with at most three processing attempts. Existing SQLite inboxes acquire the new processing table automatically. Stop the worker to resume queue-only operation. Older gateway versions still read the inbox table; keep the processing table to retain saved results.

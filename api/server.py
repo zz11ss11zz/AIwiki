@@ -1,4 +1,4 @@
-"""Local-only bootstrap gateway; queues input, never fetches or publishes."""
+"""Loopback-only gateway for private inbox jobs and worker results."""
 import hashlib
 import hmac
 import json
@@ -35,6 +35,10 @@ def init_db(path):
             job_id TEXT PRIMARY KEY, status TEXT NOT NULL, visibility TEXT NOT NULL,
             created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
             payload TEXT NOT NULL, fingerprint TEXT NOT NULL, idem_key TEXT UNIQUE)''')
+        db.execute('''CREATE TABLE IF NOT EXISTS job_processing (
+            job_id TEXT PRIMARY KEY REFERENCES jobs(job_id), attempts INTEGER NOT NULL,
+            lease_token TEXT, eligible_at REAL NOT NULL, result TEXT)''')
+        db.execute('CREATE INDEX IF NOT EXISTS jobs_queue ON jobs(status, created_at, job_id)')
 
 def job_public(row):
     return {key: row[key] for key in ('job_id', 'status', 'visibility', 'created_at', 'updated_at')}
@@ -102,12 +106,21 @@ class Handler(BaseHTTPRequestHandler):
         if not self.auth():
             return
         if path == '/api/v1/capabilities':
-            return self.reply(200, {'version':'0.1.0','implemented':['inbox.submit','job.status'], 'planned':['source.extract','wiki.search','graph.query','proposal.review','mcp'], 'publication_enabled':False})
-        match = re.fullmatch(r'/api/v1/jobs/([0-9a-f]{32})', path)
+            return self.reply(200, {'version':'0.1.0','implemented':['inbox.submit','job.status','job.result'], 'planned':['source.extract','wiki.search','graph.query','proposal.review','mcp'], 'publication_enabled':False})
+        match = re.fullmatch(r'/api/v1/jobs/([0-9a-f]{32})(/result)?', path)
         if match:
             with connect(self.server.db_path) as db:
-                row = db.execute('SELECT * FROM jobs WHERE job_id=?', (match[1],)).fetchone()
-            return self.reply(200,job_public(row)) if row else self.reply(404,{'error':'not_found'})
+                row = db.execute('''SELECT jobs.job_id, jobs.status, jobs.visibility,
+                        jobs.created_at, jobs.updated_at, job_processing.result
+                    FROM jobs LEFT JOIN job_processing USING (job_id) WHERE jobs.job_id=?''',
+                    (match[1],)).fetchone()
+            if row is None:
+                return self.reply(404, {'error': 'not_found'})
+            if not match[2]:
+                return self.reply(200, job_public(row))
+            if row['result'] is None:
+                return self.reply(202, job_public(row))
+            return self.reply(200, {**job_public(row), 'result': json.loads(row['result'])})
         return self.reply(404,{'error':'not_found'})
     def do_POST(self):
         if not self.auth():

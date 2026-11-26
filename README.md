@@ -41,7 +41,7 @@ These are product goals; see the bootstrap status below for what is actually imp
 
 ## Bootstrap status
 
-The local Python gateway implements an authenticated durable inbox and job status. The [offline model pipeline](docs/MODEL_PIPELINE.md) runs source extraction and knowledge synthesis against synthetic fixtures. Live source fetching, processing queued jobs, wiki publication and MCP remain planned.
+The local Python gateway implements an authenticated durable inbox, job status and private result retrieval. The opt-in [offline worker](docs/MODEL_PIPELINE.md#run-from-the-inbox) runs source extraction and knowledge synthesis against synthetic fixtures. Live source fetching, reviewer approval, wiki publication and MCP remain planned.
 
 Python 3.11+; no third-party runtime dependencies for the gateway.
 
@@ -62,6 +62,6 @@ curl -fsS http://127.0.0.1:8787/api/v1/inbox \
 python -m unittest discover -s tests -v
 ```
 
-HTTP 202 means queued, not analyzed or published. Poll /api/v1/jobs/{job_id} with the same token.
+HTTP 202 from submission means the job was queued. Poll `/api/v1/jobs/{job_id}` or request `/api/v1/jobs/{job_id}/result` with the same token. The result is available after an operator runs the worker.
 
 This public repository does not authorize disclosure of private data, automatic publication, paid infrastructure or unrestricted agent access. The existing [MIT license](LICENSE) is preserved for repository software and its associated documentation. Third-party source material and encyclopedia contributions must respect their own licenses; the owner has not yet selected a separate public encyclopedia content license.

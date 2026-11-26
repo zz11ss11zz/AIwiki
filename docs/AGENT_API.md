@@ -14,20 +14,21 @@ Default local port 8787, configurable via ENCY4AI_PORT. Loopback only in bootstr
 | GET /api/v1/wiki/{id} | planned | article/revision |
 | GET /api/v1/search | planned | text/semantic search |
 | GET /api/v1/graph/{id} | planned | bounded graph/evidence |
-| GET /api/v1/jobs/{id}/result | planned | authorized proposal/results |
+| GET /api/v1/jobs/{job_id}/result | implemented | authenticated offline worker result or pending status |
 | POST /api/v1/proposals | planned | propose revision |
 | POST /api/v1/proposals/{id}/review | planned | privileged review |
 | MCP adapter | planned | same narrow REST scopes |
 
 Planned scopes: knowledge:read, inbox:submit, inbox:read_own, proposal:write, review:approve, publish:write. Production requires actor IDs, expiry, revocation, rate limits, audit, server-side ownership, TLS and CSRF controls where applicable. No public admin endpoint.
 
-## Planned learning-first extensions (not implemented)
-The [offline model pipeline](MODEL_PIPELINE.md) exercises extraction and synthesis independently of HTTP. It has no result endpoint and does not consume inbox jobs.
+## Offline processing and future learning extensions
+
+The [offline worker](MODEL_PIPELINE.md#run-from-the-inbox) claims jobs from the gateway's SQLite queue when an operator starts it. Job status is one of `queued`, `extracting`, `proposed`, `deferred`, or `failed`. The result endpoint returns HTTP 202 with status while work is pending, and HTTP 200 with the job metadata and a structured terminal `result` (proposal, deferral, or failure). It returns 401 without the operator token and 404 for unknown jobs. The job status endpoint still omits input and result bodies. Both use `Cache-Control: no-store` and the same bootstrap operator token.
 
 Preserve the existing submission contract; text can represent a standalone question, idea or reflection, and note can accompany a URL or text. Future backwards-compatible schema/endpoint changes should carry capture kind, original language, owner and explicit private visibility. Authorized result retrieval should expose source-grounded digest, evidence anchors, explained candidate relations to existing entities/discoveries, uncertainty, prerequisites and practical next steps or no action. Keep personal notes/learning progress/experiment outcomes private. Add typed learning and catch-up queries only after ownership and review controls are in place. English is canonical for API documentation; original submitted text must not be overwritten by translations. Update OpenAPI and compatibility tests when implementation changes.
 
 ## Submission contract
-POST inbox accepts exactly one nonempty url or text, optional note. Body max 128 KiB. HTTP(S) URL accepted as data, not fetched. Future worker must screen all resolved IPs and redirects against loopback/private/link-local/reserved ranges, defend DNS rebinding, enforce allowed types, bounded download/timeouts and source access rights. Never access private endpoints or cloud metadata. Prompt injection containment is mandatory. Uploads and webhooks need separate authenticated implementation.
+POST inbox accepts exactly one nonempty url or text, optional note. Body max 128 KiB. The offline worker matches an exact fixture URL and reads its local snapshot. Adding live retrieval requires screening resolved IPs and redirects, blocking private addresses, enforcing allowed types and bounded downloads, and checking source access rights. Prompt injection containment is mandatory. Uploads and webhooks need separate authenticated implementation.
 
 202 = queued, not analyzed; 200 = idempotent repeat. Poll job with same credential; bounded retries/backoff. No deletion/export or multi-user support yet; use non-sensitive test data. Planned MCP tools: search_knowledge, get_article, get_neighbors, submit_source, get_job, get_result, propose_revision. No bypass of permissions via MCP.
 
