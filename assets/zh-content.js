@@ -33,6 +33,7 @@ export const ZH_CONTENT = Object.freeze({
     'tool:aionui': { en: 'AionUi', zh: 'AionUi', aliases: [] },
     'tool:codeg': { en: 'Codeg', zh: 'Codeg', aliases: [] },
     'tool:t3-code': { en: 'T3 Code', zh: 'T3 Code', aliases: [] },
+    'tool:antigravity-swarm': { en: 'Antigravity Swarm', zh: 'Antigravity Swarm', aliases: ['智能体编排', '多智能体协作'] },
   },
 
   headings: [
@@ -81,5 +82,17 @@ export const ZH_CONTENT = Object.freeze({
       '在桌面端和网页端，Agents 视图让读者可以监控已委派的工作，并在父线程旁打开子智能体的线程。当由智能体创建的子智能体需要批准或答复时，该请求会出现在父线程中。'],
     ["Pick a coding task with a focused review step. Decide whether to continue the main T3 Code thread with a different provider or delegate the review and inspect it beside the main thread. Compare the delegated option with Codeg's fresh worker session, and consider when AionUi's shared task board would help several roles stay coordinated.",
       '选一个包含聚焦审阅步骤的编码任务。决定是换用另一家提供方继续 T3 Code 主线程，还是将审阅委派出去并在主线程旁查看。将委派方案与 Codeg 的全新工作者会话进行比较，并思考在什么情况下 AionUi 的共享任务看板有助于多个角色保持协调。'],
+
+    // tool:antigravity-swarm
+    ["Antigravity Swarm is Google Antigravity's preview feature for coordinating a team of agents. With /swarm, the current conversation assigns work to named workers that run in parallel and coordinate on a shared board.",
+      'Antigravity Swarm 是 Google Antigravity 的多智能体协作预览功能。输入 /swarm 后，当前会话会把任务分配给有名字的工作智能体，让它们并行执行，并在同一块看板上协调。'],
+    ["The coordinator typically adds a verifier that reviews each worker's changes, runs tests, and reports problems back to the worker. The board gives the team one place to share assignments, questions, and results.",
+      '协调者通常会安排一名验证者，检查每位工作智能体的改动、运行测试，并把问题反馈给对应成员。团队在同一块看板上共享任务分工、问题和结果。'],
+    ["Workers share the workspace and use the conversation's model by default. The coordinator can give workers separate repository working copies and assign a different model from the user's model picker.",
+      '工作智能体默认共用工作区，并使用当前会话的模型。协调者可以为成员分配独立的仓库工作副本，也能从用户可选的模型中另行指定。'],
+    ["Swarm coordinates work across agents. Google's separate Orchestrator feature can pair Gemini 4 Neon for planning with Gemini 4 Hydrogen for execution within one session.",
+      'Swarm 负责多智能体之间的协作。Google 另有 Orchestrator 功能，可在同一次会话中搭配 Gemini 4 Neon 制订计划和 Gemini 4 Hydrogen 执行计划。'],
+    ['In a test repository, use /swarm to assign date and currency tests to separate workers, then ask a verifier to run the suite. Open the shared board in the app or use /swarm board in the CLI to follow the handoffs and test results.',
+      '在测试仓库里，用 /swarm 把日期和金额模块的测试分别交给两名智能体，再请验证者运行测试套件。通过应用的共享看板，或在命令行输入 /swarm board，查看交接和测试结果。'],
   ],
 });

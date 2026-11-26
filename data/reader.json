@@ -51,7 +51,7 @@
       "title": "Transformer",
       "summary": "In the 2017 Transformer, the encoder represents the input sequence. The decoder uses that representation and earlier outputs to generate the next symbol.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-003",
+      "revision_id": "revision:agent-collaboration-004",
       "sections": [
         {
           "id": "overview",
@@ -84,7 +84,7 @@
       "title": "Attention",
       "summary": "In the paper’s definition of attention, each key is paired with a value. The match between a query and each key determines how much its value contributes to the weighted sum.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-003",
+      "revision_id": "revision:agent-collaboration-004",
       "sections": [
         {
           "id": "overview",
@@ -123,7 +123,7 @@
       "title": "AionUi",
       "summary": "AionUi Team Mode runs a group of agents around a shared task. A leader breaks down the request, assigns work to teammates, and gathers the results.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-003",
+      "revision_id": "revision:agent-collaboration-004",
       "sections": [
         {
           "id": "overview",
@@ -162,7 +162,7 @@
       "title": "Codeg",
       "summary": "With delegation enabled, a capable Codeg lead can hand a self-contained sub-task to another agent. Codeg starts a fresh worker session and returns its result for the lead to combine with its own work.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-003",
+      "revision_id": "revision:agent-collaboration-004",
       "sections": [
         {
           "id": "overview",
@@ -207,7 +207,7 @@
       "title": "T3 Code",
       "summary": "T3 Code provides a shared interface for coding agents such as Claude Code and Codex running on a machine where they are configured. Desktop, web, and mobile clients can open the same threads, and a thread can continue with another model.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-003",
+      "revision_id": "revision:agent-collaboration-004",
       "sections": [
         {
           "id": "overview",
@@ -233,6 +233,57 @@
           "paragraphs": [
             {
               "text": "Pick a coding task with a focused review step. Decide whether to continue the main T3 Code thread with a different provider or delegate the review and inspect it beside the main thread. Compare the delegated option with Codeg's fresh worker session, and consider when AionUi's shared task board would help several roles stay coordinated.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:antigravity-swarm",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Antigravity Swarm",
+      "summary": "Antigravity Swarm is Google Antigravity's preview feature for coordinating a team of agents. With /swarm, the current conversation assigns work to named workers that run in parallel and coordinate on a shared board.",
+      "status": "candidate",
+      "revision_id": "revision:agent-collaboration-004",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Antigravity Swarm is Google Antigravity's preview feature for coordinating a team of agents. With /swarm, the current conversation assigns work to named workers that run in parallel and coordinate on a shared board.",
+              "claim_ids": [
+                "claim:swarm-coordination"
+              ]
+            },
+            {
+              "text": "The coordinator typically adds a verifier that reviews each worker's changes, runs tests, and reports problems back to the worker. The board gives the team one place to share assignments, questions, and results.",
+              "claim_ids": [
+                "claim:swarm-verification"
+              ]
+            },
+            {
+              "text": "Workers share the workspace and use the conversation's model by default. The coordinator can give workers separate repository working copies and assign a different model from the user's model picker.",
+              "claim_ids": [
+                "claim:swarm-workspaces"
+              ]
+            },
+            {
+              "text": "Swarm coordinates work across agents. Google's separate Orchestrator feature can pair Gemini 4 Neon for planning with Gemini 4 Hydrogen for execution within one session.",
+              "claim_ids": [
+                "claim:swarm-orchestrator-pairing"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "In a test repository, use /swarm to assign date and currency tests to separate workers, then ask a verifier to run the suite. Open the shared board in the app or use /swarm board in the CLI to follow the handoffs and test results.",
               "claim_ids": []
             }
           ]
@@ -370,6 +421,63 @@
           "locator": "Inspect agent work"
         }
       ]
+    },
+    {
+      "id": "claim:swarm-coordination",
+      "statement": "Antigravity Swarm is Google Antigravity's preview feature for coordinating a team of agents. With /swarm, the current conversation assigns work to named workers that run in parallel and coordinate on a shared board.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#swarm-swarm",
+          "locator": "Swarm (/swarm)"
+        }
+      ]
+    },
+    {
+      "id": "claim:swarm-verification",
+      "statement": "The coordinator typically adds a verifier that reviews each worker's changes, runs tests, and reports problems back to the worker. The board gives the team one place to share assignments, questions, and results.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#how-it-works",
+          "locator": "How it works"
+        }
+      ]
+    },
+    {
+      "id": "claim:swarm-workspaces",
+      "statement": "Workers share the workspace and use the conversation's model by default. The coordinator can give workers separate repository working copies and assign a different model from the user's model picker.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#worker-models-and-workspaces",
+          "locator": "Worker models and workspaces"
+        }
+      ]
+    },
+    {
+      "id": "claim:swarm-orchestrator-pairing",
+      "statement": "Swarm coordinates work across agents. Google's separate Orchestrator feature can pair Gemini 4 Neon for planning with Gemini 4 Hydrogen for execution within one session.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#how-it-works",
+          "locator": "How it works"
+        },
+        {
+          "source_id": "source:google-antigravity-neon",
+          "url": "https://antigravity.google/blog/gemini-4-neon-in-google-antigravity#pair-neon-and-hydrogen-with-orchestrator",
+          "locator": "Pair Neon and Hydrogen with Orchestrator"
+        }
+      ]
     }
   ],
   "sources": [
@@ -402,6 +510,18 @@
       "title": "Thread sidebar",
       "publisher": "T3 Tools · Official guide, consulted 2026-11-25",
       "url": "https://github.com/pingdotgg/t3code/blob/main/docs/user/thread-sidebar.md"
+    },
+    {
+      "id": "source:google-antigravity-swarm",
+      "title": "Swarm (/swarm)",
+      "publisher": "Google Antigravity · Official documentation, consulted 2026-11-26",
+      "url": "https://antigravity.google/docs/swarm"
+    },
+    {
+      "id": "source:google-antigravity-neon",
+      "title": "Gemini 4 Neon in Google Antigravity",
+      "publisher": "The Antigravity Team · Official announcement, November 18, 2026",
+      "url": "https://antigravity.google/blog/gemini-4-neon-in-google-antigravity"
     }
   ],
   "edges": [

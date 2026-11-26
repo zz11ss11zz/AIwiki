@@ -71,4 +71,7 @@ export const TOOL_COMPARISON = [
   ['tool:t3-code', t3Guide,
     ['A parent coding thread delegates work to subagents.', 'Open a child thread beside the parent. Requests for approval or input go to the parent.'],
     ['主编程会话将工作委派给子智能体。', '可在主会话旁打开子会话。批准和输入请求回到主会话。']],
+  ['tool:antigravity-swarm', 'https://antigravity.google/docs/swarm',
+    ['A coordinator assigns work to parallel workers and a verifier.', 'Follow assignments, messages, and test results on the shared live board.'],
+    ['协调者把任务分给并行工作的智能体，并安排验证者。', '在共享看板上查看分工、消息和测试结果。']],
 ];
