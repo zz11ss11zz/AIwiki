@@ -33,6 +33,7 @@ const q = (k, v) => `?${k}=${encodeURIComponent(v)}`;
 export const articleHref = (id) => q('article', id);
 export const fieldHref = (id) => q('field', id);
 const anchor = (prefix, id) => `${prefix}-${String(id).replace(/[^A-Za-z0-9_-]/g, '_')}`;
+const toolComparisonAnchor = (id) => anchor('compare', id);
 
 const badge = (kind, text) => `<span class="badge badge-${esc(kind)}">${esc(text)}</span>`;
 const statusBadge = (s) => (s ? badge(s, STATUSES[s] ?? s) : '');
@@ -153,7 +154,7 @@ export function renderToolDirectory(ds, fieldId, locale = 'en') {
       ? `<br><a href="${articleHref(id)}#practice" aria-label="${esc(practiceLabel)} (${name})">${esc(practiceLabel)}</a>`
       : '';
     const cells = (zh ? cn : en).map(text => `<td>${esc(text)}</td>`).join('');
-    return `<tr><th scope="row"><a href="${articleHref(id)}">${name}</a><br>
+    return `<tr id="${toolComparisonAnchor(id)}"><th scope="row"><a href="${articleHref(id)}">${name}</a><br>
 <a class="hint" href="${esc(source)}" rel="noreferrer" aria-label="${support} (${name})">${support}</a>${practiceLink}</th>${cells}</tr>`;
   }).join('');
   const intro = COMPARISON_INTRO[locale].map(text => `<p>${esc(text)}</p>`).join('');
@@ -236,14 +237,19 @@ export function articleExtras(ds, currentId, locale = 'en') {
     extras.push(section('community-use-case', zh ? '网友举例' : 'Community example',
       `<p>${description} <a href="./#reference-browser-batch-media">${label}</a></p><p>${peers}</p>${practice}`));
   }
+  const tools = availableTools(ds);
+  const listedInComparison = tools.length > 1 && tools.some(([id]) => id === currentId);
   if (guide) {
-    const { title, setup, steps } = guide.example[locale];
+    const { title, setup, steps, comparisonLabel } = guide.example[locale];
     const task = zh ? '这是根据官方文档设计的练习，尚未在应用里实跑。' : 'This practice exercise follows the official documentation and has yet to be run in the app.';
     const stepsHtml = steps.map(text => `<li>${esc(text)}</li>`).join('');
-    extras.push(section('practice', title, `<p class="hint">${task}</p><p>${esc(setup)}</p><ol class="guide-steps">${stepsHtml}</ol>${guideSources(guide.example.sources, zh)}`));
+    const backLabel = zh ? '返回工具对照' : 'Back to tool comparison';
+    const backLink = comparisonLabel && listedInComparison
+      ? `<p><a href="${fieldHref('field:tools')}#${toolComparisonAnchor(currentId)}">${backLabel}</a></p>`
+      : '';
+    extras.push(section('practice', title, `<p class="hint">${task}</p><p>${esc(setup)}</p><ol class="guide-steps">${stepsHtml}</ol>${guideSources(guide.example.sources, zh)}${backLink}`));
   }
-  const tools = availableTools(ds);
-  if (tools.length > 1 && tools.some(([id]) => id === currentId)) {
+  if (listedInComparison) {
     const peers = tools.filter(([id]) => id !== currentId).map(([id]) =>
       `<li><a href="${articleHref(id)}">${esc(ds.articles.get(id).title)}</a></li>`
     ).join('');

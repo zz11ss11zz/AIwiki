@@ -468,7 +468,10 @@ async function main() {
   mainEl.innerHTML = page.html;
   mountCommunityReferences(mainEl, params);
   setupNavToggle();
-  if (window.location.hash === '#practice') mainEl.querySelector('#practice')?.scrollIntoView();
+  const fragment = window.location.hash.slice(1);
+  if (fragment === 'practice' || fragment.startsWith('compare-tool_')) {
+    document.getElementById(fragment)?.scrollIntoView();
+  }
 }
 
 main();
