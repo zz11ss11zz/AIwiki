@@ -1,4 +1,4 @@
-import { mountCommunityReferences } from './community-references.js';
+import { legacyReferenceDestination } from './community-references.js';
 import { TOOL_GUIDES } from './tool-guides.js';
 // Simplified Chinese reader (web/zh/). Dependency-free, no telemetry.
 // The canonical English dataset is fetched from ../data/reader.json and
@@ -159,7 +159,7 @@ export function renderSidebar(ds, current = {}) {
     return `<li><a href="${esc(fieldHref(f.id))}"${isField ? ' aria-current="page"' : ''}>${fieldTitleHtml(f)}</a>`
       + ` <span class="count">（${list.length}）</span>${sub}</li>`;
   }).join('');
-  return `<h2 id="toc-heading" class="nav-heading">按领域浏览</h2><ul class="tree">${items}</ul>`;
+  return `<h2 id="toc-heading" class="nav-heading">按领域浏览</h2><ul class="tree">${items}<li class="appendix-nav"><a href="references.html">附录：网友参考</a></li></ul>`;
 }
 
 function renderHome(ds) {
@@ -442,6 +442,11 @@ function setupNavToggle() {
 
 async function main() {
   const params = new URLSearchParams(window.location.search);
+  const reference = legacyReferenceDestination(params, window.location.hash);
+  if (reference) {
+    window.location.replace(reference);
+    return;
+  }
   const input = document.getElementById('search-input');
   if (params.has('q')) input.value = params.get('q');
   const englishLink = document.getElementById('lang-en');
@@ -467,7 +472,6 @@ async function main() {
   }
   document.title = page.title;
   mainEl.innerHTML = page.html;
-  mountCommunityReferences(mainEl, params);
   setupNavToggle();
   const comparison = mainEl.querySelector('.tool-comparison');
   const practice = TOOL_GUIDES.get(params.get('article'))?.example?.zh?.comparisonLabel
