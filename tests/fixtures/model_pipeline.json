@@ -1,0 +1,44 @@
+{
+  "source": {
+    "url": "https://example.org/indexing-v2",
+    "paragraphs": [
+      "The fictional Example Sheet v2 uses a cache index to locate stored pages.",
+      "The example contains no measurements of retrieval latency."
+    ]
+  },
+  "public_context": [
+    {"entity_id": "tool:example-sheet", "description": "Fictional page storage tool."},
+    {"entity_id": "concept:cache-index", "description": "An index for locating cached entries."}
+  ],
+  "responses": {
+    "source_extraction": {
+      "claims": [
+        {
+          "statement": "Example Sheet v2 uses a cache index to locate pages.",
+          "paragraph": 1,
+          "quote": "uses a cache index to locate stored pages"
+        }
+      ],
+      "concepts": ["cache index"],
+      "versions": ["Example Sheet v2"],
+      "gaps": ["Retrieval latency was not measured."]
+    },
+    "knowledge_synthesis": {
+      "summary": "Example Sheet v2 uses a cache index for page lookup.",
+      "significance": "The example connects a lookup mechanism to a concrete storage tool.",
+      "claim_ids": ["claim-1"],
+      "entity_ids": ["tool:example-sheet", "concept:cache-index"],
+      "relations": [
+        {
+          "subject_id": "tool:example-sheet",
+          "predicate": "built_on",
+          "object_id": "concept:cache-index",
+          "claim_ids": ["claim-1"],
+          "rationale": "The source describes the cache index as the mechanism for locating stored pages."
+        }
+      ],
+      "uncertainties": ["The source does not establish any latency benefit."],
+      "next_step": "Compare page lookup with and without an index in a small local example."
+    }
+  }
+}

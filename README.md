@@ -41,7 +41,7 @@ These are product goals; see the bootstrap status below for what is actually imp
 
 ## Bootstrap status
 
-Local Python gateway only, not a deployed encyclopedia. The gateway implements an authenticated durable inbox and job status; no source fetching, LLM extraction, wiki publishing or MCP is enabled yet.
+The local Python gateway implements an authenticated durable inbox and job status. The [offline model pipeline](docs/MODEL_PIPELINE.md) runs source extraction and knowledge synthesis against synthetic fixtures. Live source fetching, processing queued jobs, wiki publication and MCP remain planned.
 
 Python 3.11+; no third-party runtime dependencies for the gateway.
 

@@ -22,6 +22,8 @@ Default local port 8787, configurable via ENCY4AI_PORT. Loopback only in bootstr
 Planned scopes: knowledge:read, inbox:submit, inbox:read_own, proposal:write, review:approve, publish:write. Production requires actor IDs, expiry, revocation, rate limits, audit, server-side ownership, TLS and CSRF controls where applicable. No public admin endpoint.
 
 ## Planned learning-first extensions (not implemented)
+The [offline model pipeline](MODEL_PIPELINE.md) exercises extraction and synthesis independently of HTTP. It has no result endpoint and does not consume inbox jobs.
+
 Preserve the existing submission contract; text can represent a standalone question, idea or reflection, and note can accompany a URL or text. Future backwards-compatible schema/endpoint changes should carry capture kind, original language, owner and explicit private visibility. Authorized result retrieval should expose source-grounded digest, evidence anchors, explained candidate relations to existing entities/discoveries, uncertainty, prerequisites and practical next steps or no action. Keep personal notes/learning progress/experiment outcomes private. Add typed learning and catch-up queries only after ownership and review controls are in place. English is canonical for API documentation; original submitted text must not be overwritten by translations. Update OpenAPI and compatibility tests when implementation changes.
 
 ## Submission contract
