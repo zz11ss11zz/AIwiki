@@ -85,4 +85,7 @@ export const TOOL_COMPARISON = [
   ['tool:antigravity-swarm', 'https://antigravity.google/docs/swarm',
     ['A coordinator assigns work to parallel workers and a verifier.', 'Follow assignments, messages, and test results on the shared live board.'],
     ['协调者把任务分给并行工作的智能体，并安排验证者。', '在共享看板上查看分工、消息和测试结果。']],
+  ['tool:multica', 'https://github.com/multica-ai/multica#what-is-multica',
+    ['A team assigns an issue to an AI coding agent.', 'Follow progress and review the result on the same issue.'],
+    ['团队把工单交给 AI 编码智能体。', '在同一工单跟进进度并审查交付结果。']],
 ];

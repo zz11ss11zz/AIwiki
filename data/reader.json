@@ -75,7 +75,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "concept:attention",
@@ -114,7 +115,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "tool:aionui",
@@ -153,7 +155,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "tool:codeg",
@@ -198,7 +201,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "tool:t3-code",
@@ -237,7 +241,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "tool:antigravity-swarm",
@@ -288,7 +293,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "tool:google-antigravity",
@@ -333,7 +339,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "tool:google-flow",
@@ -372,7 +379,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "tool:tripo3d",
@@ -411,7 +419,8 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "concept:batch-generation",
@@ -444,7 +453,94 @@
             }
           ]
         }
-      ]
+      ],
+      "aliases": []
+    },
+    {
+      "id": "tool:andrej-karpathy-skills",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Andrej Karpathy Skills",
+      "summary": "The Multica AI repository packages guidance derived from Andrej Karpathy's observations about coding with language models. Its four principles ask agents to clarify assumptions, keep implementation simple, limit edits to the task, and verify the result against concrete criteria.",
+      "status": "candidate",
+      "revision_id": "revision:agent-tools-006",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "The Multica AI repository packages guidance derived from Andrej Karpathy's observations about coding with language models. Its four principles ask agents to clarify assumptions, keep implementation simple, limit edits to the task, and verify the result against concrete criteria.",
+              "claim_ids": [
+                "claim:karpathy-skills-guidelines"
+              ]
+            },
+            {
+              "text": "The skill turns a vague objective into a checkable result. Its bug-fixing example starts by writing a failing test for the reported behavior, then makes the change needed to pass it.",
+              "claim_ids": [
+                "claim:karpathy-skills-verification"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "For a small bug fix, ask the coding agent to state its assumptions and identify the smallest change. Write down a failing case first, then check whether the final diff stays within scope and the test passes.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ],
+      "aliases": []
+    },
+    {
+      "id": "tool:multica",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Multica",
+      "summary": "Multica is a source-available, self-hostable workspace where a team can assign an issue to an AI coding agent. The agent runs on a connected machine, reports progress on the issue, and returns the result for human review.",
+      "status": "candidate",
+      "revision_id": "revision:agent-tools-006",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Multica is a source-available, self-hostable workspace where a team can assign an issue to an AI coding agent. The agent runs on a connected machine, reports progress on the issue, and returns the result for human review.",
+              "claim_ids": [
+                "claim:multica-issue-workflow"
+              ]
+            },
+            {
+              "text": "Multica lets a workspace attach the same reusable skill to multiple agents. A skill contains a SKILL.md file and can include supporting scripts, templates, and reference files.",
+              "claim_ids": [
+                "claim:multica-workspace-skills"
+              ]
+            },
+            {
+              "text": "The Multica License adds conditions to Apache License 2.0. Its additional terms distinguish internal self-hosting from providing a hosted service to third parties or embedding Multica in a commercially distributed product.",
+              "claim_ids": [
+                "claim:multica-license-scope"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Give an agent one documentation issue with a clear outcome. Follow its comments and execution log, then inspect the result on the same issue before approving it.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ],
+      "aliases": []
     }
   ],
   "claims": [
@@ -743,6 +839,71 @@
           "locator": "Batch Image to 3D"
         }
       ]
+    },
+    {
+      "id": "claim:karpathy-skills-guidelines",
+      "statement": "The Multica AI repository packages guidance derived from Andrej Karpathy's observations about coding with language models. Its four principles ask agents to clarify assumptions, keep implementation simple, limit edits to the task, and verify the result against concrete criteria.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:karpathy-skills-readme",
+          "url": "https://github.com/multica-ai/andrej-karpathy-skills#the-solution",
+          "locator": "The Solution"
+        }
+      ]
+    },
+    {
+      "id": "claim:karpathy-skills-verification",
+      "statement": "The skill turns a vague objective into a checkable result. Its bug-fixing example starts by writing a failing test for the reported behavior, then makes the change needed to pass it.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:karpathy-skill-guidelines",
+          "url": "https://github.com/multica-ai/andrej-karpathy-skills/blob/main/skills/karpathy-guidelines/SKILL.md#4-goal-driven-execution",
+          "locator": "Goal-Driven Execution"
+        }
+      ]
+    },
+    {
+      "id": "claim:multica-issue-workflow",
+      "statement": "Multica is a source-available, self-hostable workspace where a team can assign an issue to an AI coding agent. The agent runs on a connected machine, reports progress on the issue, and returns the result for human review.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:multica-readme",
+          "url": "https://github.com/multica-ai/multica#what-is-multica",
+          "locator": "What is Multica?"
+        }
+      ]
+    },
+    {
+      "id": "claim:multica-workspace-skills",
+      "statement": "Multica lets a workspace attach the same reusable skill to multiple agents. A skill contains a SKILL.md file and can include supporting scripts, templates, and reference files.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:multica-skills-docs",
+          "url": "https://multica.ai/docs/skills#attaching-to-an-agent",
+          "locator": "Attaching to an agent"
+        }
+      ]
+    },
+    {
+      "id": "claim:multica-license-scope",
+      "statement": "The Multica License adds conditions to Apache License 2.0. Its additional terms distinguish internal self-hosting from providing a hosted service to third parties or embedding Multica in a commercially distributed product.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:multica-license",
+          "url": "https://github.com/multica-ai/multica/blob/main/LICENSE",
+          "locator": "Part I, Additional Conditions"
+        }
+      ]
     }
   ],
   "sources": [
@@ -823,6 +984,36 @@
       "title": "Batch Image to 3D",
       "publisher": "Tripo · Official product documentation, consulted 2026-11-26",
       "url": "https://www.tripo3d.ai/product-doc/model-generation/batch-image-to-3d"
+    },
+    {
+      "id": "source:karpathy-skills-readme",
+      "title": "Andrej Karpathy Skills",
+      "publisher": "Multica AI repository maintainers · Project README, consulted 2026-11-26",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills"
+    },
+    {
+      "id": "source:karpathy-skill-guidelines",
+      "title": "Karpathy Guidelines",
+      "publisher": "Multica AI repository maintainers · Project skill file, consulted 2026-11-26",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills/blob/main/skills/karpathy-guidelines/SKILL.md"
+    },
+    {
+      "id": "source:multica-readme",
+      "title": "Multica",
+      "publisher": "Multica AI · Project README, consulted 2026-11-26",
+      "url": "https://github.com/multica-ai/multica"
+    },
+    {
+      "id": "source:multica-skills-docs",
+      "title": "Skills",
+      "publisher": "Multica Docs · Official documentation, consulted 2026-11-26",
+      "url": "https://multica.ai/docs/skills"
+    },
+    {
+      "id": "source:multica-license",
+      "title": "Multica License",
+      "publisher": "Index Labs (Hong Kong) Limited · Repository license, consulted 2026-11-26",
+      "url": "https://github.com/multica-ai/multica/blob/main/LICENSE"
     }
   ],
   "edges": [
