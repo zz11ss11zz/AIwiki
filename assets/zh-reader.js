@@ -464,6 +464,13 @@ async function main() {
   }
   document.title = page.title;
   mainEl.innerHTML = page.html;
+  const references = document.getElementById('community-references');
+  if (references && !['article', 'field', 'q'].some(key => params.has(key))) {
+    const content = references.content.cloneNode(true);
+    const hero = mainEl.querySelector('.hero');
+    if (hero) hero.after(content);
+    else mainEl.append(content);
+  }
   setupNavToggle();
 }
 
