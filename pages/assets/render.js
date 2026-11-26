@@ -43,16 +43,57 @@ export function syntheticBanner(ds) {
   return `<p class="notice" role="note"><strong>Synthetic fixture data.</strong> ${esc(ds.notice)}</p>`;
 }
 
+const TOOL_GROUPS = [
+  ['agent-collaboration', 'Agent collaboration and orchestration', 'Agent 协作与编排',
+    ['aionui', 'antigravity-swarm', 'codeg', 'multica', 'pigbun-partner']],
+  ['development-workspaces', 'Development workspaces and clients', '开发工作台与客户端',
+    ['cindy', 'google-antigravity', 'herdr', 'orca', 't3-code']],
+  ['agent-skills', 'Agent skills and instructions', 'Agent 技能与工作规范', ['andrej-karpathy-skills']],
+  ['model-routing', 'Model gateways and routing', '模型接入与路由', ['magpie']],
+  ['media-generation', 'Video and 3D creation', '视频与 3D 创作', ['google-flow', 'tripo3d']],
+];
+
+export function toolGroups(articles, locale) {
+  const remaining = new Map(articles.map(article => [article.id, article]));
+  const groups = [];
+  for (const [id, en, zh, slugs] of TOOL_GROUPS) {
+    const members = articles.filter(article => slugs.some(slug => article.id === `tool:${slug}`));
+    if (!members.length) continue;
+    for (const member of members) remaining.delete(member.id);
+    groups.push({ id, title: locale === 'zh' ? zh : en, articles: members });
+  }
+  if (remaining.size) {
+    groups.push({ id: 'other-tools', title: locale === 'zh' ? '其他工具' : 'Other tools',
+      articles: [...remaining.values()] });
+  }
+  return groups;
+}
+
+export function renderSidebarArticles(articles, fieldId, locale, current, titleHtml) {
+  const link = article => {
+    const currentPage = current.articleId === article.id ? ' aria-current="page"' : '';
+    return `<li><a href="${esc(articleHref(article.id))}"${currentPage}>${titleHtml(article)}</a></li>`;
+  };
+  if (!articles.length) return '';
+  if (fieldId !== 'field:tools') return `<ul>${articles.map(link).join('')}</ul>`;
+  return `<ul class="tool-nav-groups">${toolGroups(articles, locale).map(group => {
+    const labelId = `tool-nav-${group.id}`;
+    return `<li><span id="${labelId}" class="tool-nav-label">${esc(group.title)}</span>
+<ul aria-labelledby="${labelId}">${group.articles.map(link).join('')}</ul></li>`;
+  }).join('')}</ul>`;
+}
+
+export function renderToolGroups(articles, locale, renderItem) {
+  return toolGroups(articles, locale).map(group =>
+    section(group.id, group.title, `<ul class="result-list">${group.articles.map(renderItem).join('')}</ul>`).html
+  ).join('');
+}
+
 export function renderSidebar(ds, current = {}) {
   const items = [...ds.fields.values()].map((f) => {
     const list = articlesInField(ds, f.id);
     const isField = current.fieldId === f.id;
-    const sub = list.length
-      ? `<ul>${list.map((a) => {
-        const cur = current.articleId === a.id ? ' aria-current="page"' : '';
-        return `<li><a href="${esc(articleHref(a.id))}"${cur}>${esc(a.title)}</a></li>`;
-      }).join('')}</ul>`
-      : '';
+    const sub = renderSidebarArticles(list, f.id, 'en', current, a => esc(a.title));
     return `<li><a href="${esc(fieldHref(f.id))}"${isField ? ' aria-current="page"' : ''}>${esc(f.title)}</a>`
       + ` <span class="count">(${list.length})</span>${sub}</li>`;
   }).join('');
@@ -83,7 +124,8 @@ export function renderField(ds, fieldId) {
   const comparison = renderToolDirectory(ds, fieldId);
   const list = articlesInField(ds, fieldId).filter(article => !comparison?.toolIds.includes(article.id));
   const body = list.length
-    ? `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
+    ? fieldId === 'field:tools' ? renderToolGroups(list, 'en', resultItem)
+      : `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
     : comparison ? '' : '<p class="empty">No published articles in this field yet.</p>';
   return {
     title: `${f.title} — ${BRAND}`,
