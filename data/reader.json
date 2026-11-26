@@ -75,8 +75,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "concept:attention",
@@ -115,8 +114,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:aionui",
@@ -155,8 +153,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:codeg",
@@ -201,8 +198,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:t3-code",
@@ -241,8 +237,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:antigravity-swarm",
@@ -293,8 +288,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:google-antigravity",
@@ -339,8 +333,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:google-flow",
@@ -379,8 +372,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:tripo3d",
@@ -419,8 +411,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "concept:batch-generation",
@@ -453,8 +444,7 @@
             }
           ]
         }
-      ],
-      "aliases": []
+      ]
     },
     {
       "id": "tool:andrej-karpathy-skills",
