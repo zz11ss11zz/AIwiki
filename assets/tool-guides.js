@@ -218,9 +218,9 @@ export const TOOL_GUIDES = new Map([
 
 export const COMPARISON_INTRO = {
   en: [
-    'Cindy starts from a conversation and keeps follow-up there. Multica centers work on a shared issue so a team can assign it, follow progress, and review the result.',
+    'Compare Cindy, PigBun Partner, and Multica on the same task. Update a setup guide after a configuration change, verify the steps, and prepare a draft for review.',
   ],
   zh: [
-    'Cindy 从会话开工，后续修改也留在会话里。Multica 围绕共享工单组织工作，团队在同一处派单、跟进和验收。',
+    '用同一个任务对照 Cindy、PigBun Partner 和 Multica。配置变更后，更新配置指南、核对操作步骤，并准备一份待审草稿。',
   ],
 };
