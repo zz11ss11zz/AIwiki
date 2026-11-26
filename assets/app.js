@@ -1,4 +1,5 @@
 import { mountCommunityReferences } from './community-references.js';
+import { TOOL_GUIDES } from './tool-guides.js';
 // Browser entry: fetch the dataset, render the current page, wire the nav toggle.
 import { loadDataset } from './data.js';
 import { route, renderSidebar, renderUnavailable } from './render.js';
@@ -75,20 +76,25 @@ async function main() {
   mountCommunityReferences(mainEl, params);
   setupNavToggle();
   const comparison = mainEl.querySelector('.tool-comparison');
-  if (comparison) {
-    const highlightRow = () => {
+  const practice = TOOL_GUIDES.get(params.get('article'))?.example?.en?.comparisonLabel
+    ? mainEl.querySelector('#practice')
+    : null;
+  if (comparison || practice) {
+    const syncPosition = () => {
       const targetId = window.location.hash.slice(1);
-      for (const row of comparison.tBodies[0].rows) {
+      for (const row of comparison?.tBodies[0].rows ?? []) {
         row.classList.toggle('is-comparison-target', row.id === targetId);
       }
       if (chineseLink) {
         const target = new URL(chineseLink.href);
-        target.hash = comparison.querySelector('tr.is-comparison-target')?.id ?? '';
+        target.hash = practice?.id === targetId
+          ? targetId
+          : comparison?.querySelector('tr.is-comparison-target')?.id ?? '';
         chineseLink.href = target.href;
       }
     };
-    highlightRow();
-    window.addEventListener('hashchange', highlightRow);
+    syncPosition();
+    window.addEventListener('hashchange', syncPosition);
   }
 
   const fragment = window.location.hash.slice(1);
