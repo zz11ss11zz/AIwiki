@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Community discussions — ENCY4AI</title>
+<meta name="description" content="Private, browser-local notes of community discussion excerpts. Unverified; not evidence.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/discussions.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="./">ENCY4AI</a>
+  <nav class="section-nav" aria-label="Sections">
+    <ul>
+      <li><a href="discussions.html" aria-current="page">Community discussions</a></li>
+    </ul>
+  </nav>
+  <form class="search" role="search" action="./" method="get">
+    <label for="search-input">Search articles</label>
+    <input id="search-input" name="q" type="search" maxlength="200" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+</header>
+<div class="layout layout-single">
+  <main id="main" tabindex="-1">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="./">Home</a></li>
+        <li><a href="discussions.html" aria-current="page">Community discussions</a></li>
+      </ol>
+    </nav>
+
+    <h1 class="page-title">Community discussions</h1>
+    <p><a href="community-public.html">Read the published community notes</a></p>
+    <p class="subtitle">Save excerpts for personal reference in this browser.</p>
+
+    <section class="notice" aria-labelledby="discussion-notice-heading">
+      <h2 id="discussion-notice-heading">Private, unverified excerpts</h2>
+      <ul>
+        <li>Excerpts are saved <strong>only in this browser</strong> (local storage on this device and browser profile). They are not uploaded, synced or shared, and clearing site data removes them.</li>
+        <li>They are <strong>unverified community opinions</strong>. They do not count as evidence, are not part of the encyclopedia, and never appear in article search, references or citations.</li>
+        <li>Source links are stored as plain text and are never opened or checked automatically. Anyone using this browser profile can read these notes.</li>
+      </ul>
+    </section>
+
+    <section class="discussion-add" aria-labelledby="add-heading">
+      <h2 id="add-heading">Add an excerpt</h2>
+      <div id="storage-error" class="notice notice-error" role="alert" hidden></div>
+      <form id="discussion-form" class="discussion-form" method="dialog" novalidate>
+        <div class="field">
+          <label for="excerpt-input">Excerpt <span class="required-mark">(required)</span></label>
+          <textarea id="excerpt-input" name="excerpt" rows="6" maxlength="5000" required aria-describedby="excerpt-hint excerpt-error"></textarea>
+          <p id="excerpt-hint" class="hint">Paste the passage you found interesting. Up to 5,000 characters. Shown exactly as text.</p>
+          <p id="excerpt-error" class="field-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="url-input">Source URL <span class="optional-mark">(optional)</span></label>
+          <input id="url-input" name="url" type="url" inputmode="url" maxlength="2048" autocomplete="off" spellcheck="false" placeholder="https://" aria-describedby="url-hint url-error">
+          <p id="url-hint" class="hint">Must start with http:// or https://. It is saved as a reference only and is not visited.</p>
+          <p id="url-error" class="field-error" hidden></p>
+        </div>
+        <button type="submit">Save locally</button>
+      </form>
+      <p id="discussion-status" class="status-note" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="discussion-saved" aria-labelledby="saved-heading">
+      <h2 id="saved-heading" tabindex="-1">Saved excerpts <span id="saved-count" class="count"></span></h2>
+      <p id="discussion-empty" class="empty">No excerpts saved in this browser yet.</p>
+      <ol id="discussion-list" class="discussion-list"></ol>
+    </section>
+
+    <noscript><p class="notice">This page needs JavaScript to save and show notes in this browser.</p></noscript>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>ENCY4AI reader preview. Software is licensed under MIT.</p>
+</footer>
+</body>
+</html>
