@@ -1,5 +1,8 @@
 import http.client
 import json
+import os
+import subprocess
+import sys
 import tempfile
 import threading
 import unittest
@@ -26,13 +29,14 @@ class GatewayTest(unittest.TestCase):
     def tearDown(self):
         self.stop()
         self.tmp.cleanup()
-    def request(self,path,data=None,auth=True,key=None):
+    def request(self,path,data=None,auth=True,key=None,method=None):
         headers = {'Content-Type':'application/json'}
         if auth:
             headers['Authorization'] = 'Bearer '+self.token
         if key:
             headers['Idempotency-Key'] = key
-        req = urllib.request.Request(self.base+path,headers=headers,data=None if data is None else json.dumps(data).encode())
+        req = urllib.request.Request(self.base+path,headers=headers,method=method,
+                                     data=None if data is None else json.dumps(data).encode())
         try:
             with urllib.request.urlopen(req,timeout=3) as r:
                 return r.status,json.load(r)
@@ -45,7 +49,7 @@ class GatewayTest(unittest.TestCase):
         self.assertIn('/api/v1/inbox',spec['paths'])
         self.assertFalse(self.request('/api/v1/capabilities')[1]['publication_enabled'])
     def test_unauthorized(self):
-        self.assertEqual(self.request('/api/v1/inbox',{'text':'test'},auth=False)[0],401)
+        self.assertEqual(self.request('/api/v1/inbox',auth=False,method='POST')[0],401)
         self.assertEqual(self.request('/api/v1/capabilities',auth=False)[0],401)
     def test_submission_status_and_privacy(self):
         status,job=self.request('/api/v1/inbox',{'url':'https://example.org/paper','note':'private'})
@@ -86,7 +90,42 @@ class GatewayTest(unittest.TestCase):
         finally:
             conn.close()
     def test_planned_not_active(self):
-        self.assertEqual(self.request('/api/v1/proposals',{'text':'test'})[0],404)
+        self.assertEqual(self.request('/api/v1/proposals',method='POST')[0],404)
+
+    def test_offline_worker_from_http_submission_to_private_result(self):
+        fixture = Path(__file__).resolve().parent / 'fixtures' / 'model_pipeline.json'
+        source_url = json.loads(fixture.read_text(encoding='utf-8'))['source']['url']
+        payload = {'url': source_url, 'note': 'private test note'}
+        code, queued = self.request('/api/v1/inbox', payload, key='offline-worker')
+        self.assertEqual(code, 202)
+        self.assertEqual(queued['status'], 'queued')
+        job_url = '/api/v1/jobs/' + queued['job_id']
+        self.assertEqual(self.request(job_url + '/result'), (202, queued))
+
+        worker_env = {key: value for key, value in os.environ.items() if not key.startswith('ENCY4AI_')}
+        worker_env['ENCY4AI_DB'] = self.db
+        subprocess.run(
+            [sys.executable, '-m', 'api.worker', '--fixture', str(fixture), '--once'],
+            cwd=fixture.parents[2], env=worker_env, check=True, timeout=10,
+        )
+
+        self.assertEqual(self.request(job_url + '/result', auth=False)[0], 401)
+        code, result = self.request(job_url + '/result')
+        self.assertEqual(code, 200)
+        self.assertEqual(result['status'], 'proposed')
+        proposal = result['result']['proposal']
+        self.assertEqual(proposal['visibility'], 'private')
+        self.assertEqual(proposal['review_status'], 'needs_review')
+        self.assertEqual(proposal['source_url'], source_url)
+        self.assertEqual(proposal['digest']['relations'][0]['claim_ids'], ['claim-1'])
+        self.assertEqual(proposal['note_status'], 'deferred_private_input')
+        self.assertNotIn(payload['note'], json.dumps(result))
+        code, status = self.request(job_url)
+        self.assertEqual(code, 200)
+        self.assertNotIn('result', status)
+        self.assertEqual(self.request('/api/v1/inbox', payload, key='offline-worker'), (200, status))
+        self.assertEqual(self.request('/api/v1/jobs/' + '0' * 32 + '/result')[0], 404)
+        self.assertIn('/api/v1/jobs/{job_id}/result', self.request('/openapi.json', auth=False)[1]['paths'])
 
 if __name__=='__main__':
     unittest.main()
