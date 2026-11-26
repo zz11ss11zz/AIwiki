@@ -9,7 +9,9 @@ import { TOOL_GUIDES } from './tool-guides.js';
 import {
   loadDataset, articlesInField, relatedTopics, citationOrder, MAX_QUERY, SCHEMA,
 } from './data.js';
-import { articleExtras, renderToolDirectory, esc, safeUrl, BRAND } from './render.js';
+import {
+  articleExtras, renderSidebarArticles, renderToolDirectory, renderToolGroups, esc, safeUrl, BRAND,
+} from './render.js';
 
 const TAGLINE = '减少信息噪声，深化知识理解，让知识持续复利。';
 
@@ -150,12 +152,7 @@ export function renderSidebar(ds, current = {}) {
   const items = [...ds.fields.values()].map((f) => {
     const list = sortedInField(ds, f.id);
     const isField = current.fieldId === f.id;
-    const sub = list.length
-      ? `<ul>${list.map((a) => {
-        const cur = current.articleId === a.id ? ' aria-current="page"' : '';
-        return `<li><a href="${esc(articleHref(a.id))}"${cur}>${articleTitleHtml(a)}</a></li>`;
-      }).join('')}</ul>`
-      : '';
+    const sub = renderSidebarArticles(list, f.id, 'zh', current, articleTitleHtml);
     return `<li><a href="${esc(fieldHref(f.id))}"${isField ? ' aria-current="page"' : ''}>${fieldTitleHtml(f)}</a>`
       + ` <span class="count">（${list.length}）</span>${sub}</li>`;
   }).join('');
@@ -193,7 +190,8 @@ function renderField(ds, fieldId) {
   const comparison = renderToolDirectory(ds, fieldId, 'zh');
   const list = sortedInField(ds, fieldId).filter(article => !comparison?.toolIds.includes(article.id));
   const body = list.length
-    ? `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
+    ? fieldId === 'field:tools' ? renderToolGroups(list, 'zh', resultItem)
+      : `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
     : comparison ? '' : '<p class="empty">该领域尚无已发布的条目。</p>';
   return {
     title: `${fieldTitleText(f)} — ${BRAND}`,
