@@ -42,6 +42,7 @@ export const ZH_CONTENT = Object.freeze({
     'tool:google-flow': { en: 'Google Flow', zh: 'Google Flow', aliases: ['谷歌 Flow', '视频生成', 'Veo'] },
     'tool:tripo3d': { en: 'Tripo3D', zh: 'Tripo3D', aliases: ['Tripo Studio', '图生 3D', '3D 模型生成'] },
     'concept:batch-generation': { en: 'Batch Generation', zh: '批量生成', aliases: ['批处理', '批量生成视频', '批量生成 3D 模型'] },
+    'guide:antigravity-batch-media': { en: 'Batch Video and 3D Generation with Antigravity', zh: '用 Antigravity 批量生成视频和 3D 模型', aliases: ['Antigravity 实操指南', 'Flow 批量视频', 'Tripo 批量图生 3D'] },
   },
 
   headings: [
@@ -147,6 +148,10 @@ export const ZH_CONTENT = Object.freeze({
       '批量生成可以是一份输入出多个版本，也可以是一组输入各跑一项任务。Google Flow 的例子是一条提示词出几个视频版本，Tripo Studio 的例子是上传几张图，每张图各出一个 3D 模型。'],
     ['Before submitting a batch, record an ID for each input, the desired number of outputs, and how you will check success. Try a small sample first so a wrong setting does not turn into a whole collection of wrong results.',
       '提交一批之前，给每个输入编号，记下要生成几个结果、怎样算合格。先跑一个小样，免得一个参数填错，整批结果都得重来。'],
+    ['Antigravity can prepare a web form through its browser agent. Google Flow offers multiple video outputs for one prompt, and Tripo Studio queues one 3D model per reference image. The services generate the outputs in their own interfaces.',
+      'Antigravity 可以代填网页里的参数。Google Flow 能从一条提示词生成多个视频版本，Tripo Studio 给每张参考图分别排一个 3D 生成任务。生成结果由两个网站各自处理。'],
+    ['Try the setup with a practice project and no submission. Can you show the exact controls, inputs and output count you would review before pressing Generate?',
+      '先用练习项目走到提交前，找出需要核对的设置、输入和输出数量。确认能指出这些位置，再开始生成。'],
     // tool:andrej-karpathy-skills and tool:multica
     ["The Multica AI repository packages guidance derived from Andrej Karpathy's observations about coding with language models. Its four principles ask agents to clarify assumptions, keep implementation simple, limit edits to the task, and verify the result against concrete criteria.",
       'Multica AI 根据 Andrej Karpathy 对大语言模型编程的观察整理了这套指南。四条原则要求编码智能体先澄清假设、保持实现简单、把修改限定在任务范围内，并按具体标准验证结果。'],

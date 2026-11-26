@@ -16,6 +16,28 @@ export const ARTICLE_FIGURES = new Map([
       ['找到网页操作权限', '进入设置里的 Browser 页面。在 Browser Subagent 一栏，可以查看哪些网站允许智能体操作。'],
     ]],
   }],
+  ['tool:google-flow', {
+    id: 'flow-interface',
+    image: 'https://i.ytimg.com/vi/oKjDeMtBZ4g/maxres2.jpg',
+    source: 'https://www.youtube.com/watch?v=oKjDeMtBZ4g',
+    en: ['Flow interface', 'Still from Google’s official Flow tutorial', 'Flow project showing a prompt composer over a grid of clips.', [
+      ['Find the composer', 'The still shows where the prompt goes. Use the live Video settings to check the current output count and model.'],
+    ]],
+    zh: ['Flow 界面', 'Google 官方 Flow 教程静帧', 'Flow 项目的片段网格和提示词输入框。', [
+      ['找到提示词输入框', '原图用来定位输入区。当前的模型和输出数，以你打开项目后的 Video 设置为准。'],
+    ]],
+  }],
+  ['tool:tripo3d', {
+    id: 'tripo-batch-interface',
+    image: 'https://tripo-cdn.holymolly.ai/blog/6/4/64c25cb4-6e58-4e8f-8af7-a3fdf98da748.png',
+    source: 'https://www.tripo3d.ai/blog/how-to-keep-consistent-when-generating-multiple-models-with-ai',
+    en: ['Tripo Studio batch interface', 'Tripo’s official batch generation example', 'Tripo Studio workspace with reference images, generation settings and a Generate button.', [
+      ['Locate tools and results', 'The official example shows where Tripo places references and generated assets. Button labels may differ in the current version.'],
+    ]],
+    zh: ['Tripo Studio 批量界面', 'Tripo 官方批量生成示例', 'Tripo Studio 工作区展示参考图、生成设置和 Generate 按钮。', [
+      ['对照输入与结果的位置', '原图用来找参考图和生成结果。按钮名称以当前界面为准。'],
+    ]],
+  }],
   ['architecture:transformer', {
     id: 'original-figure', image: `${paper}/Figures/ModalNet-21.png`, source: `${paper}#S3.F1`, paper: true,
     en: ['Original architecture figure', 'Original paper, Figure 1, Vaswani et al.', 'The original Transformer with encoder blocks on the left and decoder blocks on the right.', [

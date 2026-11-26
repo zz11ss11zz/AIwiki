@@ -621,6 +621,39 @@
           ]
         }
       ]
+    },
+    {
+      "id": "guide:antigravity-batch-media",
+      "field_id": "field:handbook",
+      "locale": "en",
+      "title": "Batch Video and 3D Generation with Antigravity",
+      "summary": "Antigravity can prepare a web form through its browser agent. Google Flow offers multiple video outputs for one prompt, and Tripo Studio queues one 3D model per reference image. The services generate the outputs in their own interfaces.",
+      "status": "candidate",
+      "revision_id": "revision:cindy-009",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Antigravity can prepare a web form through its browser agent. Google Flow offers multiple video outputs for one prompt, and Tripo Studio queues one 3D model per reference image. The services generate the outputs in their own interfaces.",
+              "claim_ids": [
+                "claim:browser-batch-media-controls"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Try the setup with a practice project and no submission. Can you show the exact controls, inputs and output count you would review before pressing Generate?",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -1075,6 +1108,29 @@
           "source_id": "source:cindy-readme",
           "url": "https://github.com/makecindy/cindy#ready-from-day-one-yours-to-shape-over-time",
           "locator": "Ready from day one. Yours to shape over time."
+        }
+      ]
+    },
+    {
+      "id": "claim:browser-batch-media-controls",
+      "statement": "Antigravity can prepare a web form through its browser agent. Google Flow offers multiple video outputs for one prompt, and Tripo Studio queues one 3D model per reference image. The services generate the outputs in their own interfaces.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-browser",
+          "url": "https://antigravity.google/docs/browser#start-a-browser-task",
+          "locator": "Start a browser task"
+        },
+        {
+          "source_id": "source:google-flow-video-help",
+          "url": "https://support.google.com/flow/answer/16353334?co=GENIE.Platform%3DDesktop&hl=en",
+          "locator": "Create video clips in Google Flow"
+        },
+        {
+          "source_id": "source:tripo-native-batch",
+          "url": "https://www.tripo3d.ai/product-doc/model-generation/batch-image-to-3d",
+          "locator": "Batch Image to 3D"
         }
       ]
     }

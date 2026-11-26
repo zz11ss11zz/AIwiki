@@ -5,6 +5,7 @@ import {
 } from './data.js';
 import { ARTICLE_FIGURES, TOOL_COMPARISON } from './article-figures.js';
 import { COMPARISON_INTRO, GUIDE_SOURCE_LABELS, TOOL_GUIDES } from './tool-guides.js';
+import { BROWSER_MEDIA_GUIDE, BROWSER_MEDIA_GUIDE_ID } from './browser-media-guide.js';
 
 const BROWSER_MEDIA_TERMS = ['tool:google-antigravity', 'tool:google-flow', 'tool:tripo3d', 'concept:batch-generation'];
 
@@ -104,8 +105,8 @@ function breadcrumb(trail) {
   return `<nav class="breadcrumb" aria-label="Breadcrumb"><ol>${parts.join('')}</ol></nav>`;
 }
 
-function renderFigure(figure, locale) {
-  const [title, credit, alt, instructions] = figure[locale];
+function renderFigureContent(figure, locale) {
+  const [, credit, alt, instructions] = figure[locale];
   const zh = locale === 'zh';
   const source = `<a href="${esc(figure.source)}" rel="noreferrer">${esc(credit)}</a>`;
   const image = esc(figure.image);
@@ -121,7 +122,11 @@ function renderFigure(figure, locale) {
     `<li><details><summary>${esc(label)}</summary><p>${esc(instruction)}</p></details></li>`
   ).join('');
   const guide = figure.guide ? `<p class="hint"><a href="${esc(figure.guide)}" rel="noreferrer">${zh ? 'T3 Code 官方会话指南' : 'T3 Code thread guide'}</a></p>` : '';
-  return section(figure.id, title, `${visual}<ol class="figure-steps">${steps}</ol>${guide}`);
+  return `${visual}<ol class="figure-steps">${steps}</ol>${guide}`;
+}
+
+function renderFigure(figure, locale) {
+  return section(figure.id, figure[locale][0], renderFigureContent(figure, locale));
 }
 
 function section(id, title, body) {
@@ -162,10 +167,35 @@ function guideSources(sources, zh) {
   return `<p class="hint">${links}</p>`;
 }
 
+function renderBrowserMediaGuide(locale) {
+  const zh = locale === 'zh';
+  const labels = zh
+    ? { agent: '可交给智能体', required: '系统要求人工确认', review: '本指南建议人工复核' }
+    : { agent: 'Agent can prepare', required: 'Product requires human confirmation', review: 'Human review recommended' };
+  return BROWSER_MEDIA_GUIDE.map(route => {
+    const { title, intro, steps, prompt } = route[locale];
+    const figure = renderFigureContent(ARTICLE_FIGURES.get(route.figureId), locale);
+    const list = steps.map(([mode, label, instruction]) =>
+      `<li><strong>${esc(label)}</strong> <span class="badge guide-step-${mode}">${labels[mode]}</span><p>${esc(instruction)}</p></li>`
+    ).join('');
+    const example = prompt
+      ? `<h3>${zh ? '可复制的 Antigravity 指令' : 'Prompt to copy into Antigravity'}</h3><pre class="guide-prompt">${esc(prompt)}</pre>`
+      : '';
+    const links = route.sources.map(([url, en, cn]) =>
+      `<a href="${esc(url)}" rel="noreferrer">${esc(zh ? cn : en)}</a>`
+    ).join(' · ');
+    const comment = route.id === 'browser-setup'
+      ? `<p class="hint"><a href="./#reference-browser-batch-media">${zh ? '这篇指南源于一条微信网友评论' : 'Read the community comment that suggested this workflow'}</a></p>`
+      : '';
+    return section(route.id, title, `<p>${esc(intro)}</p>${comment}${figure}<ol class="guide-steps">${list}</ol>${example}<p class="hint">${links}</p>`);
+  });
+}
+
 export function articleExtras(ds, currentId, locale = 'en') {
   if (ds.synthetic) return [];
   const extras = [];
   const zh = locale === 'zh';
+  if (currentId === BROWSER_MEDIA_GUIDE_ID) return renderBrowserMediaGuide(locale);
   const guide = TOOL_GUIDES.get(currentId);
   if (guide) {
     for (const [id, title] of [
@@ -195,8 +225,11 @@ export function articleExtras(ds, currentId, locale = 'en') {
     const description = zh
       ? '这条评论把浏览器代操作与两个生成工具放进同一个工作流。组合流程尚未实测。'
       : 'The comment describes a browser agent operating two generation tools. The combined workflow has not been tested.';
+    const practice = ds.articles.has(BROWSER_MEDIA_GUIDE_ID)
+      ? `<p><a href="${articleHref(BROWSER_MEDIA_GUIDE_ID)}">${zh ? '阅读批量生成实操指南' : 'Read the batch generation walkthrough'}</a></p>`
+      : '';
     extras.push(section('community-use-case', zh ? '网友举例' : 'Community example',
-      `<p>${description} <a href="./#reference-browser-batch-media">${label}</a></p><p>${peers}</p>`));
+      `<p>${description} <a href="./#reference-browser-batch-media">${label}</a></p><p>${peers}</p>${practice}`));
   }
   if (guide) {
     const { title, setup, steps } = guide.example[locale];
