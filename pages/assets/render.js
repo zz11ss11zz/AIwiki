@@ -122,14 +122,14 @@ export function renderField(ds, fieldId) {
   const f = ds.fields.get(fieldId);
   if (!f) return renderNotFound('field', fieldId);
   const comparison = renderToolDirectory(ds, fieldId);
-  const list = articlesInField(ds, fieldId).filter(article => !comparison?.toolIds.includes(article.id));
+  const list = articlesInField(ds, fieldId);
   const body = list.length
     ? fieldId === 'field:tools' ? renderToolGroups(list, 'en', resultItem)
       : `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
     : comparison ? '' : '<p class="empty">No published articles in this field yet.</p>';
   return {
     title: `${f.title} — ${BRAND}`,
-    html: `${breadcrumb([[f.title]])}${syntheticBanner(ds)}<h1>${esc(f.title)}</h1>${comparison?.html ?? ''}${body}`,
+    html: `${breadcrumb([[f.title]])}${syntheticBanner(ds)}<h1>${esc(f.title)}</h1>${body}${comparison?.html ?? ''}`,
   };
 }
 
@@ -204,7 +204,7 @@ export function renderToolDirectory(ds, fieldId, locale = 'en') {
 <div class="tool-comparison-scroll" role="region" aria-labelledby="compare-tools" tabindex="0">
 <table class="tool-comparison" aria-labelledby="compare-tools"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>
 </div>`);
-  return { html: page.html, toolIds: tools.map(([id]) => id) };
+  return page;
 }
 
 function guideSources(sources, zh) {
