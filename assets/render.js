@@ -3,6 +3,7 @@ import {
   articlesInField, relatedTopics, citationOrder, search,
   CLAIM_KINDS, STATUSES, MAX_QUERY,
 } from './data.js';
+import { ARTICLE_FIGURES, TOOL_COMPARISON } from './article-figures.js';
 
 export const BRAND = 'ENCY4AI';
 export const SUBTITLE = 'The Living Encyclopedia and Practical Guide to Artificial Intelligence';
@@ -99,10 +100,57 @@ function breadcrumb(trail) {
   return `<nav class="breadcrumb" aria-label="Breadcrumb"><ol>${parts.join('')}</ol></nav>`;
 }
 
+function renderFigure(figure, locale) {
+  const [title, credit, alt, instructions] = figure[locale];
+  const zh = locale === 'zh';
+  const source = `<a href="${esc(figure.source)}" rel="noreferrer">${esc(credit)}</a>`;
+  const image = esc(figure.image);
+  const fullSize = zh ? '查看原图' : 'Full-size image';
+  const size = figure.size ? ` width="${figure.size[0]}" height="${figure.size[1]}"` : '';
+  const visual = image
+    ? `<figure class="article-figure${figure.paper ? ' paper-figure' : ''}">
+<a href="${image}" rel="noreferrer"><img src="${image}" alt="${esc(alt)}"${size} loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>
+<figcaption>${source} · <a href="${image}" rel="noreferrer">${fullSize}</a></figcaption>
+</figure>`
+    : `<p><a href="${esc(figure.demo)}" rel="noreferrer">${zh ? '打开官方演示动图（约 61 MB）' : 'Open the official animated demo (about 61 MB)'}</a> · ${source}</p>`;
+  const steps = instructions.map(([label, instruction]) =>
+    `<li><details><summary>${esc(label)}</summary><p>${esc(instruction)}</p></details></li>`
+  ).join('');
+  const guide = figure.guide ? `<p class="hint"><a href="${esc(figure.guide)}" rel="noreferrer">${zh ? 'T3 Code 官方会话指南' : 'T3 Code thread guide'}</a></p>` : '';
+  return section(figure.id, title, `${visual}<ol class="figure-steps">${steps}</ol>${guide}`);
+}
+
+function section(id, title, body) {
+  return { id, title, html: `<section aria-labelledby="${id}"><h2 id="${id}">${esc(title)}</h2>${body}</section>` };
+}
+
+export function articleExtras(ds, currentId, locale = 'en') {
+  const extras = [];
+  if (ds.synthetic) return extras;
+  const figure = ARTICLE_FIGURES.get(currentId);
+  if (figure) extras.push(renderFigure(figure, locale));
+  const tools = TOOL_COMPARISON.filter(([id]) => ds.articles.has(id));
+  if (tools.length < 2 || !tools.some(([id]) => id === currentId)) return extras;
+
+  const zh = locale === 'zh';
+  const title = zh ? '对比多智能体协作工具' : 'Compare agent collaboration tools';
+  const labels = zh ? ['协作单位', '如何跟进', '官方说明'] : ['Unit of work', 'How to follow progress', 'Official documentation'];
+  const rows = tools.map(([id, source, en, cn]) => {
+    const name = esc(ds.articles.get(id).title);
+    const [unit, progress] = zh ? cn : en;
+    const heading = id === currentId ? `<span aria-current="page">${name}</span>` : `<a href="${articleHref(id)}">${name}</a>`;
+    return `<li><h3>${heading}</h3><dl><dt>${labels[0]}</dt><dd>${esc(unit)}</dd><dt>${labels[1]}</dt><dd>${esc(progress)}</dd></dl>
+<a class="hint" href="${esc(source)}" rel="noreferrer">${labels[2]} (${name})</a></li>`;
+  }).join('');
+  extras.push(section('compare-tools', title, `<ul class="tool-comparison">${rows}</ul>`));
+  return extras;
+}
+
 export function renderArticle(ds, articleId) {
   const a = ds.articles.get(articleId);
   if (!a) return renderNotFound('article', articleId);
   const field = a.field_id ? ds.fields.get(a.field_id) : null;
+  const extras = articleExtras(ds, a.id);
   const order = citationOrder(ds, a);
   const num = new Map(order.map((cid, i) => [cid, i + 1]));
   const backrefs = new Map();
@@ -115,9 +163,9 @@ export function renderArticle(ds, articleId) {
     return `<sup class="cite"><a id="${refId}" href="#cite-${n}" aria-label="Citation ${n}">[${n}]</a></sup>`;
   };
 
-  const sections = a.sections.map((s) => {
+  const sections = a.sections.map((s, i) => {
     const paras = s.paragraphs.map((p) => `<p>${esc(p.text)}${p.claim_ids.map(cite).join('')}</p>`).join('');
-    return `<section aria-labelledby="${anchor('sec', s.id)}"><h2 id="${anchor('sec', s.id)}">${esc(s.heading)}</h2>${paras}</section>`;
+    return `<section aria-labelledby="${anchor('sec', s.id)}"><h2 id="${anchor('sec', s.id)}">${esc(s.heading)}</h2>${paras}</section>${i === 0 ? extras.map(extra => extra.html).join('') : ''}`;
   }).join('');
 
   const related = relatedTopics(ds, a.id);
@@ -132,6 +180,7 @@ export function renderArticle(ds, articleId) {
     : '<p class="empty">This article has no citations yet. Its text is unverified.</p>';
 
   const tocItems = a.sections.map((s) => `<li><a href="#${anchor('sec', s.id)}">${esc(s.heading)}</a></li>`);
+  tocItems.splice(1, 0, ...extras.map(({ id, title }) => `<li><a href="#${id}">${esc(title)}</a></li>`));
   if (related.length) tocItems.push('<li><a href="#related-heading">Related topics</a></li>');
   tocItems.push('<li><a href="#references-heading">References</a></li>');
 

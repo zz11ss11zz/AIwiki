@@ -7,7 +7,7 @@
 import {
   loadDataset, articlesInField, relatedTopics, citationOrder, MAX_QUERY, SCHEMA,
 } from './data.js';
-import { esc, safeUrl, BRAND } from './render.js';
+import { articleExtras, esc, safeUrl, BRAND } from './render.js';
 
 const TAGLINE = '减少信息噪声，深化知识理解，让知识持续复利。';
 
@@ -227,10 +227,11 @@ function renderArticle(ds, articleId) {
     return `${enSpan(h)} ${UNTRANSLATED}`;
   };
 
+  const extras = articleExtras(ds, a.id, 'zh');
   const sectionHeads = new Map(a.sections.map((sec) => [sec.id, headingHtml(sec.heading)]));
-  const sections = a.sections.map((sec) => {
+  const sections = a.sections.map((sec, i) => {
     const paras = sec.paragraphs.map((p) => `<p>${prose(p.text)}${p.claim_ids.map(cite).join('')}</p>`).join('');
-    return `<section aria-labelledby="${anchor('sec', sec.id)}"><h2 id="${anchor('sec', sec.id)}">${sectionHeads.get(sec.id)}</h2>${paras}</section>`;
+    return `<section aria-labelledby="${anchor('sec', sec.id)}"><h2 id="${anchor('sec', sec.id)}">${sectionHeads.get(sec.id)}</h2>${paras}</section>${i === 0 ? extras.map(extra => extra.html).join('') : ''}`;
   }).join('');
 
   const related = relatedTopics(ds, a.id);
@@ -260,6 +261,7 @@ function renderArticle(ds, articleId) {
   const summary = zhSummary ? esc(zhSummary) : (a.summary ? missingProse(a.id, '摘要') : '');
 
   const tocItems = a.sections.map((sec) => `<li><a href="#${anchor('sec', sec.id)}">${sectionHeads.get(sec.id)}</a></li>`);
+  tocItems.splice(1, 0, ...extras.map(({ id, title }) => `<li><a href="#${id}">${esc(title)}</a></li>`));
   if (related.length) tocItems.push('<li><a href="#related-heading">相关主题</a></li>');
   tocItems.push('<li><a href="#references-heading">参考文献</a></li>');
 
