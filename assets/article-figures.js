@@ -5,6 +5,17 @@ const codegGuide = 'https://docs.codeg.app/guide/multi-agent';
 
 // Each localized figure supplies its heading, attribution, alt text, and reading steps.
 export const ARTICLE_FIGURES = new Map([
+  ['tool:google-antigravity', {
+    id: 'browser-settings',
+    image: 'https://antigravity.google/assets/image/docs/browser/browser-settings.png',
+    source: 'https://antigravity.google/docs/browser#configure-browser-settings',
+    en: ['Browser settings', 'Google Antigravity documentation', 'Antigravity settings showing the built-in browser and Browser Subagent permissions.', [
+      ['Locate browser permissions', 'Open Settings, then Browser. The Browser Subagent section controls which sites the agent can operate.'],
+    ]],
+    zh: ['浏览器设置原图', 'Google Antigravity 官方文档', 'Antigravity 的设置页，显示内置浏览器与浏览器子智能体的权限选项。', [
+      ['找到网页操作权限', '进入设置里的 Browser 页面。在 Browser Subagent 一栏，可以查看哪些网站允许智能体操作。'],
+    ]],
+  }],
   ['architecture:transformer', {
     id: 'original-figure', image: `${paper}/Figures/ModalNet-21.png`, source: `${paper}#S3.F1`, paper: true,
     en: ['Original architecture figure', 'Original paper, Figure 1, Vaswani et al.', 'The original Transformer with encoder blocks on the left and decoder blocks on the right.', [

@@ -51,7 +51,7 @@
       "title": "Transformer",
       "summary": "In the 2017 Transformer, the encoder represents the input sequence. The decoder uses that representation and earlier outputs to generate the next symbol.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-004",
+      "revision_id": "revision:browser-batch-media-005",
       "sections": [
         {
           "id": "overview",
@@ -84,7 +84,7 @@
       "title": "Attention",
       "summary": "In the paper’s definition of attention, each key is paired with a value. The match between a query and each key determines how much its value contributes to the weighted sum.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-004",
+      "revision_id": "revision:browser-batch-media-005",
       "sections": [
         {
           "id": "overview",
@@ -123,7 +123,7 @@
       "title": "AionUi",
       "summary": "AionUi Team Mode runs a group of agents around a shared task. A leader breaks down the request, assigns work to teammates, and gathers the results.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-004",
+      "revision_id": "revision:browser-batch-media-005",
       "sections": [
         {
           "id": "overview",
@@ -162,7 +162,7 @@
       "title": "Codeg",
       "summary": "With delegation enabled, a capable Codeg lead can hand a self-contained sub-task to another agent. Codeg starts a fresh worker session and returns its result for the lead to combine with its own work.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-004",
+      "revision_id": "revision:browser-batch-media-005",
       "sections": [
         {
           "id": "overview",
@@ -207,7 +207,7 @@
       "title": "T3 Code",
       "summary": "T3 Code provides a shared interface for coding agents such as Claude Code and Codex running on a machine where they are configured. Desktop, web, and mobile clients can open the same threads, and a thread can continue with another model.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-004",
+      "revision_id": "revision:browser-batch-media-005",
       "sections": [
         {
           "id": "overview",
@@ -246,7 +246,7 @@
       "title": "Antigravity Swarm",
       "summary": "Antigravity Swarm is Google Antigravity's preview feature for coordinating a team of agents. With /swarm, the current conversation assigns work to named workers that run in parallel and coordinate on a shared board.",
       "status": "candidate",
-      "revision_id": "revision:agent-collaboration-004",
+      "revision_id": "revision:browser-batch-media-005",
       "sections": [
         {
           "id": "overview",
@@ -284,6 +284,162 @@
           "paragraphs": [
             {
               "text": "In a test repository, use /swarm to assign date and currency tests to separate workers, then ask a verifier to run the suite. Open the shared board in the app or use /swarm board in the CLI to follow the handoffs and test results.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:google-antigravity",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Google Antigravity",
+      "summary": "Google introduced Antigravity alongside Gemini 3 as a development platform where agents can work across the editor, terminal, and browser.",
+      "status": "candidate",
+      "revision_id": "revision:browser-batch-media-005",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Google introduced Antigravity alongside Gemini 3 as a development platform where agents can work across the editor, terminal, and browser.",
+              "claim_ids": [
+                "claim:google-antigravity-platform"
+              ]
+            },
+            {
+              "text": "Antigravity documents browser agents that can click and enter information on live pages. Its built-in browser agent and its local Chrome mode have different account, app, and setup requirements.",
+              "claim_ids": [
+                "claim:google-antigravity-browser"
+              ]
+            },
+            {
+              "text": "When an Antigravity built-in browser task reaches a sign-in or CAPTCHA, it pauses so the user can take over and then resume the task.",
+              "claim_ids": [
+                "claim:google-antigravity-sign-in"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "For a media workflow, ask the browser agent to open the relevant site, identify the generation controls, and stop before submitting anything. Check the page and the account yourself before deciding whether to run a sample.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:google-flow",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Google Flow",
+      "summary": "Google announced Flow in May 2025 as an AI filmmaking tool for creating and developing clips and scenes with Google DeepMind models such as Veo.",
+      "status": "candidate",
+      "revision_id": "revision:browser-batch-media-005",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Google announced Flow in May 2025 as an AI filmmaking tool for creating and developing clips and scenes with Google DeepMind models such as Veo.",
+              "claim_ids": [
+                "claim:google-flow-filmmaking"
+              ]
+            },
+            {
+              "text": "The Google Flow video interface lets users choose an output count for one prompt. Google also documents a Flow Agent that can make several variations of a clip in one request.",
+              "claim_ids": [
+                "claim:google-flow-video-variants"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "In a practice project, draft one shot of a paper boat drifting under a bridge. In Video settings, choose two outputs to compare the same shot in two versions. Check the displayed credit cost before generating.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:tripo3d",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Tripo3D",
+      "summary": "Tripo Studio is Tripo's workspace for generating and refining 3D models. Its Image to 3D workflow turns a reference image into a model the user can inspect and export.",
+      "status": "candidate",
+      "revision_id": "revision:browser-batch-media-005",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Tripo Studio is Tripo's workspace for generating and refining 3D models. Its Image to 3D workflow turns a reference image into a model the user can inspect and export.",
+              "claim_ids": [
+                "claim:tripo3d-studio"
+              ]
+            },
+            {
+              "text": "Tripo Studio has a built-in batch image-to-3D option. It queues several images together, creates a separate 3D model for each image, and offers individual previews and a bulk download.",
+              "claim_ids": [
+                "claim:tripo3d-native-batch"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Try two reference images with permission to use them, such as a crate and a stool on plain backgrounds. In Tripo Studio choose Batch in the 3D workspace, review the inputs, then preview the mesh for each item before deciding what to export.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "concept:batch-generation",
+      "field_id": "field:fundamentals",
+      "locale": "en",
+      "title": "Batch Generation",
+      "summary": "Batch generation can mean several outputs from one input or a group of separate jobs. Google Flow documents several video variants from one prompt, while Tripo Studio documents one 3D model per image in a submitted group.",
+      "status": "candidate",
+      "revision_id": "revision:browser-batch-media-005",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Batch generation can mean several outputs from one input or a group of separate jobs. Google Flow documents several video variants from one prompt, while Tripo Studio documents one 3D model per image in a submitted group.",
+              "claim_ids": [
+                "claim:batch-generation-units"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Before submitting a batch, record an ID for each input, the desired number of outputs, and how you will check success. Try a small sample first so a wrong setting does not turn into a whole collection of wrong results.",
               "claim_ids": []
             }
           ]
@@ -478,6 +634,115 @@
           "locator": "Pair Neon and Hydrogen with Orchestrator"
         }
       ]
+    },
+    {
+      "id": "claim:google-antigravity-platform",
+      "statement": "Google introduced Antigravity alongside Gemini 3 as a development platform where agents can work across the editor, terminal, and browser.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-introduction",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-3-developers/",
+          "locator": "Google Antigravity"
+        }
+      ]
+    },
+    {
+      "id": "claim:google-antigravity-browser",
+      "statement": "Antigravity documents browser agents that can click and enter information on live pages. Its built-in browser agent and its local Chrome mode have different account, app, and setup requirements.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-browser",
+          "url": "https://antigravity.google/docs/browser#compare-browser-modes-across-surfaces",
+          "locator": "Compare browser modes across surfaces"
+        }
+      ]
+    },
+    {
+      "id": "claim:google-antigravity-sign-in",
+      "statement": "When an Antigravity built-in browser task reaches a sign-in or CAPTCHA, it pauses so the user can take over and then resume the task.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-browser",
+          "url": "https://antigravity.google/docs/browser#pause-take-over-and-sign-in",
+          "locator": "Pause, take over, and sign in"
+        }
+      ]
+    },
+    {
+      "id": "claim:google-flow-filmmaking",
+      "statement": "Google announced Flow in May 2025 as an AI filmmaking tool for creating and developing clips and scenes with Google DeepMind models such as Veo.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-flow-announcement",
+          "url": "https://blog.google/innovation-and-ai/products/generative-media-models-io-2025/#flow",
+          "locator": "Flow: An AI filmmaking tool designed for Veo"
+        }
+      ]
+    },
+    {
+      "id": "claim:google-flow-video-variants",
+      "statement": "The Google Flow video interface lets users choose an output count for one prompt. Google also documents a Flow Agent that can make several variations of a clip in one request.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-flow-video-help",
+          "url": "https://support.google.com/flow/answer/16353334?co=GENIE.Platform%3DDesktop&hl=en",
+          "locator": "Create video clips in Google Flow"
+        }
+      ]
+    },
+    {
+      "id": "claim:tripo3d-studio",
+      "statement": "Tripo Studio is Tripo's workspace for generating and refining 3D models. Its Image to 3D workflow turns a reference image into a model the user can inspect and export.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:tripo-image-to-3d",
+          "url": "https://www.tripo3d.ai/product-doc/model-generation/image-to-3d",
+          "locator": "Image to 3D"
+        }
+      ]
+    },
+    {
+      "id": "claim:tripo3d-native-batch",
+      "statement": "Tripo Studio has a built-in batch image-to-3D option. It queues several images together, creates a separate 3D model for each image, and offers individual previews and a bulk download.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:tripo-native-batch",
+          "url": "https://www.tripo3d.ai/product-doc/model-generation/batch-image-to-3d",
+          "locator": "Batch Image to 3D"
+        }
+      ]
+    },
+    {
+      "id": "claim:batch-generation-units",
+      "statement": "Batch generation can mean several outputs from one input or a group of separate jobs. Google Flow documents several video variants from one prompt, while Tripo Studio documents one 3D model per image in a submitted group.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-flow-video-help",
+          "url": "https://support.google.com/flow/answer/16353334?co=GENIE.Platform%3DDesktop&hl=en",
+          "locator": "Create video clips in Google Flow"
+        },
+        {
+          "source_id": "source:tripo-native-batch",
+          "url": "https://www.tripo3d.ai/product-doc/model-generation/batch-image-to-3d",
+          "locator": "Batch Image to 3D"
+        }
+      ]
     }
   ],
   "sources": [
@@ -522,6 +787,42 @@
       "title": "Gemini 4 Neon in Google Antigravity",
       "publisher": "The Antigravity Team · Official announcement, November 18, 2026",
       "url": "https://antigravity.google/blog/gemini-4-neon-in-google-antigravity"
+    },
+    {
+      "id": "source:google-antigravity-introduction",
+      "title": "Gemini 3 for developers",
+      "publisher": "Google · Official announcement, November 2025",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-3-developers/"
+    },
+    {
+      "id": "source:google-antigravity-browser",
+      "title": "Browser use",
+      "publisher": "Google Antigravity · Official documentation, consulted 2026-11-26",
+      "url": "https://antigravity.google/docs/browser"
+    },
+    {
+      "id": "source:google-flow-announcement",
+      "title": "Fuel your creativity with new generative media models and tools",
+      "publisher": "Google DeepMind · Official announcement, May 20, 2025",
+      "url": "https://blog.google/innovation-and-ai/products/generative-media-models-io-2025/"
+    },
+    {
+      "id": "source:google-flow-video-help",
+      "title": "Create videos in Google Flow",
+      "publisher": "Google Flow Help · Official desktop guide, consulted 2026-11-26",
+      "url": "https://support.google.com/flow/answer/16353334?co=GENIE.Platform%3DDesktop&hl=en"
+    },
+    {
+      "id": "source:tripo-image-to-3d",
+      "title": "Image to 3D",
+      "publisher": "Tripo · Official product documentation, consulted 2026-11-26",
+      "url": "https://www.tripo3d.ai/product-doc/model-generation/image-to-3d"
+    },
+    {
+      "id": "source:tripo-native-batch",
+      "title": "Batch Image to 3D",
+      "publisher": "Tripo · Official product documentation, consulted 2026-11-26",
+      "url": "https://www.tripo3d.ai/product-doc/model-generation/batch-image-to-3d"
     }
   ],
   "edges": [
@@ -531,6 +832,30 @@
       "object_id": "architecture:transformer",
       "subject_id": "concept:attention",
       "claim_id": "claim:attention-in-transformer",
+      "status": "candidate"
+    },
+    {
+      "id": "edge:swarm-part-of-antigravity",
+      "predicate": "part_of",
+      "object_id": "tool:google-antigravity",
+      "subject_id": "tool:antigravity-swarm",
+      "claim_id": "claim:swarm-coordination",
+      "status": "candidate"
+    },
+    {
+      "id": "edge:flow-supports-batch-generation",
+      "predicate": "supports",
+      "object_id": "concept:batch-generation",
+      "subject_id": "tool:google-flow",
+      "claim_id": "claim:google-flow-video-variants",
+      "status": "candidate"
+    },
+    {
+      "id": "edge:tripo-supports-batch-generation",
+      "predicate": "supports",
+      "object_id": "concept:batch-generation",
+      "subject_id": "tool:tripo3d",
+      "claim_id": "claim:tripo3d-native-batch",
       "status": "candidate"
     }
   ]

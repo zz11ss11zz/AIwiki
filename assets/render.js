@@ -6,6 +6,8 @@ import {
 import { ARTICLE_FIGURES, TOOL_COMPARISON } from './article-figures.js';
 import { COMPARISON_INTRO, GUIDE_SOURCE_LABELS, TOOL_GUIDES } from './tool-guides.js';
 
+const BROWSER_MEDIA_TERMS = ['tool:google-antigravity', 'tool:google-flow', 'tool:tripo3d', 'concept:batch-generation'];
+
 export const BRAND = 'ENCY4AI';
 export const SUBTITLE = 'The Living Encyclopedia and Practical Guide to Artificial Intelligence';
 // Approved tagline, docs/PRODUCT.md. Do not reword.
@@ -172,6 +174,18 @@ export function articleExtras(ds, currentId, locale = 'en') {
   }
   const figure = ARTICLE_FIGURES.get(currentId);
   if (figure) extras.push(renderFigure(figure, locale));
+  if (BROWSER_MEDIA_TERMS.includes(currentId)) {
+    const peers = BROWSER_MEDIA_TERMS.filter(id => id !== currentId && ds.articles.has(id)).map(id => {
+      const name = zh && id === 'concept:batch-generation' ? '批量生成' : ds.articles.get(id).title;
+      return `<a href="${articleHref(id)}">${esc(name)}</a>`;
+    }).join(' · ');
+    const label = zh ? '查看微信网友原话' : 'Read the community example';
+    const description = zh
+      ? '这条评论把浏览器代操作与两个生成工具放进同一个工作流。组合流程尚未实测。'
+      : 'The comment describes a browser agent operating two generation tools. The combined workflow has not been tested.';
+    extras.push(section('community-use-case', zh ? '网友举例' : 'Community example',
+      `<p>${description} <a href="./#reference-browser-batch-media">${label}</a></p><p>${peers}</p>`));
+  }
   if (guide) {
     const { title, setup, steps } = guide.example[locale];
     const task = zh ? '这是根据官方文档设计的练习，尚未在应用里实跑。' : 'This practice exercise follows the official documentation and has yet to be run in the app.';
