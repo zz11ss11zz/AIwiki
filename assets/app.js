@@ -1,3 +1,4 @@
+import { mountCommunityReferences } from './community-references.js';
 // Browser entry: fetch the dataset, render the current page, wire the nav toggle.
 import { loadDataset } from './data.js';
 import { route, renderSidebar, renderUnavailable } from './render.js';
@@ -71,13 +72,7 @@ async function main() {
   }
   document.title = page.title;
   mainEl.innerHTML = page.html;
-  const references = document.getElementById('community-references');
-  if (references && !['article', 'field', 'q'].some(key => params.has(key))) {
-    const content = references.content.cloneNode(true);
-    const hero = mainEl.querySelector('.hero');
-    if (hero) hero.after(content);
-    else mainEl.append(content);
-  }
+  mountCommunityReferences(mainEl, params);
   setupNavToggle();
 }
 
