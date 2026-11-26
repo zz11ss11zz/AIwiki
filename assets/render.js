@@ -4,6 +4,7 @@ import {
   CLAIM_KINDS, STATUSES, MAX_QUERY,
 } from './data.js';
 import { ARTICLE_FIGURES, TOOL_COMPARISON } from './article-figures.js';
+import { COMPARISON_INTRO, GUIDE_SOURCE_LABELS, TOOL_GUIDES } from './tool-guides.js';
 
 export const BRAND = 'ENCY4AI';
 export const SUBTITLE = 'The Living Encyclopedia and Practical Guide to Artificial Intelligence';
@@ -75,13 +76,14 @@ ${syntheticBanner(ds)}
 export function renderField(ds, fieldId) {
   const f = ds.fields.get(fieldId);
   if (!f) return renderNotFound('field', fieldId);
-  const list = articlesInField(ds, fieldId);
+  const comparison = renderToolDirectory(ds, fieldId);
+  const list = articlesInField(ds, fieldId).filter(article => !comparison?.toolIds.includes(article.id));
   const body = list.length
     ? `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
-    : '<p class="empty">No published articles in this field yet.</p>';
+    : comparison ? '' : '<p class="empty">No published articles in this field yet.</p>';
   return {
     title: `${f.title} — ${BRAND}`,
-    html: `${breadcrumb([[f.title]])}${syntheticBanner(ds)}<h1>${esc(f.title)}</h1>${body}`,
+    html: `${breadcrumb([[f.title]])}${syntheticBanner(ds)}<h1>${esc(f.title)}</h1>${comparison?.html ?? ''}${body}`,
   };
 }
 
@@ -124,25 +126,67 @@ function section(id, title, body) {
   return { id, title, html: `<section aria-labelledby="${id}"><h2 id="${id}">${esc(title)}</h2>${body}</section>` };
 }
 
-export function articleExtras(ds, currentId, locale = 'en') {
-  const extras = [];
-  if (ds.synthetic) return extras;
-  const figure = ARTICLE_FIGURES.get(currentId);
-  if (figure) extras.push(renderFigure(figure, locale));
-  const tools = TOOL_COMPARISON.filter(([id]) => ds.articles.has(id));
-  if (tools.length < 2 || !tools.some(([id]) => id === currentId)) return extras;
+function availableTools(ds) {
+  return ds.synthetic ? [] : TOOL_COMPARISON.filter(([id]) => ds.articles.get(id)?.field_id === 'field:tools');
+}
 
+export function renderToolDirectory(ds, fieldId, locale = 'en') {
+  if (fieldId !== 'field:tools') return null;
+  const tools = availableTools(ds);
+  if (tools.length < 2) return null;
   const zh = locale === 'zh';
   const title = zh ? '对比多智能体协作工具' : 'Compare agent collaboration tools';
   const labels = zh ? ['协作单位', '如何跟进', '官方说明'] : ['Unit of work', 'How to follow progress', 'Official documentation'];
   const rows = tools.map(([id, source, en, cn]) => {
     const name = esc(ds.articles.get(id).title);
     const [unit, progress] = zh ? cn : en;
-    const heading = id === currentId ? `<span aria-current="page">${name}</span>` : `<a href="${articleHref(id)}">${name}</a>`;
-    return `<li><h3>${heading}</h3><dl><dt>${labels[0]}</dt><dd>${esc(unit)}</dd><dt>${labels[1]}</dt><dd>${esc(progress)}</dd></dl>
+    return `<li><h3><a href="${articleHref(id)}">${name}</a></h3><dl><dt>${labels[0]}</dt><dd>${esc(unit)}</dd><dt>${labels[1]}</dt><dd>${esc(progress)}</dd></dl>
 <a class="hint" href="${esc(source)}" rel="noreferrer">${labels[2]} (${name})</a></li>`;
   }).join('');
-  extras.push(section('compare-tools', title, `<ul class="tool-comparison">${rows}</ul>`));
+  const intro = COMPARISON_INTRO[locale].map(text => `<p>${esc(text)}</p>`).join('');
+  const page = section('compare-tools', title, `${intro}<ul class="tool-comparison">${rows}</ul>`);
+  return { html: page.html, toolIds: tools.map(([id]) => id) };
+}
+
+function guideSources(sources, zh) {
+  const links = sources.map(url =>
+    `<a href="${esc(url)}" rel="noreferrer">${esc(GUIDE_SOURCE_LABELS.get(url)[zh ? 1 : 0])}</a>`
+  ).join(' · ');
+  return `<p class="hint">${links}</p>`;
+}
+
+export function articleExtras(ds, currentId, locale = 'en') {
+  if (ds.synthetic) return [];
+  const extras = [];
+  const zh = locale === 'zh';
+  const guide = TOOL_GUIDES.get(currentId);
+  if (guide) {
+    for (const [id, title] of [
+      ['origin', zh ? '起源与开发者' : 'Origins and developers'],
+      ['features', zh ? '功能怎么用' : 'How the features work'],
+    ]) {
+      const content = guide[id];
+      const paragraphs = content[locale].map(text => `<p>${esc(text)}</p>`).join('');
+      extras.push(section(id, title, paragraphs + guideSources(content.sources, zh)));
+    }
+  }
+  const figure = ARTICLE_FIGURES.get(currentId);
+  if (figure) extras.push(renderFigure(figure, locale));
+  if (guide) {
+    const { title, setup, steps } = guide.example[locale];
+    const task = zh ? '这是根据官方文档设计的练习，尚未在应用里实跑。' : 'This practice exercise follows the official documentation and has yet to be run in the app.';
+    const stepsHtml = steps.map(text => `<li>${esc(text)}</li>`).join('');
+    extras.push(section('practice', title, `<p class="hint">${task}</p><p>${esc(setup)}</p><ol class="guide-steps">${stepsHtml}</ol>${guideSources(guide.example.sources, zh)}`));
+  }
+  const tools = availableTools(ds);
+  if (tools.length > 1 && tools.some(([id]) => id === currentId)) {
+    const peers = tools.filter(([id]) => id !== currentId).map(([id]) =>
+      `<li><a href="${articleHref(id)}">${esc(ds.articles.get(id).title)}</a></li>`
+    ).join('');
+    const parent = `${fieldHref('field:tools')}#compare-tools`;
+    const label = zh ? '回到工具目录看横向对比' : 'Compare all tools in the directory';
+    extras.push(section('compare-tools', zh ? '同类工具' : 'Related tools', `<p><a href="${parent}">${label}</a></p><ul class="related">${peers}</ul>`));
+  }
   return extras;
 }
 

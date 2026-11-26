@@ -7,7 +7,7 @@
 import {
   loadDataset, articlesInField, relatedTopics, citationOrder, MAX_QUERY, SCHEMA,
 } from './data.js';
-import { articleExtras, esc, safeUrl, BRAND } from './render.js';
+import { articleExtras, renderToolDirectory, esc, safeUrl, BRAND } from './render.js';
 
 const TAGLINE = '减少信息噪声，深化知识理解，让知识持续复利。';
 
@@ -188,13 +188,14 @@ function resultItem(a) {
 function renderField(ds, fieldId) {
   const f = ds.fields.get(fieldId);
   if (!f) return renderNotFound('field', fieldId);
-  const list = sortedInField(ds, fieldId);
+  const comparison = renderToolDirectory(ds, fieldId, 'zh');
+  const list = sortedInField(ds, fieldId).filter(article => !comparison?.toolIds.includes(article.id));
   const body = list.length
     ? `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
-    : '<p class="empty">该领域尚无已发布的条目。</p>';
+    : comparison ? '' : '<p class="empty">该领域尚无已发布的条目。</p>';
   return {
     title: `${fieldTitleText(f)} — ${BRAND}`,
-    html: `${breadcrumb([[fieldTitleHtml(f)]])}${notices(ds)}<h1>${fieldTitleHtml(f)}</h1>${body}`,
+    html: `${breadcrumb([[fieldTitleHtml(f)]])}${notices(ds)}<h1>${fieldTitleHtml(f)}</h1>${comparison?.html ?? ''}${body}`,
   };
 }
 
