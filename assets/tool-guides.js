@@ -218,9 +218,9 @@ export const TOOL_GUIDES = new Map([
 
 export const COMPARISON_INTRO = {
   en: [
-    'Choose Multica to review results on a team issue, AionUi to track them on a shared board, or Codeg to collect them in the conversation that delegated the work.',
+    'Cindy starts from a conversation and keeps follow-up there. Multica centers work on a shared issue so a team can assign it, follow progress, and review the result.',
   ],
   zh: [
-    '要在团队工单验收结果，选 Multica。要在共享看板跟进分工，选 AionUi。要把结果交回发起委派的会话，选 Codeg。',
+    'Cindy 从会话开工，后续修改也留在会话里。Multica 围绕共享工单组织工作，团队在同一处派单、跟进和验收。',
   ],
 };

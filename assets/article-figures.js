@@ -95,9 +95,12 @@ export const ARTICLE_FIGURES = new Map([
 ]);
 
 export const TOOL_COMPARISON = [
+  ['tool:cindy', 'https://github.com/makecindy/cindy#keep-your-favorite-agents-get-a-better-way-to-work',
+    ['You want to start from a conversation, iterate on a draft, or resume the same task from another device. For example, ask an agent to revise a setup guide and refine the draft in follow-up turns.', 'Start or reopen a session, choose a supported agent such as Claude Code, Codex, or Pi, and give it the task. A session can also coordinate several agents when needed.', 'Review progress and files in the session. Resume it from another connected computer or phone.'],
+    ['适合直接从会话开工、来回修改草稿，或换设备接着做同一任务。例如请智能体修订配置指南，再在后续对话里打磨草稿。', '新建或打开会话，选用 Claude Code、Codex、Pi 等受支持的智能体，再交代任务。需要时可在会话内协调多个智能体。', '在会话里查看进度和文件，也可从另一台已连接的电脑或手机接续。']],
   ['tool:multica', 'https://github.com/multica-ai/multica#what-is-multica',
-    ['Your team manages ongoing work in a shared issue queue. For example, assign a documentation fix to an agent and have a teammate review it.', 'A team member assigns an issue to an agent running on a connected machine.', 'Read progress, execution logs, and the result on the same issue.'],
-    ['团队用工单持续管理待办。例如把文档修订交给智能体，再由同事验收。', '团队成员把工单分派给智能体，由已连接的机器执行。', '在同一工单查看进度、执行日志和交付结果。']],
+    ['Your team needs a shared issue queue, clear ownership, and a human review step. For example, assign the same setup guide revision to an agent and have a teammate review the diff.', 'Create an issue with the expected result and assign it to an agent. The agent picks it up on a connected machine and hands the result back for review.', 'Follow progress, blockers, execution logs, and the result on the same issue. A teammate can review the diff and decide what ships.'],
+    ['适合团队用共享工单管理待办，明确谁负责、谁验收。例如把同一项配置指南修订分派给智能体，再由同事审查变更。', '创建工单，写明预期结果并分派给智能体。智能体在已连接的机器上接单执行，再交回结果供审查。', '在同一工单查看进度、阻塞、执行日志和交付结果。团队成员可审查变更并决定是否发布。']],
   ['tool:aionui', aionGuide,
     ['Several roles need to coordinate on one shared deliverable. For example, one agent drafts a release brief while another checks its facts.', 'A lead agent starts with one request, assigns subtasks to teammates, and gathers results. They share a working folder.', 'See assignments on the shared board. Teammates can hand off updates through the mailbox.'],
     ['同一个交付物需要多个角色配合。例如一个智能体写发布简报，另一个核事实。', '主智能体接收一个目标，再向队友分工并汇总。队友共享工作文件夹。', '在共享看板上查分工，队友可通过邮箱交接进展。']],
