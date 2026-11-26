@@ -104,6 +104,8 @@ article h2 { border-bottom: 1px solid var(--line); padding-bottom: .2rem; margin
 .tool-comparison th, .tool-comparison td { border-bottom: 1px solid var(--line); padding: .65rem .75rem; text-align: start; vertical-align: top; }
 .tool-comparison th[scope="row"] { width: 8rem; }
 .tool-comparison th[scope="row"] .hint { font-weight: 400; }
+.tool-comparison tbody tr.is-comparison-target { outline: 2px solid var(--warn-line); outline-offset: -2px; }
+.tool-comparison tbody tr.is-comparison-target > * { background: var(--warn-bg); }
 .guide-steps li { margin: .65rem 0; }
 .guide-steps li p { margin: .25rem 0 .75rem; }
 .guide-step-required { color: var(--warn-line); }

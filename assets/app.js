@@ -74,6 +74,18 @@ async function main() {
   mainEl.innerHTML = page.html;
   mountCommunityReferences(mainEl, params);
   setupNavToggle();
+  const comparison = mainEl.querySelector('.tool-comparison');
+  if (comparison) {
+    const highlightRow = () => {
+      const targetId = window.location.hash.slice(1);
+      for (const row of comparison.tBodies[0].rows) {
+        row.classList.toggle('is-comparison-target', row.id === targetId);
+      }
+    };
+    highlightRow();
+    window.addEventListener('hashchange', highlightRow);
+  }
+
   const fragment = window.location.hash.slice(1);
   if (fragment === 'practice' || fragment.startsWith('compare-tool_')) {
     document.getElementById(fragment)?.scrollIntoView();
