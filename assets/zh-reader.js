@@ -404,8 +404,7 @@ async function loadTranslations() {
 }
 
 // Point the English language link at the matching English page.
-function syncEnglishLink(params) {
-  const link = document.getElementById('lang-en');
+function syncEnglishLink(link, params) {
   if (!link) return;
   for (const key of ['article', 'field', 'q']) {
     if (params.has(key)) {
@@ -444,7 +443,8 @@ async function main() {
   const params = new URLSearchParams(window.location.search);
   const input = document.getElementById('search-input');
   if (params.has('q')) input.value = params.get('q');
-  syncEnglishLink(params);
+  const englishLink = document.getElementById('lang-en');
+  syncEnglishLink(englishLink, params);
   const nav = document.getElementById('site-nav');
   const mainEl = document.getElementById('main');
   const [localizer, result] = await Promise.all([loadTranslations(), fetchDataset()]);
@@ -474,6 +474,11 @@ async function main() {
       const targetId = window.location.hash.slice(1);
       for (const row of comparison.tBodies[0].rows) {
         row.classList.toggle('is-comparison-target', row.id === targetId);
+      }
+      if (englishLink) {
+        const target = new URL(englishLink.href);
+        target.hash = comparison.querySelector('tr.is-comparison-target')?.id ?? '';
+        englishLink.href = target.href;
       }
     };
     highlightRow();

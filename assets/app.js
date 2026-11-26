@@ -81,6 +81,11 @@ async function main() {
       for (const row of comparison.tBodies[0].rows) {
         row.classList.toggle('is-comparison-target', row.id === targetId);
       }
+      if (chineseLink) {
+        const target = new URL(chineseLink.href);
+        target.hash = comparison.querySelector('tr.is-comparison-target')?.id ?? '';
+        chineseLink.href = target.href;
+      }
     };
     highlightRow();
     window.addEventListener('hashchange', highlightRow);
