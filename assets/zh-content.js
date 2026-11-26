@@ -36,6 +36,7 @@ export const ZH_CONTENT = Object.freeze({
     'tool:antigravity-swarm': { en: 'Antigravity Swarm', zh: 'Antigravity Swarm', aliases: ['智能体编排', '多智能体协作'] },
     'tool:andrej-karpathy-skills': { en: 'Andrej Karpathy Skills', zh: 'Andrej Karpathy Skills', aliases: ['卡帕西技能', '编码智能体指南'] },
     'tool:pigbun-partner': { en: 'PigBun Partner', zh: 'PigBun Partner（猪笼包 AI）', aliases: ['pigbunai', 'PigBun AI', '猪笼包'] },
+    'tool:cindy': { en: 'Cindy', zh: 'Cindy', aliases: ['Cindy AI', 'cindy.app', '智能体客户端'] },
     'tool:multica': { en: 'Multica', zh: 'Multica', aliases: ['人机协作', '任务看板'] },
     'tool:google-antigravity': { en: 'Google Antigravity', zh: 'Google Antigravity', aliases: ['谷歌反重力', '浏览器智能体'] },
     'tool:google-flow': { en: 'Google Flow', zh: 'Google Flow', aliases: ['谷歌 Flow', '视频生成', 'Veo'] },
@@ -99,6 +100,16 @@ export const ZH_CONTENT = Object.freeze({
       "开发方把 PigBun Partner 标为 Alpha 阶段，核心运行时仍为私有。公开仓库提供文档、反馈渠道和发布说明。"],
     ["Sketch the same multi-day research task as a PigBun workstream and as a Multica issue. Compare where each tool surfaces progress and when the user would need to step in.",
       "把同一个持续几天的调研任务分别画成 PigBun 工作流和 Multica 工单。比较在哪里查看各自的进展，以及在哪些节点需要人介入。"],
+
+    // tool:cindy
+    ["Cindy is a desktop and mobile AI agent client that provides a common interface for Claude Code, Codex, and Pi. Users can choose a supported agent and model combination, and the client can hand off or rebuild the engine context when switching agents.",
+      "Cindy 是一款桌面和移动端 AI 智能体客户端，把 Claude Code、Codex 和 Pi 放在同一个界面里。用户可以选择受支持的执行框架和模型组合；切换框架时，客户端会移交或重建执行上下文。"],
+    ["Cindy documents multi-agent teamwork within a task and cross-device access to the same session and project files on connected computers.",
+      "Cindy 的官方文档介绍了单个任务内的多智能体协作，也介绍了如何跨设备接续同一会话、访问已连接电脑上的项目文件。"],
+    ["The Cindy repository contains the desktop and mobile clients and shared packages. Its source code is generally licensed under Apache 2.0, and the hosted backend lives in a separate repository.",
+      "Cindy 的公开仓库包含桌面端、移动端和共享软件包，源码通常按 Apache 2.0 许可发布。托管服务后端位于另一个仓库。"],
+    ["Compare the same small documentation task in a Cindy session and a Multica issue. Keep the model, agent, machine, and input fixed where possible. Record time to first useful output, time to an accepted result, and time spent on setup or review.",
+      "用同一个小型文档任务，对照 Cindy 会话和 Multica 工单。尽量保持模型、执行框架、机器和输入一致，分别记录首次可用输出、结果通过验收所需的时间，以及配置和审查花费的时间。"],
 
     // tool:antigravity-swarm
     ["Antigravity Swarm is Google Antigravity's preview feature for coordinating a team of agents. With /swarm, the current conversation assigns work to named workers that run in parallel and coordinate on a shared board.",

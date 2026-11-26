@@ -576,6 +576,51 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tool:cindy",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Cindy",
+      "summary": "Cindy is a desktop and mobile AI agent client that provides a common interface for Claude Code, Codex, and Pi. Users can choose a supported agent and model combination, and the client can hand off or rebuild the engine context when switching agents.",
+      "status": "candidate",
+      "revision_id": "revision:cindy-009",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Cindy is a desktop and mobile AI agent client that provides a common interface for Claude Code, Codex, and Pi. Users can choose a supported agent and model combination, and the client can hand off or rebuild the engine context when switching agents.",
+              "claim_ids": [
+                "claim:cindy-agent-client"
+              ]
+            },
+            {
+              "text": "Cindy documents multi-agent teamwork within a task and cross-device access to the same session and project files on connected computers.",
+              "claim_ids": [
+                "claim:cindy-team-and-devices"
+              ]
+            },
+            {
+              "text": "The Cindy repository contains the desktop and mobile clients and shared packages. Its source code is generally licensed under Apache 2.0, and the hosted backend lives in a separate repository.",
+              "claim_ids": [
+                "claim:cindy-repository-scope"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Compare the same small documentation task in a Cindy session and a Multica issue. Keep the model, agent, machine, and input fixed where possible. Record time to first useful output, time to an accepted result, and time spent on setup or review.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -983,6 +1028,55 @@
           "locator": "Current Status"
         }
       ]
+    },
+    {
+      "id": "claim:cindy-agent-client",
+      "statement": "Cindy is a desktop and mobile AI agent client that provides a common interface for Claude Code, Codex, and Pi. Users can choose a supported agent and model combination, and the client can hand off or rebuild the engine context when switching agents.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:cindy-readme",
+          "url": "https://github.com/makecindy/cindy#keep-your-favorite-agents-get-a-better-way-to-work",
+          "locator": "Keep your favorite agents. Get a better way to work."
+        }
+      ]
+    },
+    {
+      "id": "claim:cindy-team-and-devices",
+      "statement": "Cindy documents multi-agent teamwork within a task and cross-device access to the same session and project files on connected computers.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:cindy-readme",
+          "url": "https://github.com/makecindy/cindy#all-your-devices-one-cindy",
+          "locator": "All your devices. One Cindy."
+        },
+        {
+          "source_id": "source:cindy-readme",
+          "url": "https://github.com/makecindy/cindy#keep-your-favorite-agents-get-a-better-way-to-work",
+          "locator": "Keep your favorite agents. Get a better way to work."
+        }
+      ]
+    },
+    {
+      "id": "claim:cindy-repository-scope",
+      "statement": "The Cindy repository contains the desktop and mobile clients and shared packages. Its source code is generally licensed under Apache 2.0, and the hosted backend lives in a separate repository.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:cindy-readme",
+          "url": "https://github.com/makecindy/cindy#for-developers",
+          "locator": "For developers"
+        },
+        {
+          "source_id": "source:cindy-readme",
+          "url": "https://github.com/makecindy/cindy#ready-from-day-one-yours-to-shape-over-time",
+          "locator": "Ready from day one. Yours to shape over time."
+        }
+      ]
     }
   ],
   "sources": [
@@ -1099,6 +1193,12 @@
       "title": "PigBun Partner",
       "publisher": "PigBun AI · Official community README, consulted 2026-11-26",
       "url": "https://github.com/PigBun-AI/pigbun-partner-community"
+    },
+    {
+      "id": "source:cindy-readme",
+      "title": "Cindy",
+      "publisher": "Cindy project maintainers · Official project README, consulted 2026-11-26",
+      "url": "https://github.com/makecindy/cindy"
     }
   ],
   "edges": [
