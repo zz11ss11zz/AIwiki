@@ -143,7 +143,7 @@ export function renderToolDirectory(ds, fieldId, locale = 'en') {
   if (tools.length < 2) return null;
   const zh = locale === 'zh';
   const title = zh ? '对比多智能体协作工具' : 'Compare agent collaboration tools';
-  const labels = zh ? ['工具', '适用场景', '如何分工', '如何跟进'] : ['Tool', 'When to use it', 'How work is assigned', 'Where to follow progress'];
+  const labels = zh ? ['工具', '适用场景', '工作方式', '如何跟进'] : ['Tool', 'When to use it', 'How it works', 'Where to follow progress'];
   const support = zh ? '官方说明' : 'Official documentation';
   const headers = labels.map(label => `<th scope="col">${esc(label)}</th>`).join('');
   const rows = tools.map(([id, source, en, cn]) => {

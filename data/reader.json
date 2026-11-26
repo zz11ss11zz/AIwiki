@@ -654,6 +654,105 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tool:herdr",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Herdr",
+      "summary": "Herdr keeps terminal panes running when you disconnect from the session. It recognizes supported coding agents in those panes and shows which are working, waiting for input, or done.",
+      "status": "candidate",
+      "revision_id": "revision:herdr-magpie-orca-010",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Herdr keeps terminal panes running when you disconnect from the session. It recognizes supported coding agents in those panes and shows which are working, waiting for input, or done.",
+              "claim_ids": [
+                "claim:herdr-terminal-sessions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Run two small tasks in separate terminal panes. Detach and reconnect, then check which agent needs input without opening every pane.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:magpie",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Magpie",
+      "summary": "Magpie gives supported coding clients a local gateway for model requests. You choose a provider and model for each client, and the gateway forwards requests to that provider.",
+      "status": "candidate",
+      "revision_id": "revision:herdr-magpie-orca-010",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Magpie gives supported coding clients a local gateway for model requests. You choose a provider and model for each client, and the gateway forwards requests to that provider.",
+              "claim_ids": [
+                "claim:magpie-model-gateway"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Choose a model from a provider whose API you are authorized to use. Start a new conversation in your usual client and confirm in Magpie which provider received the request.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:orca",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Orca",
+      "summary": "Orca can launch coding agents in separate Git worktrees from the same repository. Each attempt has its own checkout, so you can review the diffs independently before choosing what to keep.",
+      "status": "candidate",
+      "revision_id": "revision:herdr-magpie-orca-010",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Orca can launch coding agents in separate Git worktrees from the same repository. Each attempt has its own checkout, so you can review the diffs independently before choosing what to keep.",
+              "claim_ids": [
+                "claim:orca-worktree-review"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "In a practice repository, try two approaches to the same small improvement in separate Git worktrees. Compare the diffs and test results before choosing which change to keep.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -1133,6 +1232,50 @@
           "locator": "Batch Image to 3D"
         }
       ]
+    },
+    {
+      "id": "claim:herdr-terminal-sessions",
+      "statement": "Herdr keeps terminal panes running when you disconnect from the session. It recognizes supported coding agents in those panes and shows which are working, waiting for input, or done.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:herdr-agent-guide",
+          "url": "https://github.com/herdrdev/herdr/blob/master/distribution/agent-guide.md#what-herdr-is",
+          "locator": "What Herdr is"
+        }
+      ]
+    },
+    {
+      "id": "claim:magpie-model-gateway",
+      "statement": "Magpie gives supported coding clients a local gateway for model requests. You choose a provider and model for each client, and the gateway forwards requests to that provider.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:magpie-start",
+          "url": "https://usemagpie.ai/docs/start#gateway",
+          "locator": "Gateway"
+        }
+      ]
+    },
+    {
+      "id": "claim:orca-worktree-review",
+      "statement": "Orca can launch coding agents in separate Git worktrees from the same repository. Each attempt has its own checkout, so you can review the diffs independently before choosing what to keep.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:orca-first-session",
+          "url": "https://github.com/stablyai/orca/blob/main/docs/site/content/docs/first-session.mdx#2-create-a-worktree",
+          "locator": "Create a worktree"
+        },
+        {
+          "source_id": "source:orca-first-session",
+          "url": "https://github.com/stablyai/orca/blob/main/docs/site/content/docs/first-session.mdx#6-pick-a-winner-review-the-diff-ship-it",
+          "locator": "Pick a winner, review the diff, ship it"
+        }
+      ]
     }
   ],
   "sources": [
@@ -1255,6 +1398,24 @@
       "title": "Cindy",
       "publisher": "Cindy project maintainers · Official project README, consulted 2026-11-26",
       "url": "https://github.com/makecindy/cindy"
+    },
+    {
+      "id": "source:herdr-agent-guide",
+      "title": "Herdr agent guide",
+      "publisher": "Herdr · Official guide, consulted 2026-11-26",
+      "url": "https://github.com/herdrdev/herdr/blob/master/distribution/agent-guide.md"
+    },
+    {
+      "id": "source:magpie-start",
+      "title": "Get started with Magpie",
+      "publisher": "Magpie · Official guide, consulted 2026-11-26",
+      "url": "https://usemagpie.ai/docs/start"
+    },
+    {
+      "id": "source:orca-first-session",
+      "title": "Your first 3-agent session",
+      "publisher": "Stably AI · Official guide, consulted 2026-11-26",
+      "url": "https://github.com/stablyai/orca/blob/main/docs/site/content/docs/first-session.mdx"
     }
   ],
   "edges": [
