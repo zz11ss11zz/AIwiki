@@ -138,15 +138,20 @@ export function renderToolDirectory(ds, fieldId, locale = 'en') {
   if (tools.length < 2) return null;
   const zh = locale === 'zh';
   const title = zh ? '对比多智能体协作工具' : 'Compare agent collaboration tools';
-  const labels = zh ? ['协作单位', '如何跟进', '官方说明'] : ['Unit of work', 'How to follow progress', 'Official documentation'];
+  const labels = zh ? ['工具', '适用场景', '如何分工', '如何跟进'] : ['Tool', 'When to use it', 'How work is assigned', 'Where to follow progress'];
+  const support = zh ? '官方说明' : 'Official documentation';
+  const headers = labels.map(label => `<th scope="col">${esc(label)}</th>`).join('');
   const rows = tools.map(([id, source, en, cn]) => {
     const name = esc(ds.articles.get(id).title);
-    const [unit, progress] = zh ? cn : en;
-    return `<li><h3><a href="${articleHref(id)}">${name}</a></h3><dl><dt>${labels[0]}</dt><dd>${esc(unit)}</dd><dt>${labels[1]}</dt><dd>${esc(progress)}</dd></dl>
-<a class="hint" href="${esc(source)}" rel="noreferrer">${labels[2]} (${name})</a></li>`;
+    const cells = (zh ? cn : en).map(text => `<td>${esc(text)}</td>`).join('');
+    return `<tr><th scope="row"><a href="${articleHref(id)}">${name}</a><br>
+<a class="hint" href="${esc(source)}" rel="noreferrer" aria-label="${support} (${name})">${support}</a></th>${cells}</tr>`;
   }).join('');
   const intro = COMPARISON_INTRO[locale].map(text => `<p>${esc(text)}</p>`).join('');
-  const page = section('compare-tools', title, `${intro}<ul class="tool-comparison">${rows}</ul>`);
+  const page = section('compare-tools', title, `${intro}
+<div class="tool-comparison-scroll" role="region" aria-labelledby="compare-tools" tabindex="0">
+<table class="tool-comparison" aria-labelledby="compare-tools"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>
+</div>`);
   return { html: page.html, toolIds: tools.map(([id]) => id) };
 }
 

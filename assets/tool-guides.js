@@ -218,11 +218,9 @@ export const TOOL_GUIDES = new Map([
 
 export const COMPARISON_INTRO = {
   en: [
-    'Three agents showing “working” tells you very little about where the work meets again. Start with what must happen after you split the task.',
-    'If several roles need a shared plan and folder, AionUi gives them a board. If one review needs a clean brief and a separate transcript, Codeg gives the worker its own session. If you want the review beside the thread doing the implementation, T3 Code keeps both in view. The examples below let you try those differences with a small job.',
+    'Choose Multica to review results on a team issue, AionUi to track them on a shared board, or Codeg to collect them in the conversation that delegated the work.',
   ],
   zh: [
-    '界面上三个人同时显示「正在工作」，并不能告诉你结果该去哪儿找。选工具前先想想，活拆出去以后，是要几个人持续接力，还是只请一位同事看一眼？',
-    '做发布简报，写稿和核事实得来回交接，AionUi 的看板更容易找到下一棒。只想找两个漏测输入，Codeg 的独立工作者会话适合收一份清楚的答复。改代码时希望把审阅开在实现旁边，T3 Code 可以让两个线程并排。下面各有一个可跟做的例子。',
+    '要在团队工单验收结果，选 Multica。要在共享看板跟进分工，选 AionUi。要把结果交回发起委派的会话，选 Codeg。',
   ],
 };
