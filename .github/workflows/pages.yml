@@ -1,0 +1,50 @@
+name: Deploy ENCY4AI Pages
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['pages/**', '.github/workflows/pages.yml']
+  push:
+    branches: [main]
+    paths: ['pages/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Verify static entry points and data
+        run: |
+          test -s pages/index.html
+          test -s pages/zh/index.html
+          test -s pages/community-public.html
+          test -s pages/discussions.html
+          python -m json.tool pages/data/reader.json > /dev/null
+      - uses: actions/upload-pages-artifact@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: pages
+          include-hidden-files: true
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

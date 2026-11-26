@@ -37,6 +37,7 @@ These are product goals; see the bootstrap status below for what is actually imp
 - [Agent API](docs/AGENT_API.md) — versioned interface and security boundaries.
 - [Roadmap](docs/ROADMAP.md) — ordered development and maintenance plan.
 - [AutoLoop handoff](docs/AUTOLOOP.md) — first run and handover checklist.
+- [GitHub Pages deployment](docs/PAGES.md) — public reader source and deployment.
 - [Security](SECURITY.md) — data and publication policy.
 
 ## Bootstrap status
