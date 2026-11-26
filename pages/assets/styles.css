@@ -124,12 +124,7 @@ article h2 { border-bottom: 1px solid var(--line); padding-bottom: .2rem; margin
 
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-.community-reference-appendix {
-  border-top: 1px solid var(--line);
-  margin-top: 2rem;
-  padding-top: .9rem;
-}
-.community-reference-appendix > summary { cursor: pointer; font-weight: 600; }
+.tree > .appendix-nav { border-top: 1px solid var(--line); margin-top: .7rem; padding-top: .45rem; }
 
 /* Community discussions (browser-local, unverified notes) */
 .layout-single { grid-template-columns: minmax(0, 1fr); }

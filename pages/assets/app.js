@@ -1,4 +1,4 @@
-import { mountCommunityReferences } from './community-references.js';
+import { legacyReferenceDestination } from './community-references.js';
 import { TOOL_GUIDES } from './tool-guides.js';
 // Browser entry: fetch the dataset, render the current page, wire the nav toggle.
 import { loadDataset } from './data.js';
@@ -44,6 +44,11 @@ function setupNavToggle() {
 
 async function main() {
   const params = new URLSearchParams(window.location.search);
+  const reference = legacyReferenceDestination(params, window.location.hash);
+  if (reference) {
+    window.location.replace(reference);
+    return;
+  }
   const chineseLink = document.querySelector('a[href="./zh/"], a[href="zh/"]');
   const locationParams = new URLSearchParams();
   for (const key of ['article', 'field', 'q']) {
@@ -73,7 +78,6 @@ async function main() {
   }
   document.title = page.title;
   mainEl.innerHTML = page.html;
-  mountCommunityReferences(mainEl, params);
   setupNavToggle();
   const comparison = mainEl.querySelector('.tool-comparison');
   const practice = TOOL_GUIDES.get(params.get('article'))?.example?.en?.comparisonLabel

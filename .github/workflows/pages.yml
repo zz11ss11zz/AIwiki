@@ -23,6 +23,8 @@ jobs:
         run: |
           test -s pages/index.html
           test -s pages/zh/index.html
+          test -s pages/references.html
+          test -s pages/zh/references.html
           test -s pages/community-public.html
           test -s pages/discussions.html
           python -m json.tool pages/data/reader.json > /dev/null

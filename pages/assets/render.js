@@ -56,7 +56,7 @@ export function renderSidebar(ds, current = {}) {
     return `<li><a href="${esc(fieldHref(f.id))}"${isField ? ' aria-current="page"' : ''}>${esc(f.title)}</a>`
       + ` <span class="count">(${list.length})</span>${sub}</li>`;
   }).join('');
-  return `<h2 id="toc-heading" class="nav-heading">Browse by field</h2><ul class="tree">${items}</ul>`;
+  return `<h2 id="toc-heading" class="nav-heading">Browse by field</h2><ul class="tree">${items}<li class="appendix-nav"><a href="references.html">Appendix: Community references</a></li></ul>`;
 }
 
 export function renderHome(ds) {
@@ -190,7 +190,7 @@ function renderBrowserMediaGuide(locale) {
       `<a href="${esc(url)}" rel="noreferrer">${esc(zh ? cn : en)}</a>`
     ).join(' · ');
     const comment = route.id === 'browser-setup'
-      ? `<p class="hint"><a href="./#reference-browser-batch-media">${zh ? '这篇指南源于一条微信网友评论' : 'Read the community comment that suggested this workflow'}</a></p>`
+      ? `<p class="hint"><a href="references.html#reference-browser-batch-media">${zh ? '这篇指南源于一条微信网友评论' : 'Read the community comment that suggested this workflow'}</a></p>`
       : '';
     return section(route.id, title, `<p>${esc(intro)}</p>${comment}${figure}<ol class="guide-steps">${list}</ol>${example}<p class="hint">${links}</p>`);
   });
@@ -235,7 +235,7 @@ export function articleExtras(ds, currentId, locale = 'en') {
       ? `<p><a href="${articleHref(BROWSER_MEDIA_GUIDE_ID)}">${zh ? '阅读批量生成实操指南' : 'Read the batch generation walkthrough'}</a></p>`
       : '';
     extras.push(section('community-use-case', zh ? '网友举例' : 'Community example',
-      `<p>${description} <a href="./#reference-browser-batch-media">${label}</a></p><p>${peers}</p>${practice}`));
+      `<p>${description} <a href="references.html#reference-browser-batch-media">${label}</a></p><p>${peers}</p>${practice}`));
   }
   const tools = availableTools(ds);
   const listedInComparison = tools.length > 1 && tools.some(([id]) => id === currentId);
