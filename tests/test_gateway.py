@@ -1,3 +1,4 @@
+import http.client
 import json
 import tempfile
 import threading
@@ -70,7 +71,20 @@ class GatewayTest(unittest.TestCase):
         for payload in ({},{'url':'file:///etc/passwd'},{'url':'https://u:p@example.org'},{'url':'https://example.org','text':'both'},{'text':'x','visibility':'public'},{'text':' '}):
             self.assertEqual(self.request('/api/v1/inbox',payload)[0],400)
     def test_oversize(self):
-        self.assertEqual(self.request('/api/v1/inbox',{'text':'a'*(128*1024)})[0],413)
+        # The gateway rejects the advertised size before reading the body.
+        # Sending the body races the server closing its socket on Windows.
+        conn = http.client.HTTPConnection('127.0.0.1', self.srv.server_port, timeout=3)
+        try:
+            conn.request('POST', '/api/v1/inbox', headers={
+                'Authorization': 'Bearer ' + self.token,
+                'Content-Type': 'application/json',
+                'Content-Length': str(128 * 1024 + 1),
+            })
+            with conn.getresponse() as response:
+                self.assertEqual(response.status, 413)
+                self.assertEqual(json.load(response), {'error': 'payload too large'})
+        finally:
+            conn.close()
     def test_planned_not_active(self):
         self.assertEqual(self.request('/api/v1/proposals',{'text':'test'})[0],404)
 

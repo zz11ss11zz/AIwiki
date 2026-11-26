@@ -28,7 +28,9 @@ Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/ENCY4AI/is
 - Use fixtures for repeatable tests. Authorized live inputs separately; no third-party text or private payloads in Git.
 
 ## Developer versus knowledge agent
-AutoLoop developer: GitHub branch/issue/PR/CI. Knowledge agent: scoped REST/OpenAPI, later MCP. Keep these separate. Default bootstrap loopback port 8787, ENCY4AI_ environment prefix. No direct internet exposure. The bootstrap queues only; extraction and publishing are not yet implemented.
+AutoLoop developer: GitHub branch/issue/PR/CI. Knowledge agent: scoped REST/OpenAPI, later MCP. Keep these separate. Default bootstrap loopback port 8787, ENCY4AI_ environment prefix. The HTTP gateway queues only. [Issue #5](https://github.com/zz11ss11zz/ENCY4AI/issues/5) tracks the [offline model pipeline](MODEL_PIPELINE.md) and its reproducible tests. Next, connect authorized source snapshots and curated context through a durable worker, then verify real provider adapters and reviewer authorization.
+
+The offline branch was based on `e36a675`. Local Windows Python 3.12.14 passed all 17 tests with `python -m unittest discover -s tests -v`; the CLI produced private proposals with both shared and split model settings. The gateway explicitly closes each SQLite connection after its transaction and retains the existing HTTP contract.
 
 ## Maintenance loop
 Inspect user-reported sources and existing issues; prioritize correctness/privacy and broken paths, then learning value and usability. Avoid measuring success by number of news items, links or graph nodes alone. Propose knowledge patches with sources; run link/freshness checks and flag obsolete tutorials. Produce reviewable PRs and private proposals. Never autonomously publish unreviewed facts, use private material in public repo, change repo access, spend money, or expose services. Track per-cycle objective, changes, source evidence, tests, pending review, blockers and next task. Preserve the existing MIT software license; owner chooses separate encyclopedia content licensing, production network and publication authorization.
