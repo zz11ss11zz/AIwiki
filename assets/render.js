@@ -148,9 +148,13 @@ export function renderToolDirectory(ds, fieldId, locale = 'en') {
   const headers = labels.map(label => `<th scope="col">${esc(label)}</th>`).join('');
   const rows = tools.map(([id, source, en, cn]) => {
     const name = esc(ds.articles.get(id).title);
+    const practiceLabel = TOOL_GUIDES.get(id)?.example?.[locale]?.comparisonLabel;
+    const practiceLink = practiceLabel
+      ? `<br><a href="${articleHref(id)}#practice" aria-label="${esc(practiceLabel)} (${name})">${esc(practiceLabel)}</a>`
+      : '';
     const cells = (zh ? cn : en).map(text => `<td>${esc(text)}</td>`).join('');
     return `<tr><th scope="row"><a href="${articleHref(id)}">${name}</a><br>
-<a class="hint" href="${esc(source)}" rel="noreferrer" aria-label="${support} (${name})">${support}</a></th>${cells}</tr>`;
+<a class="hint" href="${esc(source)}" rel="noreferrer" aria-label="${support} (${name})">${support}</a>${practiceLink}</th>${cells}</tr>`;
   }).join('');
   const intro = COMPARISON_INTRO[locale].map(text => `<p>${esc(text)}</p>`).join('');
   const page = section('compare-tools', title, `${intro}

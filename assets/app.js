@@ -74,6 +74,7 @@ async function main() {
   mainEl.innerHTML = page.html;
   mountCommunityReferences(mainEl, params);
   setupNavToggle();
+  if (window.location.hash === '#practice') mainEl.querySelector('#practice')?.scrollIntoView();
 }
 
 main();

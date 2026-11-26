@@ -66,10 +66,12 @@ export const GUIDE_SOURCE_LABELS = new Map([
 const setupGuideExample = {
   en: {
     title: 'Revise a setup guide',
+    comparisonLabel: 'Revise a setup guide',
     setup: 'Use a project with an existing setup guide and a specific configuration change. The deliverable is a draft with checked steps and any remaining verification gaps.',
   },
   zh: {
     title: '案例｜修订配置指南',
+    comparisonLabel: '修订配置指南',
     setup: '准备一份现有配置指南和一项明确的配置变更。交付一份待审草稿，写明已核对的步骤和仍待验证的事项。',
   },
 };
