@@ -174,6 +174,13 @@ export function articleExtras(ds, currentId, locale = 'en') {
   }
   const figure = ARTICLE_FIGURES.get(currentId);
   if (figure) extras.push(renderFigure(figure, locale));
+  if (guide?.subscriptions) {
+    const title = zh ? '使用现有订阅接入 Gemini、GPT 和 Claude' : 'Use existing Gemini, GPT, and Claude subscriptions';
+    const paragraphs = guide.subscriptions.map(entry =>
+      `<p>${esc(entry[locale])}</p>${guideSources(entry.sources, zh)}`
+    ).join('');
+    extras.push(section('subscriptions', title, paragraphs));
+  }
   if (BROWSER_MEDIA_TERMS.includes(currentId)) {
     const peers = BROWSER_MEDIA_TERMS.filter(id => id !== currentId && ds.articles.has(id)).map(id => {
       const name = zh && id === 'concept:batch-generation' ? '批量生成' : ds.articles.get(id).title;

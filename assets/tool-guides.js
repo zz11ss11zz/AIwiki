@@ -8,6 +8,17 @@ const codegDelegate = 'https://docs.codeg.app/guide/multi-agent';
 const t3Repo = 'https://github.com/pingdotgg/t3code';
 const t3Docs = `${t3Repo}/blob/main/docs/user`;
 const t3Threads = `${t3Docs}/thread-sidebar.md#inspect-agent-work`;
+const googleAcp = 'https://discuss.ai.google.dev/t/conflicting-guidance-on-using-t3-code-with-personal-google-ai-subscriptions/197131/3';
+const googleDelegation = 'https://discuss.ai.google.dev/t/tos-clarification-is-human-supervised-codex-to-antigravity-acp-delegation-permitted/200697/2';
+const googleZed = 'https://antigravity.google/docs/ide/extensions/zed/';
+const googleTerms = 'https://antigravity.google/terms';
+const googleHeadless = 'https://antigravity.google/docs/faq#can-i-use-antigravity-cli-headless-mode-in-third-party-coding-agents-or-automate-account-switching';
+const openaiPlans = 'https://help.openai.com/en/articles/20001542-using-your-chatgpt-plan-in-other-apps-and-sites';
+const anthropicAuth = 'https://code.claude.com/docs/en/legal-and-compliance#authentication-and-credential-use';
+const magpieSubscriptions = 'https://usemagpie.ai/docs/subscriptions';
+const magpieReport = 'https://github.com/yetone/magpie/issues/5992';
+const magpieChatgpt = 'https://github.com/yetone/magpie/blob/main/internal/provider/chatgpt_api.go';
+const openaiClients = 'https://developers.openai.com/siwc/token-sharing-open-source';
 
 export const GUIDE_SOURCE_LABELS = new Map([
   [aionRepo, ['iOfficeAI repository', 'iOfficeAI 项目仓库']],
@@ -28,6 +39,20 @@ export const GUIDE_SOURCE_LABELS = new Map([
   [`${t3Repo}#what-you-get`, ['T3 Code product overview', 'T3 Code 功能说明']],
   [`${t3Docs}/install.md`, ['T3 Code install and sign-in', 'T3 Code 安装及登录']],
   [t3Threads, ['Inspecting delegated threads', '查看委派线程']],
+  [`${t3Docs}/providers-antigravity.md`, ['T3 Code Antigravity setup', 'T3 Code 的 Antigravity 配置']],
+  [`${t3Docs}/providers-codex.md`, ['T3 Code Codex setup', 'T3 Code 的 Codex 配置']],
+  [`${t3Docs}/providers-claude.md`, ['T3 Code Claude setup', 'T3 Code 的 Claude 配置']],
+  [googleAcp, ['Google clarification on T3 Code and ACP', 'Google 对 T3 Code 和 ACP 的说明']],
+  [googleDelegation, ['Google clarification on agent-to-agent delegation', 'Google 对智能体间委派的说明']],
+  [googleZed, ['Google’s Antigravity setup for Zed', 'Google 的 Zed 接入指南']],
+  [googleTerms, ['Google Antigravity Terms, section 6', 'Google Antigravity 条款第 6 节']],
+  [googleHeadless, ['Google FAQ on headless automation', 'Google 对无界面自动调用的说明']],
+  [openaiPlans, ['OpenAI guidance on sharing plan usage', 'OpenAI 的订阅额度共享说明']],
+  [anthropicAuth, ['Anthropic authentication rules', 'Anthropic 的认证规则']],
+  [magpieSubscriptions, ['Magpie subscription routing', 'Magpie 的订阅路由说明']],
+  [magpieReport, ['Magpie user report, issue #5992', 'Magpie 用户报告 #5992']],
+  [magpieChatgpt, ['Magpie ChatGPT API implementation', 'Magpie 的 ChatGPT API 实现']],
+  [openaiClients, ['OpenAI authorization for open-source apps', 'OpenAI 的开源客户端授权说明']],
   [`${t3Docs}/source-control.md#review-turn-changes`, ['Reviewing turn changes', '检查本轮 Git 改动']],
 ]);
 
@@ -114,6 +139,43 @@ export const TOOL_GUIDES = new Map([
     },
   }],
   ['tool:t3-code', {
+    subscriptions: [
+      {
+        en: 'For coding in one workspace, use Settings → Providers to sign in with each existing subscription. Open a separate interactive thread for each provider in the same project. This setup needs no separately billed API key when all three accounts are eligible. Documentation checked on November 26, 2026. The combined workflow has yet to be tested in the app.',
+        zh: '想在同一个编程界面用现有订阅，可以在 Settings → Providers 分别登录三家账号，再在同一个项目里为各家分别打开交互会话。三个账号都有相应权益时，无需配置另行计费的 API Key。文档核对日期为 2026 年 11 月 26 日，组合流程尚未在应用中实测。',
+        sources: [`${t3Docs}/install.md`],
+      },
+      {
+        en: 'Gemini. Enable Antigravity, install Google’s official Antigravity ACP runtime, and choose Sign in with Google. Google confirms that the unmodified runtime and native sign-in are supported for single-user interactive development with eligible Gemini models in ACP clients such as T3 Code and Zed. The official component is the Antigravity agent that each client runs.',
+        zh: 'Gemini。启用 Antigravity，安装 Google 官方 Antigravity ACP 组件，再点 Sign in with Google。Google 确认，在 T3 Code、Zed 等 ACP 客户端中使用这个未修改的组件和原生登录，可用个人订阅内符合条件的 Gemini 模型做单用户交互式开发。官方提供的是客户端运行的 Antigravity 智能体。',
+        sources: [`${t3Docs}/providers-antigravity.md`, googleAcp, googleZed],
+      },
+      {
+        en: 'Multiple models in one project can work in separate conversations that you start yourself. For example, ask GPT to implement a change, then open a Gemini conversation and ask it to review the diff. T3 Code also exposes agent delegation for supported combinations. Google says its consumer subscription does not cover Codex or Claude delegating work to Antigravity through ACP or headless mode, even with human approval. Automated account rotation is also outside the supported consumer workflow.',
+        zh: '同一个项目可以用多个模型。比如让 GPT 实现一个改动，再自己打开 Gemini 会话，请它审查代码差异。T3 Code 也为受支持的组合提供智能体委派。Google 明确说明，个人订阅不支持让 Codex 或 Claude 通过 ACP 或无界面模式把子任务派给 Antigravity，即使有人点击批准也一样。个人套餐也不支持自动轮换账号。',
+        sources: [t3Threads, googleDelegation, googleHeadless],
+      },
+      {
+        en: 'GPT. Choose Connect with ChatGPT and authorize T3 Code to use your plan allowance. Leave extra ChatGPT credits disabled if you want usage to stop at the included allowance.',
+        zh: 'GPT。选择 Connect with ChatGPT，在 OpenAI 页面授权使用套餐额度。如果希望额度用完就停，保持额外 ChatGPT credits 选项关闭。',
+        sources: [`${t3Docs}/providers-codex.md`, openaiPlans],
+      },
+      {
+        en: 'Claude. Install Claude Code and sign in with claude auth login. T3 Code documents using that login. Anthropic permits subscribers to sign in to the unmodified Claude Code binary and restricts third-party handling of plan credentials. Public confirmation from Anthropic specific to T3 Code was not located.',
+        zh: 'Claude。安装官方 Claude Code，用 claude auth login 登录，T3 Code 会使用该登录。Anthropic 允许用户在未修改的 Claude Code 中登录自己的订阅，对第三方代管或转发订阅凭据有限制。尚未找到 Anthropic 点名确认 T3 Code 这项集成的公开说明。',
+        sources: [`${t3Docs}/providers-claude.md`, anthropicAuth],
+      },
+      {
+        en: 'Magpie is a local gateway with both API-key and subscription routes. Google’s terms allow suspension of Antigravity or Gemini CLI access for unauthorized third-party access. In November 2026, a Magpie user reported losing Antigravity access after using Magpie’s Antigravity subscription route. The user reported that their Google account and paid subscription remained active. This report does not establish how often suspensions occur.',
+        zh: 'Magpie 是本地网关，既能接 API Key，也能转接订阅。Google 条款规定，未经授权的第三方接入可导致 Antigravity 或 Gemini CLI 的访问被暂停。2026 年 11 月，一位 Magpie 用户报告称，用过 Magpie 的 Antigravity 订阅转接后，该服务的访问被停用。按其自述，Google 账号和付费订阅仍然有效。这条报告无法用来估算封禁概率。',
+        sources: [magpieSubscriptions, googleTerms, magpieReport],
+      },
+      {
+        en: 'Check the exact route when comparing gateways. Magpie documents using the installed Claude Code for its Claude subscription bridge. That describes the mechanism, while Anthropic’s credential rules still apply to third-party routing. Magpie’s separate ChatGPT API provider implements Sign in with ChatGPT. OpenAI documents that authorization path for eligible open-source apps. Reusing a Codex session to route requests is a different connection. Official API keys are another route and use the provider’s API billing rules.',
+        zh: '比较网关时，先看具体接入路径。Magpie 文档说明，其 Claude 订阅桥接会调用本机安装的 Claude Code，第三方转接仍受 Anthropic 的凭据规则约束。Magpie 的 ChatGPT API 提供方实现了 Sign in with ChatGPT，OpenAI 为符合条件的开源客户端提供了这条授权路径。复用 Codex 会话来转发请求属于另一种接法。使用官方 API Key 则按各家的 API 规则计费。',
+        sources: [magpieSubscriptions, anthropicAuth, magpieChatgpt, openaiClients],
+      },
+    ],
     origin: {
       sources: [t3Repo, `${t3Repo}/blob/main/AGENTS.md#terminology`, 'https://t3.codes/'],
       en: ['Theo and Julius are named among the maintainers of T3 Code, published by T3 Tools. The project wraps coding agents that already run on a machine in a shared interface and makes their threads accessible from desktop, web, and mobile.'],
