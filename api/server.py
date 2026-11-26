@@ -6,6 +6,7 @@ import os
 import re
 import sqlite3
 import uuid
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -17,10 +18,15 @@ OPENAPI = Path(__file__).with_name('openapi.json')
 def utcnow():
     return datetime.now(timezone.utc).isoformat()
 
+@contextmanager
 def connect(path):
     db = sqlite3.connect(path, timeout=5)
     db.row_factory = sqlite3.Row
-    return db
+    try:
+        with db:
+            yield db
+    finally:
+        db.close()
 
 def init_db(path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
