@@ -134,8 +134,9 @@ export function loadDataset(raw) {
 }
 
 export function articlesInField(ds, fieldId) {
+  const crossListed = arr(ds.fields.get(fieldId)?.article_ids);
   return [...ds.articles.values()]
-    .filter((a) => a.field_id === fieldId)
+    .filter((a) => a.field_id === fieldId || crossListed.includes(a.id))
     .sort((x, y) => str(x.title).localeCompare(str(y.title)));
 }
 

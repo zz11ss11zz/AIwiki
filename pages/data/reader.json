@@ -19,6 +19,14 @@
       "title": "Models"
     },
     {
+      "id": "field:video-generation",
+      "title": "Video generation",
+      "article_ids": [
+        "tool:google-flow",
+        "guide:antigravity-batch-media"
+      ]
+    },
+    {
       "id": "field:tools",
       "title": "Tools"
     },
@@ -753,6 +761,45 @@
           ]
         }
       ]
+    },
+    {
+      "id": "model:wan-3-0",
+      "field_id": "field:video-generation",
+      "locale": "en",
+      "title": "Wan 3.0",
+      "summary": "Alibaba's Wan 3.0 (wan3.0-video) generates video from a text description. Images, video clips and audio can guide what appears on screen and what the viewer hears.",
+      "status": "candidate",
+      "revision_id": "revision:video-generation-011",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Alibaba's Wan 3.0 (wan3.0-video) generates video from a text description. Images, video clips and audio can guide what appears on screen and what the viewer hears.",
+              "claim_ids": [
+                "claim:wan-video-inputs"
+              ]
+            },
+            {
+              "text": "Alibaba Cloud documents clips of up to 30 seconds at 30 frames per second, with generated dialogue, music and sound effects. Creators can also edit or extend an existing clip.",
+              "claim_ids": [
+                "claim:wan-video-output"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Imagine filming a cup of coffee being poured. What would you describe in the prompt, and what would you supply as a reference image or sound?",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -1276,6 +1323,32 @@
           "locator": "Pick a winner, review the diff, ship it"
         }
       ]
+    },
+    {
+      "id": "claim:wan-video-inputs",
+      "statement": "Alibaba's Wan 3.0 (wan3.0-video) generates video from a text description. Images, video clips and audio can guide what appears on screen and what the viewer hears.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:wan-video-guide",
+          "url": "https://www.alibabacloud.com/help/en/model-studio/wan3-video-generation-guide",
+          "locator": "Wan3.0-Video Generation"
+        }
+      ]
+    },
+    {
+      "id": "claim:wan-video-output",
+      "statement": "Alibaba Cloud documents clips of up to 30 seconds at 30 frames per second, with generated dialogue, music and sound effects. Creators can also edit or extend an existing clip.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:wan-video-guide",
+          "url": "https://www.alibabacloud.com/help/en/model-studio/wan3-video-generation-guide",
+          "locator": "Wan3.0-Video Generation"
+        }
+      ]
     }
   ],
   "sources": [
@@ -1416,6 +1489,12 @@
       "title": "Your first 3-agent session",
       "publisher": "Stably AI · Official guide, consulted 2026-11-26",
       "url": "https://github.com/stablyai/orca/blob/main/docs/site/content/docs/first-session.mdx"
+    },
+    {
+      "id": "source:wan-video-guide",
+      "title": "Wan3.0-Video Generation",
+      "publisher": "Alibaba Cloud Model Studio · Updated November 23, 2026",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/wan3-video-generation-guide"
     }
   ],
   "edges": [
