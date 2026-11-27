@@ -168,7 +168,7 @@ def main():
     if len(token) < 32:
         raise SystemExit('Set ENCY4AI_AGENT_TOKEN to a random secret of at least 32 characters.')
     gateway = Gateway((host,port),os.environ.get('ENCY4AI_DB','.local/inbox.sqlite3'),token)
-    print(f'ENCY4AI local bootstrap on http://{host}:{gateway.server_port}', flush=True)
+    print(f'AIwiki local bootstrap on http://{host}:{gateway.server_port}', flush=True)
     try:
         gateway.serve_forever()
     except KeyboardInterrupt:

@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "ENCY4AI Agent Gateway",
+    "title": "AIwiki Agent Gateway",
     "version": "0.1.0",
     "description": "Local private inbox with an opt-in offline worker and authenticated result retrieval."
   },

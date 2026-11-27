@@ -1,18 +1,18 @@
 # AutoLoop handoff — START HERE
 
-Project name: ENCY4AI. Repository: https://github.com/zz11ss11zz/ENCY4AI (public). Purpose: a living AI encyclopedia and practical guide, not a news-only feed. AI is advancing faster than readers can understand, absorb and try new developments. The owner wants to save useful or interesting pages as well as personal reflections, questions and ideas; ENCY4AI must turn them into reusable digests, meaningful links to existing knowledge, learning/practice next steps and revisitable context. Read [LEARNING.md](LEARNING.md) as a core requirement. English is the default public and developer language; Chinese is supplementary. Preserve source and private-note language.
+Project name: AIwiki. Repository: https://github.com/zz11ss11zz/AIwiki (public). Purpose: a living AI encyclopedia and practical guide, not a news-only feed. AI is advancing faster than readers can understand, absorb and try new developments. The owner wants to save useful or interesting pages as well as personal reflections, questions and ideas; AIwiki must turn them into reusable digests, meaningful links to existing knowledge, learning/practice next steps and revisitable context. Read [LEARNING.md](LEARNING.md) as a core requirement. English is the default public and developer language; Chinese is supplementary. Preserve source and private-note language.
 
 ## Guiding vision
 
 Official brand tagline: **Less Noise. More Understanding. Knowledge That Compounds.** Preserve this wording in the English homepage and use the approved localized equivalent in the Chinese companion. This tagline reflects the product's priority: durable understanding over information volume.
 
-ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
+AIwiki aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
 
 Use this as the decision criterion for product development: prioritize lasting understanding and meaningful connections over the volume or speed of news ingestion.
 
 ## First run
 
-Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/ENCY4AI/issues/1). The renamed gateway and tests passed 8 local tests on 2026-11-25; the server.py and test_gateway.py Git blob hashes were verified against the tested files. Remote CI result was not confirmed; rerun tests and check Actions before advancing.
+Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/AIwiki/issues/1). The renamed gateway and tests passed 8 local tests on 2026-11-25; the server.py and test_gateway.py Git blob hashes were verified against the tested files. Remote CI result was not confirmed; rerun tests and check Actions before advancing.
 1. Clone the repository and inspect the current default branch, open issues and CI. Read AGENTS.md, README.md and all docs/; confirm baseline instead of assuming plans are implemented.
 2. Run python -m unittest discover -s tests -v; record actual results and environment. Inspect the local gateway and OpenAPI. Do not install paid services or use production credentials.
 3. Create/reuse issues aligned to P0–P3; check for duplicates and dependencies. Start with a vertical slice, not separate disconnected prototypes.
@@ -28,7 +28,7 @@ Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/ENCY4AI/is
 - Use fixtures for repeatable tests. Authorized live inputs separately; no third-party text or private payloads in Git.
 
 ## Developer versus knowledge agent
-AutoLoop developer: GitHub branch/issue/PR/CI. Knowledge agent: scoped REST/OpenAPI, later MCP. Keep these separate. Default bootstrap loopback port 8787, ENCY4AI_ environment prefix. [Issue #7](https://github.com/zz11ss11zz/ENCY4AI/issues/7) connects the [offline model pipeline to the inbox](MODEL_PIPELINE.md#run-from-the-inbox) using an opt-in worker. The end-to-end test starts the worker CLI separately and checks that the operator can retrieve a private proposal. Next, add authorized live snapshots and provider adapters, then scoped result access and reviewer authorization.
+AutoLoop developer: GitHub branch/issue/PR/CI. Knowledge agent: scoped REST/OpenAPI, later MCP. Keep these separate. Default bootstrap loopback port 8787, ENCY4AI_ environment prefix. [Issue #7](https://github.com/zz11ss11zz/AIwiki/issues/7) connects the [offline model pipeline to the inbox](MODEL_PIPELINE.md#run-from-the-inbox) using an opt-in worker. The end-to-end test starts the worker CLI separately and checks that the operator can retrieve a private proposal. Next, add authorized live snapshots and provider adapters, then scoped result access and reviewer authorization.
 
 The offline branch was based on `e36a675`. Local Windows Python 3.12.14 passed all 17 tests with `python -m unittest discover -s tests -v`; the CLI produced private proposals with both shared and split model settings. The gateway explicitly closes each SQLite connection after its transaction and retains the existing HTTP contract.
 

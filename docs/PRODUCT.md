@@ -1,4 +1,4 @@
-# ENCY4AI product specification (v0.1)
+# AIwiki product specification (v0.1)
 
 ## Brand tagline
 
@@ -8,7 +8,7 @@ Use this exact English wording in public brand copy and the future website homep
 
 ## Vision
 
-ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
+AIwiki aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.
 
 ## Product promise
 A continuously revised book, not a feed of AI headlines. One canonical article per topic; book chapters, graph neighborhoods and learning paths link to that article. Editorial promise: traceable facts, meaningful relationships, actionable workflows, visible freshness and revision history. Never promise perfect real-time accuracy.

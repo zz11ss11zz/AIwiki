@@ -1,1 +1,1 @@
-"""ENCY4AI bootstrap gateway."""
+"""AIwiki bootstrap gateway."""

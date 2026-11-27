@@ -1,4 +1,4 @@
-# ENCY4AI
+# AIwiki
 
 **The Living Encyclopedia and Practical Guide to Artificial Intelligence**
 
@@ -6,13 +6,13 @@
 
 [简体中文 / Chinese companion](README.zh-CN.md)
 
-> AI moves faster than we can understand, absorb, and try it. ENCY4AI turns scattered discoveries into connected, practical knowledge.
+> AI moves faster than we can understand, absorb, and try it. AIwiki turns scattered discoveries into connected, practical knowledge.
 
 ## Our vision
 
-**ENCY4AI aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.**
+**AIwiki aims to become the knowledge infrastructure for navigating the AI information explosion: rather than chasing every new development, we can turn every valuable discovery into a building block of lasting knowledge.**
 
-ENCY4AI is a wiki-first, evidence-backed encyclopedia and knowledge graph connecting AI history, theory, architectures, models, tools, practical workflows, applications, people and organizations. It is designed for people who discover valuable articles, projects, tutorials and ideas faster than they can make sense of them.
+AIwiki is a wiki-first, evidence-backed encyclopedia and knowledge graph connecting AI history, theory, architectures, models, tools, practical workflows, applications, people and organizations. It is designed for people who discover valuable articles, projects, tutorials and ideas faster than they can make sense of them.
 
 ## From discovery to understanding
 
@@ -24,7 +24,7 @@ ENCY4AI is a wiki-first, evidence-backed encyclopedia and knowledge graph connec
 - Identify useful next steps: a reading path, a small experiment, a comparison or a practical workflow. Clearly distinguish suggested from tested instructions.
 - Return later to discover what has changed, revisit unfinished questions and experiments, and build understanding over time.
 
-The public encyclopedia is English-first, with Chinese as a supplementary reading locale. Original sources and private notes retain their language. Personal collections, reflections and proposals are private by default; only authorized, reviewed knowledge enters the public wiki. ENCY4AI is not a news feed or an automatic publishing bot.
+The public encyclopedia is English-first, with Chinese as a supplementary reading locale. Original sources and private notes retain their language. Personal collections, reflections and proposals are private by default; only authorized, reviewed knowledge enters the public wiki. AIwiki is not a news feed or an automatic publishing bot.
 
 These are product goals; see the bootstrap status below for what is actually implemented.
 

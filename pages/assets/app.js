@@ -68,7 +68,7 @@ async function main() {
   const result = await fetchDataset();
   let page;
   if (result.ok) {
-    if (result.warnings.length) console.warn('ENCY4AI dataset warnings:', result.warnings);
+    if (result.warnings.length) console.warn('AIwiki dataset warnings:', result.warnings);
     const r = route(result.ds, params);
     page = r.page;
     nav.innerHTML = renderSidebar(result.ds, r.current);

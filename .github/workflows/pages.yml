@@ -1,4 +1,4 @@
-name: Deploy ENCY4AI Pages
+name: Deploy AIwiki Pages
 
 on:
   pull_request:
