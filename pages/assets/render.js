@@ -71,7 +71,8 @@ export function toolGroups(articles, locale) {
 
 export function renderSidebarArticles(articles, fieldId, locale, current, titleHtml) {
   const link = article => {
-    const currentPage = current.articleId === article.id ? ' aria-current="page"' : '';
+    const currentPage = current.articleId === article.id && (!article.field_id || article.field_id === fieldId)
+      ? ' aria-current="page"' : '';
     return `<li><a href="${esc(articleHref(article.id))}"${currentPage}>${titleHtml(article)}</a></li>`;
   };
   if (!articles.length) return '';

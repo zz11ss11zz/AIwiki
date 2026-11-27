@@ -12,6 +12,7 @@
 
 export const ZH_CONTENT = Object.freeze({
   fields: {
+    'field:video-generation': { en: 'Video generation', zh: '视频生成' },
     'field:history': { en: 'AI history', zh: '人工智能历史' },
     'field:fundamentals': { en: 'Fundamentals', zh: '基础知识' },
     'field:architectures': { en: 'Architectures', zh: '架构' },
@@ -28,6 +29,7 @@ export const ZH_CONTENT = Object.freeze({
   // always added as a search alias by the reader; `aliases` are extra
   // Chinese search terms.
   articles: {
+    'model:wan-3-0': { en: 'Wan 3.0', zh: '通义万相 3.0（Wan 3.0）', aliases: ['Wan3.0', '万相3.0', '视频生成'] },
     'architecture:transformer': { en: 'Transformer', zh: 'Transformer', aliases: [] },
     'concept:attention': { en: 'Attention', zh: '注意力', aliases: ['注意力机制'] },
     'tool:aionui': { en: 'AionUi', zh: 'AionUi', aliases: [] },
@@ -55,6 +57,12 @@ export const ZH_CONTENT = Object.freeze({
 
   // Summaries, paragraphs and claim statements (exact English → Chinese).
   prose: [
+    ["Alibaba's Wan 3.0 (wan3.0-video) generates video from a text description. Images, video clips and audio can guide what appears on screen and what the viewer hears.",
+      "阿里巴巴的通义万相 3.0（wan3.0-video）可以根据文字描述生成视频，也可以参考图片、视频片段和音频来生成画面与声音。"],
+    ["Alibaba Cloud documents clips of up to 30 seconds at 30 frames per second, with generated dialogue, music and sound effects. Creators can also edit or extend an existing clip.",
+      "据阿里云文档，单次生成的视频最长 30 秒，帧率为每秒 30 帧，可同时生成对白、音乐和音效。创作者也可以编辑或延长已有片段。"],
+    ["Imagine filming a cup of coffee being poured. What would you describe in the prompt, and what would you supply as a reference image or sound?",
+      "假设你要拍一个倒咖啡的镜头。哪些细节适合用文字描述？哪些适合用参考图片或声音来表达？"],
     // architecture:transformer / claim:transformer-encoder-decoder
     ['In the 2017 Transformer, the encoder represents the input sequence. The decoder uses that representation and earlier outputs to generate the next symbol.',
       '在 2017 年的 Transformer 中，编码器负责表示输入序列。解码器利用这一表示以及先前的输出来生成下一个符号。'],
