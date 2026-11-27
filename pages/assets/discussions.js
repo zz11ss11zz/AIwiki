@@ -1,5 +1,5 @@
 /*
- * ENCY4AI — Community discussions
+ * AIwiki — Community discussions
  *
  * Browser-local, unverified notes. Deliberately isolated from the encyclopedia:
  *  - stored only in localStorage under STORAGE_KEY (no network, no telemetry);

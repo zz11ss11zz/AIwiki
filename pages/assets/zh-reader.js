@@ -15,7 +15,7 @@ import {
 
 const TAGLINE = '减少信息噪声，深化知识理解，让知识持续复利。';
 
-// Page-relative: /ENCY4AI/zh/ → /ENCY4AI/data/reader.json; /zh/ → /data/reader.json.
+// Page-relative: /AIwiki/zh/ → /AIwiki/data/reader.json; /zh/ → /data/reader.json.
 const DATA_URL = '../data/reader.json';
 const EN_BASE = '../';
 
@@ -455,7 +455,7 @@ async function main() {
   L = localizer;
   let page;
   if (result.ok) {
-    if (result.warnings.length) console.warn('ENCY4AI dataset warnings:', result.warnings);
+    if (result.warnings.length) console.warn('AIwiki dataset warnings:', result.warnings);
     try {
       const r = route(result.ds, params);
       page = r.page;

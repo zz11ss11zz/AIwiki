@@ -1,4 +1,4 @@
-// Static Simplified Chinese presentation map for the ENCY4AI reader.
+// Static Simplified Chinese presentation map for the AIwiki reader.
 // The English dataset (data/reader.json) stays canonical: IDs, URLs, source
 // titles, proof locators, statuses and claim kinds are never copied here.
 //

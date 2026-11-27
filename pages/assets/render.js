@@ -9,7 +9,7 @@ import { BROWSER_MEDIA_GUIDE, BROWSER_MEDIA_GUIDE_ID } from './browser-media-gui
 
 const BROWSER_MEDIA_TERMS = ['tool:google-antigravity', 'tool:google-flow', 'tool:tripo3d', 'concept:batch-generation'];
 
-export const BRAND = 'ENCY4AI';
+export const BRAND = 'AIwiki';
 export const SUBTITLE = 'The Living Encyclopedia and Practical Guide to Artificial Intelligence';
 // Approved tagline, docs/PRODUCT.md. Do not reword.
 export const TAGLINE = 'Less Noise. More Understanding. Knowledge That Compounds.';
