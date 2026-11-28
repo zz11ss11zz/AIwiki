@@ -6,6 +6,11 @@ AIwiki aims to become the knowledge infrastructure for navigating the AI informa
 
 Build and maintain a living AI encyclopedia: canonical wiki articles, evidence-backed typed knowledge graph, history, practical instructions, and a knowledge inbox. Preserve docs/PRODUCT.md and docs/KNOWLEDGE.md. This is not a news aggregator or a pile of bookmarks. AI progress outpaces human understanding, so the primary success criterion is whether readers can digest, connect, apply and revisit knowledge. Follow docs/LEARNING.md.
 
+## Standing AutoLoop ownership
+- AutoLoop owns ongoing development and maintenance. The owner provides source material and performs human review, including flagging inaccurate, misplaced, duplicated, or weakly supported content. AutoLoop turns actionable review feedback into corrections and verifies the result.
+- Treat each submission as an intake task. Verify and clean it, deduplicate sources and entities, classify it in the existing taxonomy, and extend an existing canonical article or create one when the evidence supports a distinct topic. Maintain the typed knowledge graph and preserve claim-level provenance, versions, and shared locale IDs. Follow [the intake workflow](docs/AUTOLOOP.md#owner-input-and-source-intake).
+- Choose and verify routine next steps within the project. Bring the owner completed results, material blockers, and items requiring their review or authorization. Continue independent work while awaiting input. Apply the publication and privacy boundaries below.
+
 ## Start here
 1. Read README.md, this file and all docs/, especially docs/AUTOLOOP.md and docs/ROADMAP.md.
 2. Inspect code, issues and current CI; run python -m unittest discover -s tests -v.
