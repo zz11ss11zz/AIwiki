@@ -1067,6 +1067,219 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tool:skillhq",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "SkillHQ",
+      "summary": "SkillHQ is a marketplace for Claude Code skill packages built around SKILL.md. Its seller guide describes publishing a package from the command line, and its marketplace describes automated checks for structure, content and security.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-015",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "SkillHQ is a marketplace for Claude Code skill packages built around SKILL.md. Its seller guide describes publishing a package from the command line, and its marketplace describes automated checks for structure, content and security.",
+              "claim_ids": [
+                "claim:skillhq-overview"
+              ]
+            },
+            {
+              "text": "SkillHQ says it fingerprints downloads to help trace redistributed copies, checks for similar text using SimHash, and accepts takedown requests. These are tracing and enforcement measures. Their effectiveness against copying has not been established by the cited material.",
+              "claim_ids": [
+                "claim:skillhq-1"
+              ]
+            },
+            {
+              "text": "The SkillHQ seller page lists 80% for Starter and 85% for Pro. Its general marketplace page advertises 85% and separately mentions payment processing. Confirm the actual split and processor treatment for your seller tier before estimating proceeds.",
+              "claim_ids": [
+                "claim:skillhq-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Use a small writing-review skill as a sample. Compare the published package, the installed files and the buyer’s licence. Then check which seller tier the quoted split applies to.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:agensi",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Agensi",
+      "summary": "Agensi sells agent skills through a marketplace with free, one-time and subscription listings. Under its current delivery policy, the agent loads the skill through the connected Model Context Protocol (MCP) service.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-015",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Agensi sells agent skills through a marketplace with free, one-time and subscription listings. Under its current delivery policy, the agent loads the skill through the connected Model Context Protocol (MCP) service.",
+              "claim_ids": [
+                "claim:agensi-overview"
+              ]
+            },
+            {
+              "text": "Agensi’s current creator documentation puts the creator share at 70% of the net sale price excluding VAT. Its 30% share covers payment processing. Any separately metered Agensi tools used by the skill have their own charges.",
+              "claim_ids": [
+                "claim:agensi-1"
+              ]
+            },
+            {
+              "text": "Agensi says paid skill loads carry a licence notice with the purchase ID. Its current creator documentation describes delivery without a buyer download. A one-time purchase is therefore a pricing option, with delivery still governed by the current licence and platform policy.",
+              "claim_ids": [
+                "claim:agensi-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Compare a one-time writing skill with a subscription listing. Check what the agent retrieves, what happens when the creator updates it, and whether any tools inside the skill have separate usage charges.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:promptbase",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "PromptBase",
+      "summary": "PromptBase sells prompts and agent skills. Its seller guide specifies a single SKILL.md per skill listing, with any necessary code or references included in that file.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-015",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "PromptBase sells prompts and agent skills. Its seller guide specifies a single SKILL.md per skill listing, with any necessary code or references included in that file.",
+              "claim_ids": [
+                "claim:promptbase-overview"
+              ]
+            },
+            {
+              "text": "PromptBase advertises a 20% platform fee for marketplace sales and a 0% platform fee when a customer buys through the creator’s own referral link. The checkout channel determines the published platform fee.",
+              "claim_ids": [
+                "claim:promptbase-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Take a one-file editing skill and compare its marketplace listing with its creator referral link. Then check whether the skill still fits the format once you add reference materials.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:mcp-market",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "MCP Market",
+      "summary": "MCP Market, operated by Sitka Labs, lists MCP servers and agent skills. Its seller page describes paid skill storefronts, GitHub import or SKILL.md upload, and distribution by direct download or the MCP Market Hub plugin.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-015",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "MCP Market, operated by Sitka Labs, lists MCP servers and agent skills. Its seller page describes paid skill storefronts, GitHub import or SKILL.md upload, and distribution by direct download or the MCP Market Hub plugin.",
+              "claim_ids": [
+                "claim:mcp-market-overview"
+              ]
+            },
+            {
+              "text": "The buyer terms describe a seller-set price for the licence. The cited seller page and buyer terms do not establish a comparable seller commission rate, so the buyer’s listed price alone cannot show the creator’s proceeds.",
+              "claim_ids": [
+                "claim:mcp-market-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Compare downloading a skill with syncing it via Hub. Check which route keeps the copy up to date and what the licence permits when sharing within a team.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:gumroad",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Gumroad",
+      "summary": "Gumroad is a general-purpose storefront for digital products. A creator can package a skill as a downloadable product and share the product page alongside other digital goods.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-015",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Gumroad is a general-purpose storefront for digital products. A creator can package a skill as a downloadable product and share the product page alongside other digital goods.",
+              "claim_ids": [
+                "claim:gumroad-overview"
+              ]
+            },
+            {
+              "text": "Gumroad lists a standard direct-sale fee of 10% plus US$0.50, with payment processing separate. Discover sales use a 30% rate including processing. Its help center also documents exceptions for qualifying high-volume direct sales.",
+              "claim_ids": [
+                "claim:gumroad-1"
+              ]
+            },
+            {
+              "text": "Gumroad’s MCP connector helps the seller manage listings, inspect sales, and track payouts. A buyer’s skill file is delivered through the digital storefront workflow.",
+              "claim_ids": [
+                "claim:gumroad-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Picture a ZIP with a SKILL.md file and two sample inputs. Compare what a buyer would receive through your direct product link and compare the fee if the same sale came through Discover.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -1966,6 +2179,200 @@
           "locator": "SkillPay.me product overview"
         }
       ]
+    },
+    {
+      "id": "claim:skillhq-overview",
+      "statement": "SkillHQ is a marketplace for Claude Code skill packages built around SKILL.md. Its seller guide describes publishing a package from the command line, and its marketplace describes automated checks for structure, content and security.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillhq-market",
+          "url": "https://skillhq.dev/",
+          "locator": "Validated Quality"
+        }
+      ]
+    },
+    {
+      "id": "claim:skillhq-1",
+      "statement": "SkillHQ says it fingerprints downloads to help trace redistributed copies, checks for similar text using SimHash, and accepts takedown requests. These are tracing and enforcement measures. Their effectiveness against copying has not been established by the cited material.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillhq-market",
+          "url": "https://skillhq.dev/",
+          "locator": "What if someone copies my skill?"
+        }
+      ]
+    },
+    {
+      "id": "claim:skillhq-2",
+      "statement": "The SkillHQ seller page lists 80% for Starter and 85% for Pro. Its general marketplace page advertises 85% and separately mentions payment processing. Confirm the actual split and processor treatment for your seller tier before estimating proceeds.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillhq-sellers",
+          "url": "https://skillhq.dev/become-seller",
+          "locator": "Seller tiers"
+        },
+        {
+          "source_id": "source:skillhq-market",
+          "url": "https://skillhq.dev/",
+          "locator": "Simple, transparent pricing"
+        }
+      ]
+    },
+    {
+      "id": "claim:agensi-overview",
+      "statement": "Agensi sells agent skills through a marketplace with free, one-time and subscription listings. Under its current delivery policy, the agent loads the skill through the connected Model Context Protocol (MCP) service.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:agensi-pricing",
+          "url": "https://www.agensi.io/docs/pricing-your-skill",
+          "locator": "Pricing your skill"
+        },
+        {
+          "source_id": "source:agensi-protection",
+          "url": "https://www.agensi.io/docs/protect-your-work",
+          "locator": "Protect your work"
+        }
+      ]
+    },
+    {
+      "id": "claim:agensi-1",
+      "statement": "Agensi’s current creator documentation puts the creator share at 70% of the net sale price excluding VAT. Its 30% share covers payment processing. Any separately metered Agensi tools used by the skill have their own charges.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:agensi-earnings",
+          "url": "https://www.agensi.io/docs/earnings-and-payouts",
+          "locator": "Earnings and payouts"
+        }
+      ]
+    },
+    {
+      "id": "claim:agensi-2",
+      "statement": "Agensi says paid skill loads carry a licence notice with the purchase ID. Its current creator documentation describes delivery without a buyer download. A one-time purchase is therefore a pricing option, with delivery still governed by the current licence and platform policy.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:agensi-protection",
+          "url": "https://www.agensi.io/docs/protect-your-work",
+          "locator": "Protect your work"
+        }
+      ]
+    },
+    {
+      "id": "claim:promptbase-overview",
+      "statement": "PromptBase sells prompts and agent skills. Its seller guide specifies a single SKILL.md per skill listing, with any necessary code or references included in that file.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:promptbase-listings",
+          "url": "https://promptbase.com/help/selling-prompts",
+          "locator": "What are the limits on a listing?"
+        }
+      ]
+    },
+    {
+      "id": "claim:promptbase-1",
+      "statement": "PromptBase advertises a 20% platform fee for marketplace sales and a 0% platform fee when a customer buys through the creator’s own referral link. The checkout channel determines the published platform fee.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:promptbase-fees",
+          "url": "https://promptbase.com/help/fees",
+          "locator": "What is the revenue split on sales?"
+        }
+      ]
+    },
+    {
+      "id": "claim:mcp-market-overview",
+      "statement": "MCP Market, operated by Sitka Labs, lists MCP servers and agent skills. Its seller page describes paid skill storefronts, GitHub import or SKILL.md upload, and distribution by direct download or the MCP Market Hub plugin.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:mcp-market-sell",
+          "url": "https://mcpmarket.com/sell",
+          "locator": "Syncs everywhere with MCP Market Hub"
+        },
+        {
+          "source_id": "source:mcp-market-buyers",
+          "url": "https://mcpmarket.com/sitemap_index.xml/buyer-terms",
+          "locator": "Definitions"
+        }
+      ]
+    },
+    {
+      "id": "claim:mcp-market-1",
+      "statement": "The buyer terms describe a seller-set price for the licence. The cited seller page and buyer terms do not establish a comparable seller commission rate, so the buyer’s listed price alone cannot show the creator’s proceeds.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:mcp-market-buyers",
+          "url": "https://mcpmarket.com/sitemap_index.xml/buyer-terms",
+          "locator": "Orders, pricing, and payment"
+        }
+      ]
+    },
+    {
+      "id": "claim:gumroad-overview",
+      "statement": "Gumroad is a general-purpose storefront for digital products. A creator can package a skill as a downloadable product and share the product page alongside other digital goods.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:gumroad-shop",
+          "url": "https://gumroad.com/help/article/357-sell-an-ebook",
+          "locator": "How do I sell an ebook online?"
+        }
+      ]
+    },
+    {
+      "id": "claim:gumroad-1",
+      "statement": "Gumroad lists a standard direct-sale fee of 10% plus US$0.50, with payment processing separate. Discover sales use a 30% rate including processing. Its help center also documents exceptions for qualifying high-volume direct sales.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:gumroad-fees",
+          "url": "https://gumroad.com/help/article/66-gumroads-fees",
+          "locator": "Gumroad’s fees are simple"
+        },
+        {
+          "source_id": "source:gumroad-fees",
+          "url": "https://gumroad.com/help/article/66-gumroads-fees",
+          "locator": "High-volume discounts"
+        }
+      ]
+    },
+    {
+      "id": "claim:gumroad-2",
+      "statement": "Gumroad’s MCP connector helps the seller manage listings, inspect sales, and track payouts. A buyer’s skill file is delivered through the digital storefront workflow.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:gumroad-mcp",
+          "url": "https://gumroad.com/mcp",
+          "locator": "What can you do with it?"
+        },
+        {
+          "source_id": "source:gumroad-shop",
+          "url": "https://gumroad.com/help/article/357-sell-an-ebook",
+          "locator": "How do I sell an ebook online?"
+        }
+      ]
     }
   ],
   "sources": [
@@ -2202,6 +2609,78 @@
       "title": "SkillPay.me",
       "publisher": "SkillPay.me · Product site, consulted 2026-11-28",
       "url": "https://skillpay.me/"
+    },
+    {
+      "id": "source:skillhq-market",
+      "title": "SkillHQ Marketplace",
+      "publisher": "SkillHQ · Marketplace and FAQ",
+      "url": "https://skillhq.dev/"
+    },
+    {
+      "id": "source:skillhq-sellers",
+      "title": "SkillHQ Seller Guide",
+      "publisher": "SkillHQ · Seller guide",
+      "url": "https://skillhq.dev/become-seller"
+    },
+    {
+      "id": "source:agensi-pricing",
+      "title": "Pricing Your Skill",
+      "publisher": "Agensi · Creator documentation",
+      "url": "https://www.agensi.io/docs/pricing-your-skill"
+    },
+    {
+      "id": "source:agensi-earnings",
+      "title": "Agensi Earnings and Payouts",
+      "publisher": "Agensi · Creator documentation",
+      "url": "https://www.agensi.io/docs/earnings-and-payouts"
+    },
+    {
+      "id": "source:agensi-protection",
+      "title": "Protect Your Work",
+      "publisher": "Agensi · Creator documentation",
+      "url": "https://www.agensi.io/docs/protect-your-work"
+    },
+    {
+      "id": "source:promptbase-listings",
+      "title": "How to Sell Prompts on PromptBase",
+      "publisher": "PromptBase · Seller documentation",
+      "url": "https://promptbase.com/help/selling-prompts"
+    },
+    {
+      "id": "source:promptbase-fees",
+      "title": "PromptBase Fees and Revenue Split",
+      "publisher": "PromptBase · Seller documentation",
+      "url": "https://promptbase.com/help/fees"
+    },
+    {
+      "id": "source:mcp-market-sell",
+      "title": "Sell Your Agent Skills",
+      "publisher": "MCP Market · Seller guide",
+      "url": "https://mcpmarket.com/sell"
+    },
+    {
+      "id": "source:mcp-market-buyers",
+      "title": "MCP Market Buyer Terms of Sale",
+      "publisher": "Sitka Labs · Buyer documentation",
+      "url": "https://mcpmarket.com/sitemap_index.xml/buyer-terms"
+    },
+    {
+      "id": "source:gumroad-shop",
+      "title": "How to Sell an Ebook Online",
+      "publisher": "Gumroad · Seller documentation",
+      "url": "https://gumroad.com/help/article/357-sell-an-ebook"
+    },
+    {
+      "id": "source:gumroad-fees",
+      "title": "Gumroad’s Fees",
+      "publisher": "Gumroad · Seller documentation",
+      "url": "https://gumroad.com/help/article/66-gumroads-fees"
+    },
+    {
+      "id": "source:gumroad-mcp",
+      "title": "Gumroad MCP",
+      "publisher": "Gumroad · Connector overview",
+      "url": "https://gumroad.com/mcp"
     }
   ],
   "edges": [
