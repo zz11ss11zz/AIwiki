@@ -228,7 +228,7 @@ function renderArticle(ds, articleId) {
     return `${enSpan(h)} ${UNTRANSLATED}`;
   };
 
-  const extras = articleExtras(ds, a.id, 'zh');
+  const extras = articleExtras(ds, a.id, 'zh', articleTitleHtml);
   const sectionHeads = new Map(a.sections.map((sec) => [sec.id, headingHtml(sec.heading)]));
   const sections = a.sections.map((sec, i) => {
     const paras = sec.paragraphs.map((p) => `<p>${prose(p.text)}${p.claim_ids.map(cite).join('')}</p>`).join('');

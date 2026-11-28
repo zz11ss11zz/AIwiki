@@ -250,7 +250,7 @@ function renderBrowserMediaGuide(locale) {
   });
 }
 
-export function articleExtras(ds, currentId, locale = 'en') {
+export function articleExtras(ds, currentId, locale = 'en', titleHtml = article => esc(article.title)) {
   if (ds.synthetic) return [];
   const extras = [];
   const zh = locale === 'zh';
@@ -261,6 +261,15 @@ export function articleExtras(ds, currentId, locale = 'en') {
       `<li><a href="${articleHref(id)}">${esc(ds.articles.get(id).title)}</a></li>`
     ).join('');
     extras.push(section('related-tools', zh ? '相关工具条目' : 'Related tool articles', `<ul class="related">${links}</ul>`));
+  }
+  if (ds.articles.get(currentId)?.field_id === 'field:tools') {
+    const relatedArticles = [...ds.articles.values()].filter(article => article.related_tool_ids?.includes(currentId));
+    if (relatedArticles.length) {
+      const links = relatedArticles.map(article =>
+        `<li><a href="${articleHref(article.id)}">${titleHtml(article)}</a></li>`
+      ).join('');
+      extras.push(section('related-articles', zh ? '相关词条' : 'Related articles', `<ul class="related">${links}</ul>`));
+    }
   }
   const guide = TOOL_GUIDES.get(currentId);
   if (guide) {
