@@ -21,7 +21,7 @@
     {
       "id": "field:video-generation",
       "title": "Video generation",
-      "article_ids": [
+      "related_article_ids": [
         "tool:google-flow",
         "guide:antigravity-batch-media"
       ]
