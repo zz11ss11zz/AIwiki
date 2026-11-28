@@ -48,8 +48,10 @@ const TOOL_GROUPS = [
     ['aionui', 'antigravity-swarm', 'codeg', 'multica', 'pigbun-partner']],
   ['development-workspaces', 'Development workspaces and clients', '开发工作台与客户端',
     ['cindy', 'google-antigravity', 'herdr', 'orca', 't3-code']],
-  ['agent-skills', 'Agent skills and instructions', 'Agent 技能与工作规范',
-    ['andrej-karpathy-skills', 'skillpay', 'youmind-skills', 'alipay-skillpay', 'tencent-skillhub-skillpay']],
+  ['agent-skills', 'Agent skills and instructions', 'Agent 技能与工作规范', ['andrej-karpathy-skills']],
+  ['skill-monetization', 'Agent skill distribution and monetization', '智能体技能分发与变现',
+    ['skillpay', 'youmind-skills', 'alipay-skillpay', 'tencent-skillhub-skillpay',
+      'skillhq', 'agensi', 'promptbase', 'mcp-market', 'gumroad']],
   ['model-routing', 'Model gateways and routing', '模型接入与路由', ['magpie']],
   ['media-generation', 'Video and 3D creation', '视频与 3D 创作', ['google-flow', 'tripo3d']],
 ];
@@ -96,6 +98,21 @@ const SKILL_PRODUCTS = [
   ['tool:tencent-skillhub-skillpay', 'source:skillpay-skillhub',
     ['An agent invokes a listed service. Each paid invocation is a billing event.', 'Get the result of that service call, such as a generated video.'],
     ['由智能体调用上架的服务。付费服务按调用次数计费。', '拿到本次服务的结果，例如生成的一段视频。']],
+  ['tool:skillhq', 'source:skillhq-sellers',
+    ["One-time sale. Seller page lists 80% for Starter and 85% for Pro. Check payment processing separately.","Validated package and CLI installation. Download fingerprints support tracing."],
+    ["按商品成交。卖家页列出 Starter 80%、Pro 85%，支付处理费另核对。","经平台检查的技能包，可用命令行安装。下载指纹用于追查副本。"]],
+  ['tool:agensi', 'source:agensi-earnings',
+    ["One-time or subscription. Creator receives 70% of net sale price excluding VAT. The platform share covers payment processing.","Agent loads the skill through MCP. Paid loads carry a purchase-linked licence notice."],
+    ["一次性付费或订阅。创作者拿不含增值税的净售价的 70%，平台分成包含支付处理费。","智能体通过 MCP 加载。付费加载附带关联购买编号的许可声明。"]],
+  ['tool:promptbase', 'source:promptbase-fees',
+    ["20% platform fee via the marketplace. 0% via the creator’s referral link.","Prompt or a single SKILL.md listing."],
+    ["市场成交收 20% 平台费，创作者推荐链接成交收 0%。","提示词，或一个 SKILL.md 技能文件。"]],
+  ['tool:mcp-market', 'source:mcp-market-sell',
+    ["Seller sets the licence price. The cited public pages do not establish the seller commission.","Direct download or MCP Market Hub plugin sync."],
+    ["卖家设定许可价格。所引公开材料未明确卖家抽成。","直接下载，或用 MCP Market Hub 插件同步。"]],
+  ['tool:gumroad', 'source:gumroad-fees',
+    ["Standard direct fee of 10% + US$0.50, with processing separate. Discover is 30%, including processing.","A digital product download. Gumroad MCP is for running the store."],
+    ["标准直销费为 10% 加 0.50 美元，支付处理费另计。Discover 收 30%，含处理费。","数字商品下载。Gumroad MCP 用于管理店铺。"]],
 ];
 
 function renderSkillComparison(ds, locale, titleHtml) {
@@ -103,8 +120,11 @@ function renderSkillComparison(ds, locale, titleHtml) {
   const zh = locale === 'zh';
   const title = zh ? '对比技能市场与付费平台' : 'Compare skill marketplaces and paid platforms';
   const intro = zh
-    ? '先看哪一步会收费，再看你到手的是工作流、技能文件或限期使用权，还是一次调用的结果。'
-    : 'Start with the event that triggers payment. Then check whether you receive a workflow, a skill file, access for a term, or the result of a service call.';
+    ? '先看哪一步会收费，再看技能如何交付。同样是一笔钱，买到的可能是文件、平台内使用权，或一次服务的结果。'
+    : 'Start with the event that triggers payment, then check how the skill reaches you. You may receive a file, access inside a platform, or the result of a service call.';
+  const evidenceNote = zh
+    ? '分成比例、平台费和支付处理费各有口径。平台可提供站内搜索、版本同步和侵权处理，创作者也可以通过专属链接触达自己的读者。所引公开资料缺少可横向比较的全平台付费成交和创作者收入数据。单个商品的销量、安装量或营销示例只说明各自的指标。'
+    : 'Creator shares, platform fees, and payment processing use different bases. Platform search, version sync, or takedown processes can support distribution and enforcement. Creator referral links reach an audience directly. The cited public sources provide no comparable marketplace-wide figures for paid sales and creator earnings. Listing-level sales, installs, and sales illustrations each measure something different.';
   const labels = zh ? ['工具', '如何计费', '用户获得什么'] : ['Tool', 'When you pay', 'What you receive'];
   const headers = labels.map(label => `<th scope="col">${esc(label)}</th>`).join('');
   const rows = SKILL_PRODUCTS.map(([id, sourceId, en, cn]) => {
@@ -117,7 +137,7 @@ function renderSkillComparison(ds, locale, titleHtml) {
   return `<h3 id="${SKILL_COMPARISON_ID}">${esc(title)}</h3><p>${esc(intro)}</p>
 <div class="tool-comparison-scroll" role="region" aria-labelledby="${SKILL_COMPARISON_ID}" tabindex="0">
 <table class="tool-comparison" aria-labelledby="${SKILL_COMPARISON_ID}"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>
-</div>`;
+</div><p>${esc(evidenceNote)}</p>`;
 }
 
 export function renderToolGroups(articles, locale, renderItem, ds, titleHtml = article => esc(article.title)) {
@@ -126,7 +146,7 @@ export function renderToolGroups(articles, locale, renderItem, ds, titleHtml = a
     const entries = group.id === 'agent-collaboration' && overview
       ? [overview, ...group.articles]
       : group.articles;
-    const comparison = group.id === 'agent-skills' ? renderSkillComparison(ds, locale, titleHtml) : '';
+    const comparison = group.id === 'skill-monetization' ? renderSkillComparison(ds, locale, titleHtml) : '';
     return section(group.id, group.title, `${comparison}<ul class="result-list">${entries.map(renderItem).join('')}</ul>`).html;
   }).join('');
 }
@@ -407,7 +427,7 @@ export function articleExtras(ds, currentId, locale = 'en', titleHtml = article 
       `<li><a href="${articleHref(id)}">${titleHtml(ds.articles.get(id))}</a></li>`
     ).join('');
     const compare = SKILL_PRODUCTS.every(([id]) => ds.articles.has(id))
-      ? `<p><a href="${fieldHref('field:tools')}#${SKILL_COMPARISON_ID}">${zh ? '查看三种付费方式的对照' : 'Compare the three payment models'}</a></p>`
+      ? `<p><a href="${fieldHref('field:tools')}#${SKILL_COMPARISON_ID}">${zh ? '查看技能市场与付费平台对照' : 'Compare skill marketplaces and paid platforms'}</a></p>`
       : '';
     if (peers) extras.push(section('skill-marketplaces', zh ? '相关技能市场与付费平台' : 'Related skill marketplaces and paid platforms',
       `${compare}<ul class="related">${peers}</ul>`));
