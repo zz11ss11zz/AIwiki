@@ -275,9 +275,11 @@ const ARCHITECTURE_COMPARISON = [
     ["Orca 用工作树隔离尝试，Herdr 管理终端会话，Magpie 路由模型请求。","所引功能涉及会话状态和请求路由。Agent 间的消息图未核实。","Orca 的指南展示由人比较独立尝试的结果。自动返工未核实。"]],
 ];
 
-function renderArchitectureDiagram(locale, cite) {
+export const ARCHITECTURE_DIAGRAM_ID = 'architecture-diagram';
+
+function renderArchitectureDiagram(articleId, locale, cite) {
   const zh = locale === 'zh';
-  const id = 'architecture-diagram';
+  const id = ARCHITECTURE_DIAGRAM_ID;
   const title = zh ? '并行开发中的三种关系' : 'Three views of the same parallel development task';
   const label = (x, y, text, classes = 'diagram-label', align = 'middle') =>
     `<text x="${x}" y="${y}" text-anchor="${align}" class="${classes}">${esc(text)}</text>`;
@@ -333,7 +335,7 @@ ${draw(edge)}</svg></div>`;
     ? '示意案例中，两名 Worker 分别实现日期和金额校验。'
     : 'In this example, two workers implement date and amount validation.';
   return section(id, title, `<figure class="article-figure architecture-diagram">${dependency}${messages}${rework}
-<figcaption>${esc(caption)}${cite('claim:collaboration-three-mechanisms')}</figcaption></figure>`);
+<figcaption>${esc(caption)}${cite('claim:collaboration-three-mechanisms')} · <a href="${articleHref(articleId)}#${id}">${zh ? '示意图链接' : 'Link to this diagram'}</a></figcaption></figure>`);
 }
 
 function renderArchitectureComparison(ds, article, locale, titleHtml, cite) {
@@ -365,7 +367,7 @@ export function articleExtras(ds, currentId, locale = 'en', titleHtml = article 
   const currentArticle = ds.articles.get(currentId);
   const relatedTools = currentArticle?.related_tool_ids ?? [];
   if (currentId === 'concept:agent-collaboration-architectures' && relatedTools.length) {
-    extras.push(renderArchitectureDiagram(locale, cite), renderArchitectureComparison(ds, currentArticle, locale, titleHtml, cite));
+    extras.push(renderArchitectureDiagram(currentId, locale, cite), renderArchitectureComparison(ds, currentArticle, locale, titleHtml, cite));
   }
   if (relatedTools.length) {
     const links = relatedTools.map(id =>

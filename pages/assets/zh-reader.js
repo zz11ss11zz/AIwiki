@@ -10,7 +10,7 @@ import {
   loadDataset, articlesInField, relatedTopics, citationOrder, MAX_QUERY, SCHEMA,
 } from './data.js';
 import {
-  articleExtras, renderFieldReferences, renderSidebarArticles, renderToolDirectory, renderToolGroups, esc, safeUrl, BRAND,
+  ARCHITECTURE_DIAGRAM_ID, articleExtras, renderFieldReferences, renderSidebarArticles, renderToolDirectory, renderToolGroups, esc, safeUrl, BRAND,
 } from './render.js';
 
 const TAGLINE = '减少信息噪声，深化知识理解，让知识持续复利。';
@@ -495,7 +495,7 @@ async function main() {
   }
 
   const fragment = window.location.hash.slice(1);
-  if (fragment === 'practice' || fragment.startsWith('compare-tool_')) {
+  if (fragment === ARCHITECTURE_DIAGRAM_ID || fragment === 'practice' || fragment.startsWith('compare-tool_')) {
     document.getElementById(fragment)?.scrollIntoView();
   }
 }
