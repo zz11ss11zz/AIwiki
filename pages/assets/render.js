@@ -275,6 +275,67 @@ const ARCHITECTURE_COMPARISON = [
     ["Orca 用工作树隔离尝试，Herdr 管理终端会话，Magpie 路由模型请求。","所引功能涉及会话状态和请求路由。Agent 间的消息图未核实。","Orca 的指南展示由人比较独立尝试的结果。自动返工未核实。"]],
 ];
 
+function renderArchitectureDiagram(locale, cite) {
+  const zh = locale === 'zh';
+  const id = 'architecture-diagram';
+  const title = zh ? '并行开发中的三种关系' : 'Three views of the same parallel development task';
+  const label = (x, y, text, classes = 'diagram-label', align = 'middle') =>
+    `<text x="${x}" y="${y}" text-anchor="${align}" class="${classes}">${esc(text)}</text>`;
+  const node = (x, y, width, height, name, detail) => {
+    const center = x + width / 2;
+    const nameY = y + (detail ? 20 : height / 2 + 5);
+    return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="6"/>
+${label(center, nameY, name, 'diagram-name')}${detail ? label(center, y + 38, detail) : ''}`;
+  };
+  const panel = (key, heading, description, draw) => {
+    const marker = `${id}-${key}-arrow`;
+    const edge = (path, arrow = true, type = '') =>
+      `<path class="diagram-edge ${type}" d="${path}"${arrow ? ` marker-end="url(#${marker})"` : ''} />`;
+    return `<div class="architecture-diagram-panel"><div><h3>${esc(heading)}</h3><p>${esc(description)}</p></div>
+<svg viewBox="0 0 300 188" aria-hidden="true" focusable="false">
+<defs><marker id="${marker}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path class="diagram-arrowhead" d="M0 0 L8 4 L0 8 Z"/></marker></defs>
+${draw(edge)}</svg></div>`;
+  };
+  const workerA = 'Worker A';
+  const workerB = 'Worker B';
+  const date = zh ? '日期校验' : 'Validate dates';
+  const amount = zh ? '金额校验' : 'Validate amounts';
+  const reviewer = zh ? '审查者' : 'Reviewer';
+  const dependency = panel('dependencies', zh ? '任务依赖' : 'Task dependencies',
+    zh ? 'A 和 B 并行开发。两项改动都完成后，审查才开始。' : 'A and B work in parallel. Review starts once both changes are ready.',
+    edge => [
+      edge('M76 60 V82 H150', false), edge('M224 60 V82 H150', false), edge('M150 82 V120'),
+      node(12, 12, 128, 48, workerA, date), node(160, 12, 128, 48, workerB, amount),
+      node(84, 122, 132, 48, reviewer, zh ? '开始审查' : 'Start review'),
+      label(158, 104, zh ? '两项完成' : 'Both ready', 'diagram-label', 'start'),
+    ].join(''));
+  const messages = panel('messages', zh ? 'Agent 间的消息' : 'Agent messages',
+    zh ? 'A 向 B 询问测试样例，B 发回样例。箭头从发送者指向接收者。' : 'A asks B for a test fixture, and B shares it. Each arrow runs from sender to recipient.',
+    edge => [
+      edge('M76 65 V45 H224 V65', true, 'diagram-message'),
+      edge('M224 113 V139 H76 V113', true, 'diagram-message'),
+      node(12, 65, 128, 48, workerA, date), node(160, 65, 128, 48, workerB, amount),
+      label(150, 34, zh ? '询问测试样例' : 'Ask for test fixture'),
+      label(150, 159, zh ? '发回测试样例' : 'Share test fixture'),
+    ].join(''));
+  const rework = panel('rework', zh ? '审查与返工' : 'Review and rework',
+    zh ? '日期测试失败后，审查者把改动退回 A。A 修正并重新提交，复查通过后流程结束。' : 'A failed date test sends the change back to A. A fixes and resubmits it. A passing rerun ends the cycle.',
+    edge => [
+      edge('M76 65 V45 H224 V65'), edge('M224 113 V137 H76 V113'), edge('M268 113 V153'),
+      node(12, 65, 128, 48, workerA, zh ? '修正日期校验' : 'Fix date check'),
+      node(160, 65, 128, 48, reviewer, zh ? '运行测试' : 'Run tests'),
+      node(230, 155, 60, 29, zh ? '结束' : 'Done'),
+      label(150, 34, zh ? '重新提交' : 'Resubmit fix'),
+      label(146, 157, zh ? '测试失败，退回修正' : 'Test fails: revise'),
+      label(262, 151, zh ? '通过' : 'Pass', 'diagram-label', 'end'),
+    ].join(''));
+  const caption = zh
+    ? '示意案例中，两名 Worker 分别实现日期和金额校验。'
+    : 'In this example, two workers implement date and amount validation.';
+  return section(id, title, `<figure class="article-figure architecture-diagram">${dependency}${messages}${rework}
+<figcaption>${esc(caption)}${cite('claim:collaboration-three-mechanisms')}</figcaption></figure>`);
+}
+
 function renderArchitectureComparison(ds, article, locale, titleHtml, cite) {
   const zh = locale === 'zh';
   const id = 'architecture-comparison';
@@ -304,7 +365,7 @@ export function articleExtras(ds, currentId, locale = 'en', titleHtml = article 
   const currentArticle = ds.articles.get(currentId);
   const relatedTools = currentArticle?.related_tool_ids ?? [];
   if (currentId === 'concept:agent-collaboration-architectures' && relatedTools.length) {
-    extras.push(renderArchitectureComparison(ds, currentArticle, locale, titleHtml, cite));
+    extras.push(renderArchitectureDiagram(locale, cite), renderArchitectureComparison(ds, currentArticle, locale, titleHtml, cite));
   }
   if (relatedTools.length) {
     const links = relatedTools.map(id =>
