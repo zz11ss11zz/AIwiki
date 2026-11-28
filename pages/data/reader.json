@@ -887,6 +887,186 @@
           ]
         }
       ]
+    },
+    {
+      "id": "tool:skillpay",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "SkillPay",
+      "summary": "SkillPay is a name used by several products for monetizing agent skills, including Alipay SkillPay, Tencent SkillHub SkillPay, and SkillPay.me.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-014",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "SkillPay is a name used by several products for monetizing agent skills, including Alipay SkillPay, Tencent SkillHub SkillPay, and SkillPay.me.",
+              "claim_ids": [
+                "claim:skillpay-name"
+              ]
+            },
+            {
+              "text": "Alipay SkillPay lists agent skills as products, with payment through Alipay AI Pay after the buyer approves. Its FAQ says a one-time purchase delivers the skill files, while a time-limited subscription provides access during the period and does not renew automatically.",
+              "claim_ids": [
+                "claim:skillpay-alipay"
+              ]
+            },
+            {
+              "text": "Tencent SkillHub describes its SkillPay as a service for listing paid skills and charging per invocation.",
+              "claim_ids": [
+                "claim:skillpay-skillhub"
+              ]
+            },
+            {
+              "text": "SkillPay.me advertises per-call charging and on-chain settlement for developers who integrate its payment service into a skill.",
+              "claim_ids": [
+                "claim:skillpay-me"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Suppose you want an agent to use a paid report-writing skill. Compare what each provider describes as the billable event and what the buyer receives. Start by checking the provider and domain on the listing.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:youmind-skills",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "YouMind Skills Gallery",
+      "summary": "YouMind Skills Gallery is YouMind’s marketplace for reusable AI workflows. Creators package methods for tasks such as research, writing, image generation, and slide creation. Readers can install a skill and run it with their own materials in YouMind.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-014",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "YouMind Skills Gallery is YouMind’s marketplace for reusable AI workflows. Creators package methods for tasks such as research, writing, image generation, and slide creation. Readers can install a skill and run it with their own materials in YouMind.",
+              "claim_ids": [
+                "claim:youmind-skills-gallery"
+              ]
+            },
+            {
+              "text": "The YouMind team announced the marketplace and its creator rewards plan in April 2026. The update introduced weekly and editorial selections, version history, and paid-skill installation for Pro and Max users.",
+              "claim_ids": [
+                "claim:youmind-skills-launch"
+              ]
+            },
+            {
+              "text": "Creators can publish a free skill or set an installation price in YouMind credits. Creator rewards are tied to installations. YouMind’s announcement describes eligible withdrawable balances and redemption for add-on credits.",
+              "claim_ids": [
+                "claim:youmind-skills-install"
+              ]
+            },
+            {
+              "text": "An installed workflow can run in a YouMind Board on demand or on a schedule. YouMind’s task view reports execution credits separately by activity, such as chat, images, and video.",
+              "claim_ids": [
+                "claim:youmind-skills-run"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Try a free writing-review skill. Open its examples, install it, and run it on a short draft inside a YouMind Board. Check whether the review catches a vague lead and an unsupported claim. Compare the installation price with the credit usage shown for the task.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:alipay-skillpay",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Alipay SkillPay",
+      "summary": "Alipay SkillPay lets developers sell agent skills as products. A supported agent shows the listing and price, and the buyer confirms the purchase through Alipay AI Pay.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-014",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Alipay SkillPay lets developers sell agent skills as products. A supported agent shows the listing and price, and the buyer confirms the purchase through Alipay AI Pay.",
+              "claim_ids": [
+                "claim:alipay-skillpay-approval"
+              ]
+            },
+            {
+              "text": "Alipay’s FAQ says a one-time purchase delivers the latest skill ZIP. Period-based payment grants access for the paid term, with no automatic renewal or delivery of the skill files.",
+              "claim_ids": [
+                "claim:alipay-skillpay-entitlement"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Suppose you find a paid report-writing skill in a supported agent. Check the price and whether the listing offers a ZIP file or access for a fixed period before you confirm payment.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool:tencent-skillhub-skillpay",
+      "field_id": "field:tools",
+      "locale": "en",
+      "title": "Tencent SkillHub SkillPay",
+      "summary": "Tencent SkillHub launched its SkillPay in July 2026 to distribute paid services that agents can invoke. Service providers package and list their offerings as Pay Skills.",
+      "status": "candidate",
+      "revision_id": "revision:skill-marketplaces-014",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "Tencent SkillHub launched its SkillPay in July 2026 to distribute paid services that agents can invoke. Service providers package and list their offerings as Pay Skills.",
+              "claim_ids": [
+                "claim:tencent-skillpay-launch"
+              ]
+            },
+            {
+              "text": "Tencent SkillHub bills paid service calls per invocation. An agent can invoke the listed service and return its result in the agent workflow.",
+              "claim_ids": [
+                "claim:tencent-skillpay-call"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Suppose a paid video-generation service is available inside your agent. Check what counts as one invocation and how many calls your request could make before authorizing it.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -1590,6 +1770,202 @@
           "locator": "Gateway"
         }
       ]
+    },
+    {
+      "id": "claim:skillpay-name",
+      "statement": "SkillPay is a name used by several products for monetizing agent skills, including Alipay SkillPay, Tencent SkillHub SkillPay, and SkillPay.me.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillpay-alipay-faq",
+          "url": "https://skillpay.alipay.com/faq",
+          "locator": "How are Skill products purchased?"
+        },
+        {
+          "source_id": "source:skillpay-skillhub",
+          "url": "https://www.skillhub.cn/skillpay",
+          "locator": "SkillPay product overview"
+        },
+        {
+          "source_id": "source:skillpay-me",
+          "url": "https://skillpay.me/",
+          "locator": "SkillPay.me product overview"
+        }
+      ]
+    },
+    {
+      "id": "claim:skillpay-alipay",
+      "statement": "Alipay SkillPay lists agent skills as products, with payment through Alipay AI Pay after the buyer approves. Its FAQ says a one-time purchase delivers the skill files, while a time-limited subscription provides access during the period and does not renew automatically.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillpay-alipay-faq",
+          "url": "https://skillpay.alipay.com/faq",
+          "locator": "One-time and recurring payment options"
+        },
+        {
+          "source_id": "source:skillpay-alipay-faq",
+          "url": "https://skillpay.alipay.com/faq",
+          "locator": "How are Skill products purchased?"
+        }
+      ]
+    },
+    {
+      "id": "claim:skillpay-skillhub",
+      "statement": "Tencent SkillHub describes its SkillPay as a service for listing paid skills and charging per invocation.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillpay-skillhub",
+          "url": "https://www.skillhub.cn/skillpay",
+          "locator": "SkillPay product overview"
+        }
+      ]
+    },
+    {
+      "id": "claim:youmind-skills-gallery",
+      "statement": "YouMind Skills Gallery is YouMind’s marketplace for reusable AI workflows. Creators package methods for tasks such as research, writing, image generation, and slide creation. Readers can install a skill and run it with their own materials in YouMind.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:youmind-skills-gallery",
+          "url": "https://youmind.com/skills",
+          "locator": "YouMind Skills Gallery"
+        },
+        {
+          "source_id": "source:youmind-skills-guide",
+          "url": "https://youmind.com/guides/skills",
+          "locator": "How to Use Skills"
+        }
+      ]
+    },
+    {
+      "id": "claim:youmind-skills-launch",
+      "statement": "The YouMind team announced the marketplace and its creator rewards plan in April 2026. The update introduced weekly and editorial selections, version history, and paid-skill installation for Pro and Max users.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:youmind-skills-launch",
+          "url": "https://youmind.com/updates/youmind-update-creator-reward-plan",
+          "locator": "Creator Rewards Plan Launch"
+        }
+      ]
+    },
+    {
+      "id": "claim:youmind-skills-install",
+      "statement": "Creators can publish a free skill or set an installation price in YouMind credits. Creator rewards are tied to installations. YouMind’s announcement describes eligible withdrawable balances and redemption for add-on credits.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:youmind-skills-workflow",
+          "url": "https://youmind.com/ai-workflow",
+          "locator": "Creator Rewards"
+        },
+        {
+          "source_id": "source:youmind-skills-launch",
+          "url": "https://youmind.com/updates/youmind-update-creator-reward-plan",
+          "locator": "Creator Rewards Plan Launch"
+        }
+      ]
+    },
+    {
+      "id": "claim:youmind-skills-run",
+      "statement": "An installed workflow can run in a YouMind Board on demand or on a schedule. YouMind’s task view reports execution credits separately by activity, such as chat, images, and video.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:youmind-skills-workflow",
+          "url": "https://youmind.com/ai-workflow",
+          "locator": "Frequently asked questions"
+        },
+        {
+          "source_id": "source:youmind-task-credits",
+          "url": "https://youmind.com/updates/youmind-multi-point-editing-credit-usage-scheduled-tasks",
+          "locator": "Task Credit Usage"
+        }
+      ]
+    },
+    {
+      "id": "claim:alipay-skillpay-approval",
+      "statement": "Alipay SkillPay lets developers sell agent skills as products. A supported agent shows the listing and price, and the buyer confirms the purchase through Alipay AI Pay.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillpay-alipay-faq",
+          "url": "https://skillpay.alipay.com/faq",
+          "locator": "How are Skill products purchased?"
+        }
+      ]
+    },
+    {
+      "id": "claim:alipay-skillpay-entitlement",
+      "statement": "Alipay’s FAQ says a one-time purchase delivers the latest skill ZIP. Period-based payment grants access for the paid term, with no automatic renewal or delivery of the skill files.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillpay-alipay-faq",
+          "url": "https://skillpay.alipay.com/faq",
+          "locator": "How do one-time and period-based payments differ?"
+        },
+        {
+          "source_id": "source:skillpay-alipay-faq",
+          "url": "https://skillpay.alipay.com/faq",
+          "locator": "Which version comes with a purchase or subscription?"
+        }
+      ]
+    },
+    {
+      "id": "claim:tencent-skillpay-launch",
+      "statement": "Tencent SkillHub launched its SkillPay in July 2026 to distribute paid services that agents can invoke. Service providers package and list their offerings as Pay Skills.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:tencent-skillpay-launch",
+          "url": "https://cloud.tencent.com/developer/article/2710637",
+          "locator": "Tencent Cloud SkillPay launch announcement"
+        }
+      ]
+    },
+    {
+      "id": "claim:tencent-skillpay-call",
+      "statement": "Tencent SkillHub bills paid service calls per invocation. An agent can invoke the listed service and return its result in the agent workflow.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillpay-skillhub",
+          "url": "https://www.skillhub.cn/skillpay",
+          "locator": "SkillPay product overview"
+        },
+        {
+          "source_id": "source:tencent-skillpay-launch",
+          "url": "https://cloud.tencent.com/developer/article/2710637",
+          "locator": "Tencent Cloud SkillPay launch announcement"
+        }
+      ]
+    },
+    {
+      "id": "claim:skillpay-me",
+      "statement": "SkillPay.me advertises per-call charging and on-chain settlement for developers who integrate its payment service into a skill.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:skillpay-me",
+          "url": "https://skillpay.me/",
+          "locator": "SkillPay.me product overview"
+        }
+      ]
     }
   ],
   "sources": [
@@ -1772,6 +2148,60 @@
       "title": "Orca team architecture",
       "publisher": "Cindy project maintainers · Architecture notes at 4c07696, consulted 2026-11-28",
       "url": "https://raw.githubusercontent.com/makecindy/cindy/4c076964f65a7dc647c23aec9d6431ceac693f79/docs/dev-rules/orca-team-architecture.md"
+    },
+    {
+      "id": "source:skillpay-alipay-faq",
+      "title": "Alipay SkillPay FAQ",
+      "publisher": "Alipay · Official FAQ in Chinese, consulted 2026-11-28",
+      "url": "https://skillpay.alipay.com/faq"
+    },
+    {
+      "id": "source:skillpay-skillhub",
+      "title": "SkillPay on SkillHub",
+      "publisher": "Tencent SkillHub · Official product page in Chinese, consulted 2026-11-28",
+      "url": "https://www.skillhub.cn/skillpay"
+    },
+    {
+      "id": "source:youmind-skills-gallery",
+      "title": "YouMind Skills Gallery",
+      "publisher": "YouMind · Official marketplace",
+      "url": "https://youmind.com/skills"
+    },
+    {
+      "id": "source:youmind-skills-guide",
+      "title": "YouMind Skill: Turn One Good Result into a Reusable Capability",
+      "publisher": "Shuting Tang, YouMind · Creator guide",
+      "url": "https://youmind.com/guides/skills"
+    },
+    {
+      "id": "source:youmind-skills-launch",
+      "title": "YouMind Creator Rewards Plan Launch",
+      "publisher": "YouMind · April 2026 update",
+      "url": "https://youmind.com/updates/youmind-update-creator-reward-plan"
+    },
+    {
+      "id": "source:youmind-skills-workflow",
+      "title": "YouMind AI Workflows",
+      "publisher": "YouMind · Official documentation",
+      "url": "https://youmind.com/ai-workflow"
+    },
+    {
+      "id": "source:youmind-task-credits",
+      "title": "YouMind Task Credit Usage",
+      "publisher": "YouMind · November 2026 update",
+      "url": "https://youmind.com/updates/youmind-multi-point-editing-credit-usage-scheduled-tasks"
+    },
+    {
+      "id": "source:tencent-skillpay-launch",
+      "title": "Tencent SkillPay Launch",
+      "publisher": "Tencent Cloud · July 2026 announcement",
+      "url": "https://cloud.tencent.com/developer/article/2710637"
+    },
+    {
+      "id": "source:skillpay-me",
+      "title": "SkillPay.me",
+      "publisher": "SkillPay.me · Product site, consulted 2026-11-28",
+      "url": "https://skillpay.me/"
     }
   ],
   "edges": [

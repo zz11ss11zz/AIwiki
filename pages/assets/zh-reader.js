@@ -190,7 +190,7 @@ function renderField(ds, fieldId) {
   const comparison = renderToolDirectory(ds, fieldId, 'zh');
   const list = sortedInField(ds, fieldId);
   const body = list.length
-    ? fieldId === 'field:tools' ? renderToolGroups(list, 'zh', resultItem, ds)
+    ? fieldId === 'field:tools' ? renderToolGroups(list, 'zh', resultItem, ds, articleTitleHtml)
       : `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
     : comparison ? '' : '<p class="empty">该领域尚无已发布的条目。</p>';
   return {
