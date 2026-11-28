@@ -79,7 +79,7 @@ async function main() {
   document.title = page.title;
   mainEl.innerHTML = page.html;
   setupNavToggle();
-  const comparison = mainEl.querySelector('.tool-comparison');
+  const comparison = mainEl.querySelector('section[aria-labelledby="compare-tools"] .tool-comparison');
   const practice = TOOL_GUIDES.get(params.get('article'))?.example?.en?.comparisonLabel
     ? mainEl.querySelector('#practice')
     : null;

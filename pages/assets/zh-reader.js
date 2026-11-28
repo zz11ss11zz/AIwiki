@@ -228,12 +228,13 @@ function renderArticle(ds, articleId) {
     return `${enSpan(h)} ${UNTRANSLATED}`;
   };
 
-  const extras = articleExtras(ds, a.id, 'zh', articleTitleHtml);
   const sectionHeads = new Map(a.sections.map((sec) => [sec.id, headingHtml(sec.heading)]));
-  const sections = a.sections.map((sec, i) => {
+  const sections = a.sections.map(sec => {
     const paras = sec.paragraphs.map((p) => `<p>${prose(p.text)}${p.claim_ids.map(cite).join('')}</p>`).join('');
-    return `<section aria-labelledby="${anchor('sec', sec.id)}"><h2 id="${anchor('sec', sec.id)}">${sectionHeads.get(sec.id)}</h2>${paras}</section>${i === 0 ? extras.map(extra => extra.html).join('') : ''}`;
-  }).join('');
+    return `<section aria-labelledby="${anchor('sec', sec.id)}"><h2 id="${anchor('sec', sec.id)}">${sectionHeads.get(sec.id)}</h2>${paras}</section>`;
+  });
+  const extras = articleExtras(ds, a.id, 'zh', articleTitleHtml, cid => num.has(cid) ? cite(cid) : '');
+  if (sections.length) sections.splice(1, 0, ...extras.map(extra => extra.html));
 
   const related = relatedTopics(ds, a.id);
   const relatedHtml = related.length
@@ -294,7 +295,7 @@ ${partial}
 <p class="summary">${summary}</p>
 </header>
 <nav class="toc" aria-label="本页内容"><h2 class="nav-heading">目录</h2><ol>${tocItems.join('')}</ol></nav>
-${sections}
+${sections.join('')}
 ${relatedHtml}
 <section aria-labelledby="references-heading"><h2 id="references-heading">参考文献</h2>${refs}</section>
 </article>`,
@@ -471,7 +472,7 @@ async function main() {
   document.title = page.title;
   mainEl.innerHTML = page.html;
   setupNavToggle();
-  const comparison = mainEl.querySelector('.tool-comparison');
+  const comparison = mainEl.querySelector('section[aria-labelledby="compare-tools"] .tool-comparison');
   const practice = TOOL_GUIDES.get(params.get('article'))?.example?.zh?.comparisonLabel
     ? mainEl.querySelector('#practice')
     : null;

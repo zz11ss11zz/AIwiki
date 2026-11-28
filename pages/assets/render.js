@@ -254,12 +254,58 @@ function renderBrowserMediaGuide(locale) {
   });
 }
 
-export function articleExtras(ds, currentId, locale = 'en', titleHtml = article => esc(article.title)) {
+const ARCHITECTURE_COMPARISON = [
+  [["multica"], 'multica-execution',
+    ["Issue blockers gate starts and reject cycles.","Communication graph unverified.","Workflow review can send work back for revision."],
+    ["工单依赖会阻止下游启动，并禁止循环依赖。","通信图未核实。","工作流可将未通过审查的任务退回返工。"]],
+  [["antigravity-swarm"], 'swarm-communication',
+    ["The coordinator delegates to parallel workers. An explicit dependency graph is unverified.","The Graph tab shows who mentioned whom. Edge weights count posts.","The verifier reports problems to the worker responsible for the fix."],
+    ["协调者向并行 Worker 派活。显式任务依赖图未核实。","Graph 标签页显示谁提及了谁，边权重按帖数计算。","Verifier 把问题反馈给负责修正的 Worker。"]],
+  [["aionui"], 'aionui-dependencies',
+    ["The board displays blocker links. Scheduler enforcement is unverified.","The leader delegates work and collects results.","A review and rework loop is unverified."],
+    ["看板显示阻塞关系。调度器是否强制遵守这些关系尚未核实。","Leader 派活并收集结果。","审查与返工循环未核实。"]],
+  [["codeg","cindy","t3-code"], 'delegation',
+    ["The documented pattern is lead-to-worker delegation. Dependency scheduling is unverified.","Codeg returns worker results to the lead. Cindy has independent worker sessions. T3 Code shows child threads.","Cindy supports lead review of worker results. Automatic rework is unverified."],
+    ["公开资料展示主 Agent 向 Worker 委派。依赖调度未核实。","Codeg 将结果交回 Lead，Cindy 使用独立 Worker 会话，T3 Code 可查看子线程。","Cindy 的 Lead 可以验收结果。自动返工规则未核实。"]],
+  [["pigbun-partner"], 'pigbun-workstreams',
+    ["Workstreams keep running. The internal scheduling model is unconfirmed.","Workstreams retain context. An inter-agent message graph is unverified.","The workstream asks the user to intervene for a decision or approval."],
+    ["工作流持续推进，内部调度模型尚无法确认。","工作流保留上下文。Agent 间的消息图未核实。","需要决定或批准时，工作流会请用户介入。"]],
+  [["orca","herdr","magpie"], 'tooling',
+    ["Orca isolates attempts in worktrees, Herdr manages terminal sessions, and Magpie routes model requests.","The cited features cover session status and request routing. An inter-agent message graph is unverified.","Orca's guide shows a person comparing independent attempts. Automated rework is unverified."],
+    ["Orca 用工作树隔离尝试，Herdr 管理终端会话，Magpie 路由模型请求。","所引功能涉及会话状态和请求路由。Agent 间的消息图未核实。","Orca 的指南展示由人比较独立尝试的结果。自动返工未核实。"]],
+];
+
+function renderArchitectureComparison(ds, article, locale, titleHtml, cite) {
+  const zh = locale === 'zh';
+  const id = 'architecture-comparison';
+  const title = zh ? '工具协作机制对比' : 'Compare tool collaboration mechanisms';
+  const headers = (zh ? ['工具', '执行图', '通信图', '反馈循环']
+    : ['Tool', 'Execution graph', 'Communication graph', 'Feedback loop'])
+    .map(label => `<th scope="col">${esc(label)}</th>`).join('');
+  const rows = ARCHITECTURE_COMPARISON.map(([slugs, claim, en, cn]) => {
+    const tools = slugs.map(slug => `tool:${slug}`).filter(toolId => article.related_tool_ids.includes(toolId));
+    if (!tools.length) return '';
+    const names = tools.map(toolId =>
+      `<a href="${articleHref(toolId)}">${titleHtml(ds.articles.get(toolId))}</a>`
+    ).join('<br>');
+    const cells = (zh ? cn : en).map(text => `<td>${esc(text)}</td>`).join('');
+    return `<tr><th scope="row">${names}${cite(`claim:collaboration-${claim}`)}</th>${cells}</tr>`;
+  }).join('');
+  return section(id, title, `<div class="tool-comparison-scroll" role="region" aria-labelledby="${id}" tabindex="0">
+<table class="tool-comparison" aria-labelledby="${id}"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>
+</div>`);
+}
+
+export function articleExtras(ds, currentId, locale = 'en', titleHtml = article => esc(article.title), cite = () => '') {
   if (ds.synthetic) return [];
   const extras = [];
   const zh = locale === 'zh';
   if (currentId === BROWSER_MEDIA_GUIDE_ID) return renderBrowserMediaGuide(locale);
-  const relatedTools = ds.articles.get(currentId)?.related_tool_ids ?? [];
+  const currentArticle = ds.articles.get(currentId);
+  const relatedTools = currentArticle?.related_tool_ids ?? [];
+  if (currentId === 'concept:agent-collaboration-architectures' && relatedTools.length) {
+    extras.push(renderArchitectureComparison(ds, currentArticle, locale, titleHtml, cite));
+  }
   if (relatedTools.length) {
     const links = relatedTools.map(id =>
       `<li><a href="${articleHref(id)}">${esc(ds.articles.get(id).title)}</a></li>`
@@ -338,7 +384,6 @@ export function renderArticle(ds, articleId) {
   const a = ds.articles.get(articleId);
   if (!a) return renderNotFound('article', articleId);
   const field = a.field_id ? ds.fields.get(a.field_id) : null;
-  const extras = articleExtras(ds, a.id);
   const order = citationOrder(ds, a);
   const num = new Map(order.map((cid, i) => [cid, i + 1]));
   const backrefs = new Map();
@@ -351,10 +396,12 @@ export function renderArticle(ds, articleId) {
     return `<sup class="cite"><a id="${refId}" href="#cite-${n}" aria-label="Citation ${n}">[${n}]</a></sup>`;
   };
 
-  const sections = a.sections.map((s, i) => {
+  const sections = a.sections.map(s => {
     const paras = s.paragraphs.map((p) => `<p>${esc(p.text)}${p.claim_ids.map(cite).join('')}</p>`).join('');
-    return `<section aria-labelledby="${anchor('sec', s.id)}"><h2 id="${anchor('sec', s.id)}">${esc(s.heading)}</h2>${paras}</section>${i === 0 ? extras.map(extra => extra.html).join('') : ''}`;
-  }).join('');
+    return `<section aria-labelledby="${anchor('sec', s.id)}"><h2 id="${anchor('sec', s.id)}">${esc(s.heading)}</h2>${paras}</section>`;
+  });
+  const extras = articleExtras(ds, a.id, 'en', undefined, cid => num.has(cid) ? cite(cid) : '');
+  if (sections.length) sections.splice(1, 0, ...extras.map(extra => extra.html));
 
   const related = relatedTopics(ds, a.id);
   const relatedHtml = related.length
@@ -384,7 +431,7 @@ ${a.aliases.length ? `<p class="aliases">Also known as: ${a.aliases.map(esc).joi
 <p class="summary">${esc(a.summary)}</p>
 </header>
 <nav class="toc" aria-label="On this page"><h2 class="nav-heading">Contents</h2><ol>${tocItems.join('')}</ol></nav>
-${sections}
+${sections.join('')}
 ${relatedHtml}
 <section aria-labelledby="references-heading"><h2 id="references-heading">References</h2>${refs}</section>
 </article>`,
