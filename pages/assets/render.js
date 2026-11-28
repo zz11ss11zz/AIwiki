@@ -84,10 +84,14 @@ export function renderSidebarArticles(articles, fieldId, locale, current, titleH
   }).join('')}</ul>`;
 }
 
-export function renderToolGroups(articles, locale, renderItem) {
-  return toolGroups(articles, locale).map(group =>
-    section(group.id, group.title, `<ul class="result-list">${group.articles.map(renderItem).join('')}</ul>`).html
-  ).join('');
+export function renderToolGroups(articles, locale, renderItem, ds) {
+  const overview = ds?.articles.get('concept:agent-collaboration-architectures');
+  return toolGroups(articles, locale).map(group => {
+    const entries = group.id === 'agent-collaboration' && overview
+      ? [overview, ...group.articles]
+      : group.articles;
+    return section(group.id, group.title, `<ul class="result-list">${entries.map(renderItem).join('')}</ul>`).html;
+  }).join('');
 }
 
 export function renderSidebar(ds, current = {}) {
@@ -125,7 +129,7 @@ export function renderField(ds, fieldId) {
   const comparison = renderToolDirectory(ds, fieldId);
   const list = articlesInField(ds, fieldId);
   const body = list.length
-    ? fieldId === 'field:tools' ? renderToolGroups(list, 'en', resultItem)
+    ? fieldId === 'field:tools' ? renderToolGroups(list, 'en', resultItem, ds)
       : `<ul class="result-list">${list.map(resultItem).join('')}</ul>`
     : comparison ? '' : '<p class="empty">No published articles in this field yet.</p>';
   return {
