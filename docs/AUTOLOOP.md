@@ -10,6 +10,16 @@ AIwiki aims to become the knowledge infrastructure for navigating the AI informa
 
 Use this as the decision criterion for product development: prioritize lasting understanding and meaningful connections over the volume or speed of news ingestion.
 
+## Owner input and source intake
+
+The owner supplies source material and reviews the results. The owner can flag inaccuracies, poor classification, duplicates, weak evidence, or misleading graph relationships. AutoLoop owns ongoing development and maintenance, including selecting the next unblocked roadmap item, keeping tests and CI healthy, and recording progress in the project. Handle routine decisions within the project and bring the owner concrete results, material blockers, and items requiring review or authorization.
+
+1. Capture the original URL or supplied material, language, date or version when known, access state, and precise evidence locators. Trace reposts to original sources where possible. Remove tracking parameters, navigation, duplicated excerpts, and irrelevant material from the digest while retaining original provenance.
+2. Deduplicate at the source and topic levels. Reuse an existing canonical entity or article when the topic matches. Add new evidence, changes, or a scoped revision to that article. Preserve materially different versions and conflicting claims with their own provenance. Repeated submissions must not create duplicate entries.
+3. Assign the item to the existing taxonomy and give each canonical article one primary location. Add material to the English article and its Simplified Chinese companion as appropriate, using shared IDs and evidence. Preserve the source language and label access gaps or unverified claims.
+4. Build or update the knowledge graph with stable, resolved endpoints and specific typed, directed relations supported by claim-level evidence. Check for duplicate edges and dangling endpoints. Record where evidence is insufficient and leave unsupported relations out.
+5. Verify the resulting content, references, related links, classification, and relevant tests. Provide evidence and a reviewable change. Track human feedback as a correction, revise the affected claims, classifications, and relationships, and verify the changes again. Publish within the project’s existing approval and privacy rules.
+
 ## First run
 
 Start with [Issue #1 — P0/P1 kickoff](https://github.com/zz11ss11zz/AIwiki/issues/1). The renamed gateway and tests passed 8 local tests on 2026-11-25; the server.py and test_gateway.py Git blob hashes were verified against the tested files. Remote CI result was not confirmed; rerun tests and check Actions before advancing.
