@@ -87,6 +87,11 @@ export function loadDataset(raw) {
       a.field_id = null;
     }
     a.aliases = arr(a.aliases).filter((x) => typeof x === 'string');
+    a.related_tool_ids = arr(a.related_tool_ids).filter((id) => {
+      const ok = articles.get(id)?.field_id === 'field:tools' && id !== a.id;
+      if (!ok) warnings.push(`article ${a.id}: invalid related tool dropped`);
+      return ok;
+    });
     a.sections = arr(a.sections).filter((s) => isObj(s) && str(s.id) && str(s.heading));
     for (const s of a.sections) {
       s.paragraphs = arr(s.paragraphs).filter((p) => isObj(p) && str(p.text));

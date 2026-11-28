@@ -800,6 +800,93 @@
           ]
         }
       ]
+    },
+    {
+      "id": "concept:agent-collaboration-architectures",
+      "field_id": "field:agents",
+      "locale": "en",
+      "title": "Agent Collaboration Architectures",
+      "summary": "An execution graph represents steps and the rules that determine what can run next. A communication graph represents who exchanges messages. A feedback loop uses the result of a check to decide whether to revise, repeat, or stop.",
+      "status": "published",
+      "revision_id": "revision:agent-collaboration-012",
+      "related_tool_ids": [
+        "tool:multica",
+        "tool:antigravity-swarm",
+        "tool:aionui",
+        "tool:codeg",
+        "tool:cindy",
+        "tool:t3-code",
+        "tool:pigbun-partner",
+        "tool:orca",
+        "tool:herdr",
+        "tool:magpie"
+      ],
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "paragraphs": [
+            {
+              "text": "An execution graph represents steps and the rules that determine what can run next. A communication graph represents who exchanges messages. A feedback loop uses the result of a check to decide whether to revise, repeat, or stop.",
+              "claim_ids": [
+                "claim:collaboration-execution-graph"
+              ]
+            },
+            {
+              "text": "Imagine two workers implementing changes in parallel. A rule that review waits for both changes belongs to the execution graph. A record that one worker messaged the other belongs to the communication graph. If a failed review sends a change back for revision and another review, that is a feedback loop. The same run can contain all three. An execution graph with a return path has a cycle. A directed acyclic graph (DAG) has no such path.",
+              "claim_ids": [
+                "claim:collaboration-three-mechanisms"
+              ]
+            },
+            {
+              "text": "In Multica, an issue assigned to an agent or squad waits while its blockers are unfinished. Once they clear, eligible work starts automatically. Multica rejects cycles in these issue dependencies. Its project workflows can separately send rejected work back to an earlier step, creating a review and rework loop.",
+              "claim_ids": [
+                "claim:collaboration-multica-execution"
+              ]
+            },
+            {
+              "text": "Antigravity Swarm gives its coordinator parallel workers and a shared message board. Its Graph tab shows who mentioned whom, with arrows weighted by post count. The verifier can report a problem to the worker that made the change so the worker can fix it. The mention arrows describe communication, and the response to a verification result is the feedback loop.",
+              "claim_ids": [
+                "claim:collaboration-swarm-communication"
+              ]
+            },
+            {
+              "text": "AionUi Team Mode uses a leader to delegate and collect work. Its task board displays explicit blocker links. These links establish that the board represents dependencies. The reviewed evidence leaves open whether the scheduler enforces those links before starting work.",
+              "claim_ids": [
+                "claim:collaboration-aionui-dependencies"
+              ]
+            },
+            {
+              "text": "Codeg starts fresh worker sessions and returns their results to the lead. Cindy's collaboration mode uses independent worker sessions that a lead can assign and review. T3 Code shows delegated work in its Agents view and can open a child thread beside its parent. These features expose who delegates to whom.",
+              "claim_ids": [
+                "claim:collaboration-delegation"
+              ]
+            },
+            {
+              "text": "PigBun Partner documents a long-running workstream that retains context and asks the user to step in for decisions or approvals. The public documentation explains this interaction. Its private runtime leaves the internal scheduling model unconfirmed.",
+              "claim_ids": [
+                "claim:collaboration-pigbun-workstreams"
+              ]
+            },
+            {
+              "text": "Stably AI's Orca guide shows independent attempts in separate Git worktrees for a person to compare. Herdr manages terminal sessions and shows whether agents are working or waiting. Magpie routes model requests to the selected provider. These tools illustrate three parts of the environment in which an agent team can run.",
+              "claim_ids": [
+                "claim:collaboration-tooling"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reading-prompt",
+          "heading": "Reading prompt",
+          "paragraphs": [
+            {
+              "text": "Take one run with two workers and a reviewer. Find the rule or condition that makes review wait, one recorded message with a sender and recipient, and the check that would trigger revision. For each, name the evidence you would inspect and what you would report if it were missing.",
+              "claim_ids": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "claims": [
@@ -1349,6 +1436,160 @@
           "locator": "Wan3.0-Video Generation"
         }
       ]
+    },
+    {
+      "id": "claim:collaboration-execution-graph",
+      "statement": "An execution graph represents steps and the rules that determine what can run next. A communication graph represents who exchanges messages. A feedback loop uses the result of a check to decide whether to revise, repeat, or stop.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:langchain-graph-engineering",
+          "url": "https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph",
+          "locator": "Modeling agents as graphs"
+        },
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#monitor-a-swarm",
+          "locator": "Monitor a swarm"
+        },
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#how-it-works",
+          "locator": "How it works"
+        }
+      ]
+    },
+    {
+      "id": "claim:collaboration-three-mechanisms",
+      "statement": "Imagine two workers implementing changes in parallel. A rule that review waits for both changes belongs to the execution graph. A record that one worker messaged the other belongs to the communication graph. If a failed review sends a change back for revision and another review, that is a feedback loop. The same run can contain all three. An execution graph with a return path has a cycle. A directed acyclic graph (DAG) has no such path.",
+      "kind": "inference",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:langchain-graph-engineering",
+          "url": "https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph",
+          "locator": "What building LangGraph taught us"
+        },
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#monitor-a-swarm",
+          "locator": "Monitor a swarm"
+        }
+      ]
+    },
+    {
+      "id": "claim:collaboration-multica-execution",
+      "statement": "In Multica, an issue assigned to an agent or squad waits while its blockers are unfinished. Once they clear, eligible work starts automatically. Multica rejects cycles in these issue dependencies. Its project workflows can separately send rejected work back to an earlier step, creating a review and rework loop.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:multica-issues",
+          "url": "https://multica.ai/docs/issues#blockers-and-waiting-work",
+          "locator": "Blockers and waiting work"
+        },
+        {
+          "source_id": "source:multica-workflows",
+          "url": "https://multica.ai/docs/workflows#create-a-workflow",
+          "locator": "Create a workflow"
+        }
+      ]
+    },
+    {
+      "id": "claim:collaboration-swarm-communication",
+      "statement": "Antigravity Swarm gives its coordinator parallel workers and a shared message board. Its Graph tab shows who mentioned whom, with arrows weighted by post count. The verifier can report a problem to the worker that made the change so the worker can fix it. The mention arrows describe communication, and the response to a verification result is the feedback loop.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#how-it-works",
+          "locator": "How it works"
+        },
+        {
+          "source_id": "source:google-antigravity-swarm",
+          "url": "https://antigravity.google/docs/swarm#monitor-a-swarm",
+          "locator": "Monitor a swarm"
+        }
+      ]
+    },
+    {
+      "id": "claim:collaboration-aionui-dependencies",
+      "statement": "AionUi Team Mode uses a leader to delegate and collect work. Its task board displays explicit blocker links. These links establish that the board represents dependencies. The reviewed evidence leaves open whether the scheduler enforces those links before starting work.",
+      "kind": "inference",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:aionui-readme",
+          "url": "https://github.com/iOfficeAI/AionUi#team-mode--coordinated-multi-agent-collaboration",
+          "locator": "Team Mode — Coordinated Multi-Agent Collaboration"
+        },
+        {
+          "source_id": "source:aionui-task-card",
+          "url": "https://raw.githubusercontent.com/iOfficeAI/AionUi/e108b6b56b1a6eb99a00904878d0582f657b2908/packages/desktop/src/renderer/pages/team/activity/TaskCard.tsx",
+          "locator": "TaskCard, blocked_by dependency labels"
+        }
+      ]
+    },
+    {
+      "id": "claim:collaboration-delegation",
+      "statement": "Codeg starts fresh worker sessions and returns their results to the lead. Cindy's collaboration mode uses independent worker sessions that a lead can assign and review. T3 Code shows delegated work in its Agents view and can open a child thread beside its parent. These features expose who delegates to whom.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:codeg-multi-agent",
+          "url": "https://docs.codeg.app/guide/multi-agent#how-delegation-works",
+          "locator": "How delegation works"
+        },
+        {
+          "source_id": "source:cindy-team-architecture",
+          "url": "https://raw.githubusercontent.com/makecindy/cindy/4c076964f65a7dc647c23aec9d6431ceac693f79/docs/dev-rules/orca-team-architecture.md",
+          "locator": "Orca team architecture"
+        },
+        {
+          "source_id": "source:t3-code-delegated-work",
+          "url": "https://raw.githubusercontent.com/pingdotgg/t3code/main/docs/user/thread-sidebar.md",
+          "locator": "Usage limits, subagents, and thread details"
+        }
+      ]
+    },
+    {
+      "id": "claim:collaboration-pigbun-workstreams",
+      "statement": "PigBun Partner documents a long-running workstream that retains context and asks the user to step in for decisions or approvals. The public documentation explains this interaction. Its private runtime leaves the internal scheduling model unconfirmed.",
+      "kind": "inference",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:pigbun-partner-readme",
+          "url": "https://github.com/PigBun-AI/pigbun-partner-community#how-pigbun-works",
+          "locator": "How PigBun Works"
+        }
+      ]
+    },
+    {
+      "id": "claim:collaboration-tooling",
+      "statement": "Stably AI's Orca guide shows independent attempts in separate Git worktrees for a person to compare. Herdr manages terminal sessions and shows whether agents are working or waiting. Magpie routes model requests to the selected provider. These tools illustrate three parts of the environment in which an agent team can run.",
+      "kind": "author_claim",
+      "status": "candidate",
+      "evidence": [
+        {
+          "source_id": "source:orca-first-session",
+          "url": "https://github.com/stablyai/orca/blob/main/docs/site/content/docs/first-session.mdx",
+          "locator": "Your first 3-agent session"
+        },
+        {
+          "source_id": "source:herdr-agent-guide",
+          "url": "https://github.com/herdrdev/herdr/blob/master/distribution/agent-guide.md",
+          "locator": "Herdr agent guide"
+        },
+        {
+          "source_id": "source:magpie-start",
+          "url": "https://usemagpie.ai/docs/start",
+          "locator": "Gateway"
+        }
+      ]
     }
   ],
   "sources": [
@@ -1495,6 +1736,42 @@
       "title": "Wan3.0-Video Generation",
       "publisher": "Alibaba Cloud Model Studio · Updated November 23, 2026",
       "url": "https://www.alibabacloud.com/help/en/model-studio/wan3-video-generation-guide"
+    },
+    {
+      "id": "source:t3-code-delegated-work",
+      "title": "Working with threads",
+      "publisher": "T3 Tools · Official guide source, consulted 2026-11-28",
+      "url": "https://raw.githubusercontent.com/pingdotgg/t3code/main/docs/user/thread-sidebar.md"
+    },
+    {
+      "id": "source:langchain-graph-engineering",
+      "title": "3 Years of Graph Engineering with LangGraph",
+      "publisher": "Sydney Runkle and Harrison Chase · LangChain engineering article, July 22, 2026",
+      "url": "https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph"
+    },
+    {
+      "id": "source:multica-issues",
+      "title": "Issues",
+      "publisher": "Multica Docs · Official documentation, consulted 2026-11-28",
+      "url": "https://multica.ai/docs/issues"
+    },
+    {
+      "id": "source:multica-workflows",
+      "title": "Workflows",
+      "publisher": "Multica Docs · Official documentation, consulted 2026-11-28",
+      "url": "https://multica.ai/docs/workflows"
+    },
+    {
+      "id": "source:aionui-task-card",
+      "title": "TaskCard.tsx",
+      "publisher": "iOfficeAI · Source at e108b6b, consulted 2026-11-28",
+      "url": "https://raw.githubusercontent.com/iOfficeAI/AionUi/e108b6b56b1a6eb99a00904878d0582f657b2908/packages/desktop/src/renderer/pages/team/activity/TaskCard.tsx"
+    },
+    {
+      "id": "source:cindy-team-architecture",
+      "title": "Orca team architecture",
+      "publisher": "Cindy project maintainers · Architecture notes at 4c07696, consulted 2026-11-28",
+      "url": "https://raw.githubusercontent.com/makecindy/cindy/4c076964f65a7dc647c23aec9d6431ceac693f79/docs/dev-rules/orca-team-architecture.md"
     }
   ],
   "edges": [

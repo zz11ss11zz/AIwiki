@@ -255,6 +255,13 @@ export function articleExtras(ds, currentId, locale = 'en') {
   const extras = [];
   const zh = locale === 'zh';
   if (currentId === BROWSER_MEDIA_GUIDE_ID) return renderBrowserMediaGuide(locale);
+  const relatedTools = ds.articles.get(currentId)?.related_tool_ids ?? [];
+  if (relatedTools.length) {
+    const links = relatedTools.map(id =>
+      `<li><a href="${articleHref(id)}">${esc(ds.articles.get(id).title)}</a></li>`
+    ).join('');
+    extras.push(section('related-tools', zh ? '相关工具条目' : 'Related tool articles', `<ul class="related">${links}</ul>`));
+  }
   const guide = TOOL_GUIDES.get(currentId);
   if (guide) {
     for (const [id, title] of [

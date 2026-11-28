@@ -29,6 +29,7 @@ export const ZH_CONTENT = Object.freeze({
   // always added as a search alias by the reader; `aliases` are extra
   // Chinese search terms.
   articles: {
+    'concept:agent-collaboration-architectures': { en: 'Agent Collaboration Architectures', zh: 'Agent 协作架构', aliases: ['智能体协作架构', '执行图', '通信图', '反馈循环'] },
     'model:wan-3-0': { en: 'Wan 3.0', zh: '通义万相 3.0（Wan 3.0）', aliases: ['Wan3.0', '万相3.0', '视频生成'] },
     'architecture:transformer': { en: 'Transformer', zh: 'Transformer', aliases: [] },
     'concept:attention': { en: 'Attention', zh: '注意力', aliases: ['注意力机制'] },
@@ -57,6 +58,24 @@ export const ZH_CONTENT = Object.freeze({
 
   // Summaries, paragraphs and claim statements (exact English → Chinese).
   prose: [
+    ["An execution graph represents steps and the rules that determine what can run next. A communication graph represents who exchanges messages. A feedback loop uses the result of a check to decide whether to revise, repeat, or stop.",
+      "执行图描述工作步骤及其推进规则，回答「接下来哪一步能跑」。通信图描述消息在谁之间传递。反馈循环根据检查结果决定返工、复查或结束。"],
+    ["Imagine two workers implementing changes in parallel. A rule that review waits for both changes belongs to the execution graph. A record that one worker messaged the other belongs to the communication graph. If a failed review sends a change back for revision and another review, that is a feedback loop. The same run can contain all three. An execution graph with a return path has a cycle. A directed acyclic graph (DAG) has no such path.",
+      "设想两名 Worker 并行实现改动。「两份改动都完成后才能审查」是一条执行规则。一名 Worker 给另一名 Worker 发消息，是一条通信记录。审查失败后退回修正，修完再审，就形成反馈循环。同一次运行可以同时体现三种机制。执行图如果允许回到先前的步骤，就有环。有向无环图（DAG）没有这样的路径。"],
+    ["In Multica, an issue assigned to an agent or squad waits while its blockers are unfinished. Once they clear, eligible work starts automatically. Multica rejects cycles in these issue dependencies. Its project workflows can separately send rejected work back to an earlier step, creating a review and rework loop.",
+      "在 Multica 中，分配给 Agent 或 Squad 的工单会等待阻塞它的工单结束。阻塞解除后，满足启动条件的工单会自动开始。工单依赖禁止成环。项目工作流则可将未通过审查的改动退回前面的步骤，形成审查与返工循环。"],
+    ["Antigravity Swarm gives its coordinator parallel workers and a shared message board. Its Graph tab shows who mentioned whom, with arrows weighted by post count. The verifier can report a problem to the worker that made the change so the worker can fix it. The mention arrows describe communication, and the response to a verification result is the feedback loop.",
+      "Antigravity Swarm 的协调者可以并行派出多名 Worker，由共享看板承载消息。Graph 标签页显示谁提及了谁，箭头权重按帖数计算。Verifier 发现问题后可以把问题发回对应 Worker 修正。提及箭头记录通信，验证结果触发的修正构成反馈循环。"],
+    ["AionUi Team Mode uses a leader to delegate and collect work. Its task board displays explicit blocker links. These links establish that the board represents dependencies. The reviewed evidence leaves open whether the scheduler enforces those links before starting work.",
+      "AionUi Team Mode 由 Leader 派活并汇总，任务板会显示明确的阻塞关系。这些链接能说明看板记录了任务依赖。调度器是否会在启动前强制检查这些依赖，现有证据还无法确认。"],
+    ["Codeg starts fresh worker sessions and returns their results to the lead. Cindy's collaboration mode uses independent worker sessions that a lead can assign and review. T3 Code shows delegated work in its Agents view and can open a child thread beside its parent. These features expose who delegates to whom.",
+      "Codeg 为子任务启动新的 Worker 会话，再把结果交回 Lead。Cindy 的协作模式使用独立的 Worker 会话，由 Lead 派活和验收。T3 Code 的 Agents 视图可查看已委派工作，并能在主线程旁打开子线程。这些功能让读者看到谁把工作交给了谁。"],
+    ["PigBun Partner documents a long-running workstream that retains context and asks the user to step in for decisions or approvals. The public documentation explains this interaction. Its private runtime leaves the internal scheduling model unconfirmed.",
+      "PigBun Partner 的工作流可以持续推进并保留上下文，需要决定或批准时请用户介入。公开文档说明了这套交互，核心运行时仍为私有，内部调度模型尚无法确认。"],
+    ["Stably AI's Orca guide shows independent attempts in separate Git worktrees for a person to compare. Herdr manages terminal sessions and shows whether agents are working or waiting. Magpie routes model requests to the selected provider. These tools illustrate three parts of the environment in which an agent team can run.",
+      "Stably AI 的 Orca 指南展示了让多个 Agent 在独立的 Git worktree 中分别尝试，再由人比较结果。Herdr 管理终端会话并显示 Agent 正在工作还是等待输入。Magpie 把模型请求转给选定的供应商。三者分别提供了协作运行环境中的不同能力。"],
+    ["Take one run with two workers and a reviewer. Find the rule or condition that makes review wait, one recorded message with a sender and recipient, and the check that would trigger revision. For each, name the evidence you would inspect and what you would report if it were missing.",
+      "找一次由两名 Worker 和一名审查者参与的运行。分别指出让审查暂缓的规则、一条有发送者和接收者的消息记录，以及会触发返工的检查。说出每一项应查什么证据，如果查不到又该怎么记录。"],
     ["Alibaba's Wan 3.0 (wan3.0-video) generates video from a text description. Images, video clips and audio can guide what appears on screen and what the viewer hears.",
       "阿里巴巴的通义万相 3.0（wan3.0-video）可以根据文字描述生成视频，也可以参考图片、视频片段和音频来生成画面与声音。"],
     ["Alibaba Cloud documents clips of up to 30 seconds at 30 frames per second, with generated dialogue, music and sound effects. Creators can also edit or extend an existing clip.",
