@@ -130,8 +130,19 @@ export function renderField(ds, fieldId) {
     : comparison ? '' : '<p class="empty">No published articles in this field yet.</p>';
   return {
     title: `${f.title} — ${BRAND}`,
-    html: `${breadcrumb([[f.title]])}${syntheticBanner(ds)}<h1>${esc(f.title)}</h1>${body}${comparison?.html ?? ''}`,
+    html: `${breadcrumb([[f.title]])}${syntheticBanner(ds)}<h1>${esc(f.title)}</h1>${body}${comparison?.html ?? ''}${renderFieldReferences(ds, f)}`,
   };
+}
+
+export function renderFieldReferences(ds, field, locale = 'en', titleHtml = article => esc(article.title)) {
+  const ids = field.related_article_ids;
+  if (!Array.isArray(ids)) return '';
+  const links = [...new Set(ids)].map(id => ds.articles.get(id))
+    .filter(article => article && article.field_id !== field.id)
+    .map(article => `<li><a href="${esc(articleHref(article.id))}">${titleHtml(article)}</a></li>`);
+  if (!links.length) return '';
+  const heading = locale === 'zh' ? '相关工具与指南' : 'Related tools and guides';
+  return section('field-references', heading, `<ul class="related">${links.join('')}</ul>`).html;
 }
 
 function resultItem(a) {

@@ -10,7 +10,7 @@ import {
   loadDataset, articlesInField, relatedTopics, citationOrder, MAX_QUERY, SCHEMA,
 } from './data.js';
 import {
-  articleExtras, renderSidebarArticles, renderToolDirectory, renderToolGroups, esc, safeUrl, BRAND,
+  articleExtras, renderFieldReferences, renderSidebarArticles, renderToolDirectory, renderToolGroups, esc, safeUrl, BRAND,
 } from './render.js';
 
 const TAGLINE = '减少信息噪声，深化知识理解，让知识持续复利。';
@@ -195,7 +195,7 @@ function renderField(ds, fieldId) {
     : comparison ? '' : '<p class="empty">该领域尚无已发布的条目。</p>';
   return {
     title: `${fieldTitleText(f)} — ${BRAND}`,
-    html: `${breadcrumb([[fieldTitleHtml(f)]])}${notices(ds)}<h1>${fieldTitleHtml(f)}</h1>${body}${comparison?.html ?? ''}`,
+    html: `${breadcrumb([[fieldTitleHtml(f)]])}${notices(ds)}<h1>${fieldTitleHtml(f)}</h1>${body}${comparison?.html ?? ''}${renderFieldReferences(ds, f, 'zh', articleTitleHtml)}`,
   };
 }
 
