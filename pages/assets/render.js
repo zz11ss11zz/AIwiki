@@ -48,7 +48,8 @@ const TOOL_GROUPS = [
     ['aionui', 'antigravity-swarm', 'codeg', 'multica', 'pigbun-partner']],
   ['development-workspaces', 'Development workspaces and clients', '开发工作台与客户端',
     ['cindy', 'google-antigravity', 'herdr', 'orca', 't3-code']],
-  ['agent-skills', 'Agent skills and instructions', 'Agent 技能与工作规范', ['andrej-karpathy-skills']],
+  ['agent-skills', 'Agent skills and instructions', 'Agent 技能与工作规范',
+    ['andrej-karpathy-skills', 'skillpay', 'youmind-skills', 'alipay-skillpay', 'tencent-skillhub-skillpay']],
   ['model-routing', 'Model gateways and routing', '模型接入与路由', ['magpie']],
   ['media-generation', 'Video and 3D creation', '视频与 3D 创作', ['google-flow', 'tripo3d']],
 ];
@@ -84,13 +85,49 @@ export function renderSidebarArticles(articles, fieldId, locale, current, titleH
   }).join('')}</ul>`;
 }
 
-export function renderToolGroups(articles, locale, renderItem, ds) {
+const SKILL_COMPARISON_ID = 'compare-skill-marketplaces';
+const SKILL_PRODUCTS = [
+  ['tool:youmind-skills', 'source:youmind-skills-workflow',
+    ['Install a reusable workflow in YouMind. A paid skill is priced in credits at installation.', 'Run the workflow with your own materials, for example to review this week’s draft. Check task usage separately.'],
+    ['在 YouMind 里安装可复用的工作流。付费技能在安装时按积分定价。', '用自己的材料运行，比如审阅本周的稿件。任务消耗的积分另看用量。']],
+  ['tool:alipay-skillpay', 'source:skillpay-alipay-faq',
+    ['Confirm a purchase through Alipay AI Pay. Choose a one-time purchase or access for a fixed period where offered.', 'Receive the skill ZIP or use the skill during the paid term.'],
+    ['用支付宝 AI 付确认购买。按商品上架的选项，一次性购买或按周期付费。', '取得技能 ZIP 文件，或在付费周期内使用技能。']],
+  ['tool:tencent-skillhub-skillpay', 'source:skillpay-skillhub',
+    ['An agent invokes a listed service. Each paid invocation is a billing event.', 'Get the result of that service call, such as a generated video.'],
+    ['由智能体调用上架的服务。付费服务按调用次数计费。', '拿到本次服务的结果，例如生成的一段视频。']],
+];
+
+function renderSkillComparison(ds, locale, titleHtml) {
+  if (!ds || ds.synthetic || !SKILL_PRODUCTS.every(([id]) => ds.articles.has(id))) return '';
+  const zh = locale === 'zh';
+  const title = zh ? '对比技能市场与付费平台' : 'Compare skill marketplaces and paid platforms';
+  const intro = zh
+    ? '先看哪一步会收费，再看你到手的是工作流、技能文件或限期使用权，还是一次调用的结果。'
+    : 'Start with the event that triggers payment. Then check whether you receive a workflow, a skill file, access for a term, or the result of a service call.';
+  const labels = zh ? ['工具', '如何计费', '用户获得什么'] : ['Tool', 'When you pay', 'What you receive'];
+  const headers = labels.map(label => `<th scope="col">${esc(label)}</th>`).join('');
+  const rows = SKILL_PRODUCTS.map(([id, sourceId, en, cn]) => {
+    const name = titleHtml(ds.articles.get(id));
+    const source = ds.sources.get(sourceId);
+    const official = source ? `<br><a class="hint" href="${esc(source)}" rel="noreferrer">${zh ? '官方说明' : 'Official documentation'}</a>` : '';
+    const cells = (zh ? cn : en).map(text => `<td>${esc(text)}</td>`).join('');
+    return `<tr><th scope="row"><a href="${articleHref(id)}">${name}</a>${official}</th>${cells}</tr>`;
+  }).join('');
+  return `<h3 id="${SKILL_COMPARISON_ID}">${esc(title)}</h3><p>${esc(intro)}</p>
+<div class="tool-comparison-scroll" role="region" aria-labelledby="${SKILL_COMPARISON_ID}" tabindex="0">
+<table class="tool-comparison" aria-labelledby="${SKILL_COMPARISON_ID}"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>
+</div>`;
+}
+
+export function renderToolGroups(articles, locale, renderItem, ds, titleHtml = article => esc(article.title)) {
   const overview = ds?.articles.get('concept:agent-collaboration-architectures');
   return toolGroups(articles, locale).map(group => {
     const entries = group.id === 'agent-collaboration' && overview
       ? [overview, ...group.articles]
       : group.articles;
-    return section(group.id, group.title, `<ul class="result-list">${entries.map(renderItem).join('')}</ul>`).html;
+    const comparison = group.id === 'agent-skills' ? renderSkillComparison(ds, locale, titleHtml) : '';
+    return section(group.id, group.title, `${comparison}<ul class="result-list">${entries.map(renderItem).join('')}</ul>`).html;
   }).join('');
 }
 
@@ -364,6 +401,17 @@ export function articleExtras(ds, currentId, locale = 'en', titleHtml = article 
   const extras = [];
   const zh = locale === 'zh';
   if (currentId === BROWSER_MEDIA_GUIDE_ID) return renderBrowserMediaGuide(locale);
+  const skillArticles = [...SKILL_PRODUCTS.map(([id]) => id), 'tool:skillpay'];
+  if (skillArticles.includes(currentId)) {
+    const peers = skillArticles.filter(id => id !== currentId && ds.articles.has(id)).map(id =>
+      `<li><a href="${articleHref(id)}">${titleHtml(ds.articles.get(id))}</a></li>`
+    ).join('');
+    const compare = SKILL_PRODUCTS.every(([id]) => ds.articles.has(id))
+      ? `<p><a href="${fieldHref('field:tools')}#${SKILL_COMPARISON_ID}">${zh ? '查看三种付费方式的对照' : 'Compare the three payment models'}</a></p>`
+      : '';
+    if (peers) extras.push(section('skill-marketplaces', zh ? '相关技能市场与付费平台' : 'Related skill marketplaces and paid platforms',
+      `${compare}<ul class="related">${peers}</ul>`));
+  }
   const currentArticle = ds.articles.get(currentId);
   const relatedTools = currentArticle?.related_tool_ids ?? [];
   if (currentId === 'concept:agent-collaboration-architectures' && relatedTools.length) {
