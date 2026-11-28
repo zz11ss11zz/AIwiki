@@ -2,7 +2,7 @@ import { legacyReferenceDestination } from './community-references.js';
 import { TOOL_GUIDES } from './tool-guides.js';
 // Browser entry: fetch the dataset, render the current page, wire the nav toggle.
 import { loadDataset } from './data.js';
-import { route, renderSidebar, renderUnavailable } from './render.js';
+import { ARCHITECTURE_DIAGRAM_ID, route, renderSidebar, renderUnavailable } from './render.js';
 
 // The preview server maps this path to the synthetic fixture or ENCY4AI_UI_DATA.
 const DATA_URL = 'data/reader.json';
@@ -102,7 +102,7 @@ async function main() {
   }
 
   const fragment = window.location.hash.slice(1);
-  if (fragment === 'practice' || fragment.startsWith('compare-tool_')) {
+  if (fragment === ARCHITECTURE_DIAGRAM_ID || fragment === 'practice' || fragment.startsWith('compare-tool_')) {
     document.getElementById(fragment)?.scrollIntoView();
   }
 }
